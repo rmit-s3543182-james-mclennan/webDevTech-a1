@@ -1,0 +1,6 @@
+D:\Bachelor of Software Engineering\Web Dev Tech\MagicInventorySystem\MagicInventorySystem\bin\Debug\MagicInventorySystem.exe.config
+D:\Bachelor of Software Engineering\Web Dev Tech\MagicInventorySystem\MagicInventorySystem\bin\Debug\MagicInventorySystem.exe
+D:\Bachelor of Software Engineering\Web Dev Tech\MagicInventorySystem\MagicInventorySystem\bin\Debug\MagicInventorySystem.pdb
+D:\Bachelor of Software Engineering\Web Dev Tech\MagicInventorySystem\MagicInventorySystem\obj\Debug\MagicInventorySystem.csprojResolveAssemblyReference.cache
+D:\Bachelor of Software Engineering\Web Dev Tech\MagicInventorySystem\MagicInventorySystem\obj\Debug\MagicInventorySystem.exe
+D:\Bachelor of Software Engineering\Web Dev Tech\MagicInventorySystem\MagicInventorySystem\obj\Debug\MagicInventorySystem.pdb
