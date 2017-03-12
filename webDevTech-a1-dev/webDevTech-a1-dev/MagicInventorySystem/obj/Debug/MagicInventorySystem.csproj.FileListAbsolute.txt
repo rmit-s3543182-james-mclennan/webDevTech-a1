@@ -1,0 +1,11 @@
+D:\Bachelor of Software Engineering\Web Dev Tech\MagicInventorySystem\MagicInventorySystem\bin\Debug\MagicInventorySystem.exe.config
+D:\Bachelor of Software Engineering\Web Dev Tech\MagicInventorySystem\MagicInventorySystem\bin\Debug\MagicInventorySystem.exe
+D:\Bachelor of Software Engineering\Web Dev Tech\MagicInventorySystem\MagicInventorySystem\bin\Debug\MagicInventorySystem.pdb
+D:\Bachelor of Software Engineering\Web Dev Tech\MagicInventorySystem\MagicInventorySystem\obj\Debug\MagicInventorySystem.csprojResolveAssemblyReference.cache
+D:\Bachelor of Software Engineering\Web Dev Tech\MagicInventorySystem\MagicInventorySystem\obj\Debug\MagicInventorySystem.exe
+D:\Bachelor of Software Engineering\Web Dev Tech\MagicInventorySystem\MagicInventorySystem\obj\Debug\MagicInventorySystem.pdb
+C:\Users\Allen Cho\Desktop\webDevTech-a1-dev\webDevTech-a1-dev\MagicInventorySystem\bin\Debug\MagicInventorySystem.exe.config
+C:\Users\Allen Cho\Desktop\webDevTech-a1-dev\webDevTech-a1-dev\MagicInventorySystem\bin\Debug\MagicInventorySystem.exe
+C:\Users\Allen Cho\Desktop\webDevTech-a1-dev\webDevTech-a1-dev\MagicInventorySystem\bin\Debug\MagicInventorySystem.pdb
+C:\Users\Allen Cho\Desktop\webDevTech-a1-dev\webDevTech-a1-dev\MagicInventorySystem\obj\Debug\MagicInventorySystem.exe
+C:\Users\Allen Cho\Desktop\webDevTech-a1-dev\webDevTech-a1-dev\MagicInventorySystem\obj\Debug\MagicInventorySystem.pdb
