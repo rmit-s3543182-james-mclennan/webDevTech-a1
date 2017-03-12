@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Driver.cs" />
     <Compile Include="MainMenu.cs" />
+    <Compile Include="OwnerMenu.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
