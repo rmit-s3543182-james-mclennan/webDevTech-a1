@@ -43,6 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomerMenu.cs" />
+    <Compile Include="FranchiseOwnerMenu.cs" />
+    <Compile Include="MagicMenuSystem.cs" />
     <Compile Include="Driver.cs" />
     <Compile Include="MainMenu.cs" />
     <Compile Include="OwnerMenu.cs" />

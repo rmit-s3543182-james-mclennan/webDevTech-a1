@@ -6,18 +6,18 @@ using System.Threading.Tasks;
 
 namespace MagicInventorySystem
 {
-    class OwnerMenu
+    class CustomerMenu
     {
-        public MagicMenuCollection loadOwnerMenu(MagicMenuCollection collection)
+        public MagicMenuCollection loadCustomerMenu(MagicMenuCollection collection)
         {
             collection.Menus.Add(new MagicMenuSystem()
             {
-                MenuId = 2,
+                MenuId = 4,
                 MenuItems =
                     {
                         new MagicMenuItem()
                         {
-                            Option = "Display All Stock Requests\n",
+                            Option = "Display Products\n",
                             HasSubMenu = false,
                             Action = () =>
                             {
@@ -26,16 +26,7 @@ namespace MagicInventorySystem
                         },
                         new MagicMenuItem()
                         {
-                            Option = "Display Stock Requests (True / False)\n",
-                            HasSubMenu = false,
-                            Action = () =>
-                            {
-                                Console.WriteLine("Need to implement function!");
-                            }
-                        },
-                        new MagicMenuItem()
-                        {
-                            Option = "Display All Product Lines\n",
+                            Option = "Display Workshops\n",
                             HasSubMenu = false,
                             Action = () =>
                             {

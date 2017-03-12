@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,7 +12,7 @@ namespace MagicInventorySystem
         static void Main(string[] args)
         {
             MainMenu menu = new MainMenu();
-            menu.launchMenu();
+            menu.loadMainMenu();
         }
     }
 }

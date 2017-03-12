@@ -6,18 +6,18 @@ using System.Threading.Tasks;
 
 namespace MagicInventorySystem
 {
-    class OwnerMenu
+    class FranchiseOwnerMenu
     {
-        public MagicMenuCollection loadOwnerMenu(MagicMenuCollection collection)
+        public MagicMenuCollection loadFranchiseOwnerMenu(MagicMenuCollection collection)
         {
             collection.Menus.Add(new MagicMenuSystem()
             {
-                MenuId = 2,
+                MenuId = 3,
                 MenuItems =
                     {
                         new MagicMenuItem()
                         {
-                            Option = "Display All Stock Requests\n",
+                            Option = "Display Inventory\n",
                             HasSubMenu = false,
                             Action = () =>
                             {
@@ -26,7 +26,7 @@ namespace MagicInventorySystem
                         },
                         new MagicMenuItem()
                         {
-                            Option = "Display Stock Requests (True / False)\n",
+                            Option = "Display Inventory (Threshold)\n",
                             HasSubMenu = false,
                             Action = () =>
                             {
@@ -35,7 +35,7 @@ namespace MagicInventorySystem
                         },
                         new MagicMenuItem()
                         {
-                            Option = "Display All Product Lines\n",
+                            Option = "Add New Inventory Item\n",
                             HasSubMenu = false,
                             Action = () =>
                             {

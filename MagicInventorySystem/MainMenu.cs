@@ -2,56 +2,68 @@
 
 namespace MagicInventorySystem
 {
-    internal class MainMenu
+    class MainMenu
     {
-        public void launchMenu()
+        public void loadMainMenu()
         {
-            Console.WriteLine("Welcome to the Magic Inventory System!");
-            Console.WriteLine("===========================================\n");
-            Console.WriteLine("     1. Owner\n");
-            Console.WriteLine("     2. Franchise Owner\n");
-            Console.WriteLine("     3. Customer\n");
-            Console.WriteLine("     4. Quit\n");
-
-            int programCounter = 0;
-            while (programCounter == 0)
+            // build a collection of menus
+            // can have as deep a structure as you like
+            // give each menu a unique integer MenuId
+            // link to other menus by setting HasSubMenu to true, and the SubMenuId to the MenuId of the menu you wish to link to
+            // or, set HasSubMenu to false, and have an Action performed when the menuitem is selected
+            OwnerMenu ownerMenu = new OwnerMenu();
+            FranchiseOwnerMenu franOwnerMenu = new FranchiseOwnerMenu();
+            CustomerMenu customerMenu = new CustomerMenu();
+            MagicMenuCollection collection = new MagicMenuCollection()
             {
-                int userInput = 0;
-                Console.WriteLine("Enter an option");
-                try
+                Menus =
+            {
+                new MagicMenuSystem()
                 {
-                    userInput = Convert.ToInt32(Console.ReadLine());
-                }
-                catch(System.FormatException e)
-                {
-                    Console.WriteLine("Invalid input entered. input type must be integer.\n");
-                }
-                if (userInput == 1)
-                {
-                    OwnerMenu owner = new OwnerMenu();
-                    owner.Owner();
-                    programCounter++;
-                }
-                else if (userInput == 2)
-                {
-                    programCounter++;
-                }
-                else if (userInput == 3)
-                {
-                    programCounter++;
-                }
-                else if (userInput == 4)
-                {
-                    programCounter++;
-                }
-                else if(userInput > 4 || userInput < 1)
-                {
-                    Console.WriteLine("Invalid input entered. please choose valid option.\n");
-                }
+                    MenuId = 1,
+                    MenuItems =
+                    {
+                        new MagicMenuItem()
+                        {
+                            Option = "Owner",
+                            HasSubMenu = true,
+                            SubMenuId = 2
+                        },
 
+                        new MagicMenuItem()
+                        {
+                            Option = "Franchise Owner",
+                            HasSubMenu = true,
+                            SubMenuId = 3
+                        },
+
+                        new MagicMenuItem()
+                        {
+                            Option = "Customer",
+                            HasSubMenu = true,
+                            SubMenuId = 4
+                        },
+
+                        new MagicMenuItem()
+                        {
+                            Option = "Exit",
+                            HasSubMenu = false,
+                            Action = () =>
+                            {
+                                System.Environment.Exit(1);
+                            }
+                        }
+                    }
+                }
             }
-            Console.ReadKey();
-
+            };
+            collection = ownerMenu.loadOwnerMenu(collection);
+            collection = franOwnerMenu.loadFranchiseOwnerMenu(collection);
+            collection = customerMenu.loadCustomerMenu(collection);
+            collection.ShowMenu(1);
+            Console.ReadLine();
         }
+        
     }
+
 }
