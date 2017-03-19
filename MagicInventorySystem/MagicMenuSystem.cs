@@ -8,16 +8,16 @@ namespace MagicInventorySystem
 {
     /*MenuItem is a single line/option in a menu. It contains:
      * Option = The string for the line
-     * HasSubMenu = A boolean to say if there is a menu or is this the leaf of the menu
+     * CannotExecute = A boolean to say if there is a menu or is this the leaf of the menu
      * SubMenuId = The ID for a specific submenu
-     * Action = The action that will take place, if this line is a leaf
+     * Execute = The action that will take place, if this line is a leaf
      */
     class MagicMenuItem
     {
         public string Option { get; set; }
-        public bool HasSubMenu { get; set; }
+        public bool CannotExecute { get; set; }
         public int? SubMenuId { get; set; }
-        public Action Action { get; set; }
+        public Action Execute { get; set; }
     }
 
     /*Menu is an entire Menu display or a list of MenuItem's. It contains:
@@ -25,9 +25,9 @@ namespace MagicInventorySystem
      * MenuItems = A list of MagicMenuItem's
      * Title = a title for the menu
      */
-    class MagicMenuSystem
+    class MagicMenuList
     {
-        public MagicMenuSystem()
+        public MagicMenuList()
         {
             MenuItems = new List<MagicMenuItem>();
         }
@@ -55,10 +55,10 @@ namespace MagicInventorySystem
     {
         public MagicMenuCollection()
         {
-            Menus = new List<MagicMenuSystem>();
+            Menus = new List<MagicMenuList>();
         }
 
-        public List<MagicMenuSystem> Menus { get; set; }
+        public List<MagicMenuList> Menus { get; set; }
 
         public void ShowMenu(int id)
         {
@@ -86,7 +86,7 @@ namespace MagicInventorySystem
                 var menuItemSelected = currentMenu.MenuItems[choiceIndex - 1];
 
                 //Check if the item has a sub menu, if it does, show this menu.
-                if (menuItemSelected.HasSubMenu)
+                if (menuItemSelected.CannotExecute)
                 {
                     Console.Clear();
                     ShowMenu(menuItemSelected.SubMenuId.Value);
@@ -94,7 +94,7 @@ namespace MagicInventorySystem
                 //If item does not have a sub menu, then execute action.
                 else
                 {
-                    menuItemSelected.Action();
+                    menuItemSelected.Execute();
                 }
             }
         }

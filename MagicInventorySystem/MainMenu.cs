@@ -18,7 +18,7 @@ namespace MagicInventorySystem
             {
                 Menus =
             {
-                new MagicMenuSystem()
+                new MagicMenuList()
                 {
                     MenuId = 1,
                     MenuItems =
@@ -26,29 +26,29 @@ namespace MagicInventorySystem
                         new MagicMenuItem()
                         {
                             Option = "Owner",
-                            HasSubMenu = true,
+                            CannotExecute = true,
                             SubMenuId = 2
                         },
 
                         new MagicMenuItem()
                         {
                             Option = "Franchise Owner",
-                            HasSubMenu = true,
+                            CannotExecute = true,
                             SubMenuId = 3
                         },
 
                         new MagicMenuItem()
                         {
                             Option = "Customer",
-                            HasSubMenu = true,
+                            CannotExecute = true,
                             SubMenuId = 4
                         },
 
                         new MagicMenuItem()
                         {
                             Option = "Exit",
-                            HasSubMenu = false,
-                            Action = () =>
+                            CannotExecute = false,
+                            Execute = () =>
                             {
                                 System.Environment.Exit(1);
                             }
@@ -64,6 +64,10 @@ namespace MagicInventorySystem
             Console.ReadLine();
         }
         
+        public void loadAllLists()
+        {
+            
+        }
     }
 
 }
