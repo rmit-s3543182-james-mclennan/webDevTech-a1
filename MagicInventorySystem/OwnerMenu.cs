@@ -8,6 +8,7 @@ namespace MagicInventorySystem
 {
     class OwnerMenu
     {
+        Owner access = new Owner();
         public MagicMenuCollection loadOwnerMenu(MagicMenuCollection collection)
         {
             collection.Menus.Add(new MagicMenuList()
@@ -39,7 +40,8 @@ namespace MagicInventorySystem
                             CannotExecute = false,
                             Execute = () =>
                             {
-                                Console.WriteLine("Need to implement function!");
+                                access.displayAllStock();
+                                collection.ShowMenu(2);
                             }
                         },
                         new MagicMenuItem()

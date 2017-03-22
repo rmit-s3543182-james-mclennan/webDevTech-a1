@@ -10,6 +10,11 @@ namespace MagicInventorySystem
 {
     class JsonProcessor
     {
+        /*Use the function readFile(pass the name of the file) and it will 
+         * return a list of products.
+         * 
+         * Should only be used for products!
+         */
         public List<Products> readFile(string fileName)
         {
             Console.WriteLine("Loading products from " + fileName);

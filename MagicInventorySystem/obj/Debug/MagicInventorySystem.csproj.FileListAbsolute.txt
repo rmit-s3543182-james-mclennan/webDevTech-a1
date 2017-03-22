@@ -15,3 +15,7 @@ D:\Bachelor of Software Engineering\Web Dev Tech\webDevTech-a1\MagicInventorySys
 D:\Bachelor of Software Engineering\Web Dev Tech\webDevTech-a1\MagicInventorySystem\bin\Debug\MagicInventorySystem.exe
 D:\Bachelor of Software Engineering\Web Dev Tech\webDevTech-a1\MagicInventorySystem\bin\Debug\MagicInventorySystem.pdb
 D:\Bachelor of Software Engineering\Web Dev Tech\webDevTech-a1\MagicInventorySystem\obj\Debug\MagicInventorySystem.csprojResolveAssemblyReference.cache
+D:\Bachelor of Software Engineering\Web Dev Tech\webDevTech-a1\MagicInventorySystem\bin\Debug\Newtonsoft.Json.dll
+D:\Bachelor of Software Engineering\Web Dev Tech\webDevTech-a1\MagicInventorySystem\bin\Debug\UtilityLibrary.dll
+D:\Bachelor of Software Engineering\Web Dev Tech\webDevTech-a1\MagicInventorySystem\bin\Debug\Newtonsoft.Json.xml
+D:\Bachelor of Software Engineering\Web Dev Tech\webDevTech-a1\MagicInventorySystem\bin\Debug\UtilityLibrary.pdb
