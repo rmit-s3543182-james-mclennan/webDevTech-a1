@@ -15,7 +15,7 @@ namespace MagicInventorySystem
         {
             List<Products> allStock = reader.readFile("owners_inventory.json");
 
-            String titleLine = String.Format("\n{0, -5} | {1, -10} | {2, -10}", "ID", "Name", "Stock Level");
+            String titleLine = String.Format("\n{0, -5} | {1, -15} | {2, -10}", "ID", "Name", "Stock Level");
 
             Console.WriteLine(titleLine);
 
@@ -30,11 +30,12 @@ namespace MagicInventorySystem
 
             foreach (Products stockItem in allStock)
             {
-                String productLine = String.Format("{0, -5} | {1,  -10} | {2,  -10}", stockItem.ID, stockItem.name, stockItem.stockLevel);
+                String productLine = String.Format("{0, -5} | {1,  -15} | {2,  -10}", stockItem.ID, stockItem.name, stockItem.stockLevel);
 
                 Console.WriteLine(productLine);
             }
             Console.WriteLine();
+            Console.WriteLine("Press any key to continue...");
         }
 
     }

@@ -40,7 +40,10 @@ namespace MagicInventorySystem
                             CannotExecute = false,
                             Execute = () =>
                             {
+                                Console.Clear();
                                 access.displayAllStock();
+                                Console.ReadKey();
+                                Console.Clear();
                                 collection.ShowMenu(2);
                             }
                         },
