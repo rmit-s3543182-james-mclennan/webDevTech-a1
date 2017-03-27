@@ -17,7 +17,7 @@ namespace MagicInventorySystem
          */
         public List<Products> readFile(string fileName)
         {
-            Console.WriteLine("Loading products from " + fileName);
+            Console.WriteLine("[!] Loading products from " + fileName);
 
             return JsonConvert.DeserializeObject<List<Products>>(File.ReadAllText(fileName));
         }

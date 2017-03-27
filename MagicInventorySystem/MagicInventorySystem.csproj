@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CustomerMenu.cs" />
+    <Compile Include="FranchiseOwner.cs" />
     <Compile Include="FranchiseOwnerMenu.cs" />
     <Compile Include="JsonProcessor.cs" />
     <Compile Include="MagicMenuSystem.cs" />
@@ -63,8 +64,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="owners_inventory.json" />
+    <None Include="Melbourne_CBD_Inventory.json" />
+    <None Include="Melbourne_East_Inventory.json" />
+    <None Include="Melbourne_North_Inventory.json" />
+    <None Include="Melbourne_South_Inventory.json" />
+    <None Include="Melbourne_West_Inventory.json" />
     <None Include="packages.config" />
+    <None Include="stockrequests.json" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

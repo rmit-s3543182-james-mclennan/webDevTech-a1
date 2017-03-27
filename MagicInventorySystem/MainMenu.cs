@@ -11,9 +11,7 @@ namespace MagicInventorySystem
             // give each menu a unique integer MenuId
             // link to other menus by setting HasSubMenu to true, and the SubMenuId to the MenuId of the menu you wish to link to
             // or, set HasSubMenu to false, and have an Action performed when the menuitem is selected
-            OwnerMenu ownerMenu = new OwnerMenu();
-            FranchiseOwnerMenu franOwnerMenu = new FranchiseOwnerMenu();
-            CustomerMenu customerMenu = new CustomerMenu();
+
             MagicMenuCollection collection = new MagicMenuCollection()
             {
                 Menus =
@@ -34,7 +32,7 @@ namespace MagicInventorySystem
                         {
                             Option = "Franchise Owner",
                             CannotExecute = true,
-                            SubMenuId = 3
+                            SubMenuId = 5
                         },
 
                         new MagicMenuItem()
@@ -57,16 +55,24 @@ namespace MagicInventorySystem
                 }
             }
             };
-            collection = ownerMenu.loadOwnerMenu(collection);
-            collection = franOwnerMenu.loadFranchiseOwnerMenu(collection);
-            collection = customerMenu.loadCustomerMenu(collection);
+            collection = loadAllLists(collection);
+
             collection.ShowMenu(1);
             Console.ReadLine();
         }
         
-        public void loadAllLists()
+        private MagicMenuCollection loadAllLists(MagicMenuCollection collection)
         {
-            
+            OwnerMenu ownerMenu = new OwnerMenu();
+            FranchiseOwnerMenu franOwnerMenu = new FranchiseOwnerMenu();
+            CustomerMenu customerMenu = new CustomerMenu();
+
+            collection = ownerMenu.loadOwnerMenu(collection);
+            collection = franOwnerMenu.loadFranchiseOwnerMenu(collection);
+            collection = franOwnerMenu.validateFranchiseStore(collection);
+            collection = customerMenu.loadCustomerMenu(collection);
+
+            return collection;
         }
     }
 

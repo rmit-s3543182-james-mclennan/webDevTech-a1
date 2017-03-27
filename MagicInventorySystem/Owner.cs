@@ -14,13 +14,25 @@ namespace MagicInventorySystem
         public void displayAllStock()
         {
             List<Products> allStock = reader.readFile("owners_inventory.json");
-            String test = String.Format("{0, 0}{1, 5}{2, 14}\n", "ID", "Name", "Stock Level");
-            Console.WriteLine(test);
+
+            String titleLine = String.Format("\n{0, -5} | {1, -10} | {2, -10}", "ID", "Name", "Stock Level");
+
+            Console.WriteLine(titleLine);
+
+            for (int i = 0; i < titleLine.Length; i++)
+            {
+                Console.Write("=");
+                if(i + 1 == titleLine.Length)
+                {
+                    Console.Write("=\n");
+                }
+            }
+
             foreach (Products stockItem in allStock)
             {
-                String test2 = String.Format("{0, 0}{1, 8}{2, 16}", stockItem.ID, stockItem.name, stockItem.stockLevel);
+                String productLine = String.Format("{0, -5} | {1,  -10} | {2,  -10}", stockItem.ID, stockItem.name, stockItem.stockLevel);
 
-                Console.WriteLine(test2);
+                Console.WriteLine(productLine);
             }
             Console.WriteLine();
         }
