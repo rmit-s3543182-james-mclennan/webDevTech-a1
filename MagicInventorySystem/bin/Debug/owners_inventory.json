@@ -1,0 +1,77 @@
+[
+  {
+    "Id": 1,
+    "Name": "Rabbit",
+    "StockLevel": 5
+  },
+  {
+    "Id": 2,
+    "Name": "Wand",
+    "StockLevel": 5
+  },
+  {
+    "Id": 3,
+    "Name": "Magic Hat",
+    "StockLevel": 5
+  },
+  {
+    "Id": 4,
+    "Name": "Deck of Cards",
+    "StockLevel": 5
+  },
+  {
+    "Id": 5,
+    "Name": "Cape",
+    "StockLevel": 5
+  },
+  {
+    "Id": 6,
+    "Name": "Moustache",
+    "StockLevel": 5
+  },
+  {
+    "Id": 7,
+    "Name": "Fake blood",
+    "StockLevel": 5
+  },
+  {
+    "Id": 8,
+    "Name": "Rope",
+    "StockLevel": 5
+  },
+  {
+    "Id": 9,
+    "Name": "Hoops",
+    "StockLevel": 5
+  },
+  {
+    "Id": 10,
+    "Name": "Hand cuffs",
+    "StockLevel": 5
+  },
+  {
+    "Id": 11,
+    "Name": "Bottle of air",
+    "StockLevel": 5
+  },
+  {
+    "Id": 12,
+    "Name": "Flying carpet",
+    "StockLevel": 5
+  },
+  {
+    "Id": 13,
+    "Name": "Wizard Hat",
+    "StockLevel": 5
+  },
+  {
+    "Id": 14,
+    "Name": "Fairy Dust",
+    "StockLevel": 5
+  },
+  {
+    "Id": 15,
+    "Name": "Flying Powder",
+    "StockLevel": 5
+  },
+]
