@@ -9,6 +9,8 @@ namespace MagicInventorySystem
     class FranchiseOwnerMenu
     {
         FranchiseOwner access = new FranchiseOwner();
+
+        private String storeID;
         public MagicMenuCollection loadFranchiseOwnerMenu(MagicMenuCollection collection)
         {
             collection.Menus.Add(new MagicMenuList()
@@ -40,7 +42,8 @@ namespace MagicInventorySystem
                             CannotExecute = false,
                             Execute = () =>
                             {
-                                Console.WriteLine("Need to implement function!");
+                                access.addNewItem(storeID);
+                                collection.ShowMenu(3);
                             }
                         },
                         new MagicMenuItem()
@@ -79,7 +82,7 @@ namespace MagicInventorySystem
                             Execute = () =>
                             {
                                 Console.Clear();
-                                access.identifyStore("Melbourne_CBD");
+                                storeID = access.identifyStore("Melbourne_CBD");
                                 collection.ShowMenu(3);
 
                             }
@@ -91,7 +94,7 @@ namespace MagicInventorySystem
                             Execute = () =>
                             {
                                 Console.Clear();
-                                access.identifyStore("Melbourne_North");
+                                storeID = access.identifyStore("Melbourne_North");
                                 collection.ShowMenu(3);
                             }
                         },
@@ -102,7 +105,7 @@ namespace MagicInventorySystem
                             Execute = () =>
                             {
                                 Console.Clear();
-                                access.identifyStore("Melbourne_South");
+                                storeID = access.identifyStore("Melbourne_South");
                                 collection.ShowMenu(3);
                             }
                         },
@@ -113,7 +116,7 @@ namespace MagicInventorySystem
                             Execute = () =>
                             {
                                 Console.Clear();
-                                access.identifyStore("Melbourne_East");
+                                storeID = access.identifyStore("Melbourne_East");
                                 collection.ShowMenu(3);
                             }
                         },
@@ -124,7 +127,7 @@ namespace MagicInventorySystem
                             Execute = () =>
                             {
                                 Console.Clear();
-                                access.identifyStore("Melbourne_West");
+                                storeID = access.identifyStore("Melbourne_West");
                                 collection.ShowMenu(3);
                             }
                         },

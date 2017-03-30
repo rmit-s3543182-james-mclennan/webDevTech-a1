@@ -19,7 +19,8 @@ namespace MagicInventorySystem
         {
             Console.WriteLine("[!] Loading products from " + fileName);
 
-            return JsonConvert.DeserializeObject<List<Products>>(File.ReadAllText(fileName));
+            return JsonConvert.DeserializeObject<List<Products>>(File.ReadAllText(fileName))
+                ?? new List<Products>();
         }
     }
 }

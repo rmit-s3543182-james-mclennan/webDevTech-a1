@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,6 +38,17 @@ namespace MagicInventorySystem
             }
             Console.WriteLine();
             Console.WriteLine("Press any key to continue...");
+        }
+
+        public void updateStock(int index, int amountSentToStore)
+        {
+            List<Products> allStock = reader.readFile("owners_inventory.json");
+
+            Products itemToReduce = allStock[index-1];
+
+            itemToReduce.stockLevel = itemToReduce.stockLevel - amountSentToStore;
+
+            File.WriteAllText("owners_inventory.json", JsonConvert.SerializeObject(allStock, Formatting.Indented));
         }
 
     }

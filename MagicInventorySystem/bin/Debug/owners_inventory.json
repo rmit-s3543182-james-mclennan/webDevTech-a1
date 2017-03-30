@@ -1,77 +1,77 @@
 [
   {
-    "Id": 1,
-    "Name": "Rabbit",
-    "StockLevel": 5
+    "ID": 1,
+    "name": "Rabbit",
+    "stockLevel": 5
   },
   {
-    "Id": 2,
-    "Name": "Wand",
-    "StockLevel": 5
+    "ID": 2,
+    "name": "Wand",
+    "stockLevel": 15
   },
   {
-    "Id": 3,
-    "Name": "Magic Hat",
-    "StockLevel": 5
+    "ID": 3,
+    "name": "Magic Hat",
+    "stockLevel": 25
   },
   {
-    "Id": 4,
-    "Name": "Deck of Cards",
-    "StockLevel": 5
+    "ID": 4,
+    "name": "Deck of Cards",
+    "stockLevel": 25
   },
   {
-    "Id": 5,
-    "Name": "Cape",
-    "StockLevel": 5
+    "ID": 5,
+    "name": "Cape",
+    "stockLevel": 25
   },
   {
-    "Id": 6,
-    "Name": "Moustache",
-    "StockLevel": 5
+    "ID": 6,
+    "name": "Moustache",
+    "stockLevel": 25
   },
   {
-    "Id": 7,
-    "Name": "Fake blood",
-    "StockLevel": 5
+    "ID": 7,
+    "name": "Fake blood",
+    "stockLevel": 25
   },
   {
-    "Id": 8,
-    "Name": "Rope",
-    "StockLevel": 5
+    "ID": 8,
+    "name": "Rope",
+    "stockLevel": 25
   },
   {
-    "Id": 9,
-    "Name": "Hoops",
-    "StockLevel": 5
+    "ID": 9,
+    "name": "Hoops",
+    "stockLevel": 25
   },
   {
-    "Id": 10,
-    "Name": "Hand cuffs",
-    "StockLevel": 5
+    "ID": 10,
+    "name": "Hand cuffs",
+    "stockLevel": 25
   },
   {
-    "Id": 11,
-    "Name": "Bottle of air",
-    "StockLevel": 5
+    "ID": 11,
+    "name": "Bottle of air",
+    "stockLevel": 25
   },
   {
-    "Id": 12,
-    "Name": "Flying carpet",
-    "StockLevel": 5
+    "ID": 12,
+    "name": "Flying carpet",
+    "stockLevel": 25
   },
   {
-    "Id": 13,
-    "Name": "Wizard Hat",
-    "StockLevel": 5
+    "ID": 13,
+    "name": "Wizard Hat",
+    "stockLevel": 25
   },
   {
-    "Id": 14,
-    "Name": "Fairy Dust",
-    "StockLevel": 5
+    "ID": 14,
+    "name": "Fairy Dust",
+    "stockLevel": 25
   },
   {
-    "Id": 15,
-    "Name": "Flying Powder",
-    "StockLevel": 5
-  },
+    "ID": 15,
+    "name": "Flying Powder",
+    "stockLevel": 20
+  }
 ]
