@@ -125,23 +125,60 @@ namespace MagicInventorySystem
                 Console.WriteLine("[Legend: 'P' Next Page | 'R' Return to Menu | 'C' Complete Transaction]");
                 Console.Write("Enter Item Number to purchase or Function(ID - Quantity) : ");
                 choice = Console.ReadLine();
-                if (choice == "P" || choice == "p")
+                try
                 {
-                    isCompleted = displayPageTwo();
+                    if (choice == "P" || choice == "p")
+                    {
+                        isCompleted = displayPageTwo();
+                    }
+                    else if (choice == "R" || choice == "r")
+                    {
+                        isCompleted = displayPageFour();
+                    }
+                    else if (choice == "C" || choice == "c")
+                    {
+                        Console.WriteLine("Transaction done!");
+                        isCompleted = transactionComplete();
+                    }
+                    else if (Convert.ToInt32(choice) < allStock.Count
+                    && Convert.ToInt32(choice) > 0)
+                    {
+                        foreach (Products getItem in allStock)
+                        {
+                            if (choice == Convert.ToString(getItem.ID)
+                            && getItem.stockLevel > 0)
+                            {
+                                Console.Write("Choose the quantity of the product(current stock : "
+                                    + getItem.stockLevel + ") : ");
+                                choice = Console.ReadLine();
+                            }
+                            // out of stock
+                            else if (getItem.stockLevel <= 0)
+                            {
+                                Console.WriteLine("The product is currently out of stock!");
+
+                            }
+                            //// invalid input
+                            //else if (choice != )
+                            //{
+                            //    invalidInput();
+                            //    break;
+                            //}
+                        }
+                    }
+                    else
+                    {
+                        isCompleted = invalidInput();
+                        Console.WriteLine("Invalid Input. Try again.");
+                    }
                 }
-                else if (choice == "R" || choice == "r")
+                catch (FormatException e)
                 {
-                    isCompleted = displayPageFour();
+
                 }
-                else if (choice == "C" || choice == "c")
-                {
-                    isCompleted = transactionComplete();
-                }
-                //else
-                //{
-                //    isCompleted = invalidInput();
-                //    Console.WriteLine("Invalid Input. Try again.");
-                //}
+
+
+
 
                 /* compare product request with current stocklevel
                  * and then if stocklevel is > 0
@@ -149,34 +186,28 @@ namespace MagicInventorySystem
                  * afterwards ask again to buy more stuff
                  * and book a workshop(if so, 10% discount of price)
                  */
-                foreach (Products getItem in allStock)
-                {
-                    // compare input with getItem ID and stockLevel > 0
-                    if (choice == Convert.ToString(getItem.ID)
-                    && getItem.stockLevel > 0)
-                    {
-                        Console.Write("Choose the quantity of the product(current stock : "
-                            + getItem.stockLevel + ") : ");
-                        choice = Console.ReadLine();
-                        //switch(choice)
-                        //{
-                        //    case "1":
-                        //        break;
-                        //    case "2":
-                        //        break;
-                        //    case "3":
-                        //        break;
-                        //        case
+                //foreach (Products getItem in allStock)
+                //{
+                //    // compare input with getItem ID and stockLevel > 0
+                //    if (choice == Convert.ToString(getItem.ID)
+                //    && getItem.stockLevel > 0)
+                //    {
+                //        Console.Write("Choose the quantity of the product(current stock : "
+                //            + getItem.stockLevel + ") : ");
+                //        choice = Console.ReadLine();
+                //    }
+                //    // out of stock
+                //    else if (getItem.stockLevel <= 0)
+                //    {
+                //        Console.WriteLine("The product is currently out of stock!");
 
-                        //}
-
-                    }
-                    // out of stock
-                    else
-                    {
-                        Console.WriteLine("The product is currently out of stock!");
-                    }
-                }
+                //    }
+                //    else if(choice != Convert.ToString(getItem.ID))
+                //    {
+                //        invalidInput();
+                //        break;
+                //    }
+                //}
             }
 
         }
