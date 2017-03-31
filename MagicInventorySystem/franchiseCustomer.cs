@@ -12,7 +12,6 @@ namespace MagicInventorySystem
     class franchiseCustomer : PageLoad
     {
         FranchiseOwner access = new FranchiseOwner();
-        private String storeID;
         public MagicMenuCollection loadFranchiseCustomerMenu(MagicMenuCollection collection)
         {
             collection.Menus.Add(new MagicMenuList()
