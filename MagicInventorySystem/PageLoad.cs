@@ -14,11 +14,16 @@ namespace MagicInventorySystem
         public int currentPage { get; set; }
         public int isCompleted { get; set; }
         public string choice { get; set; }
+        public List<Products> allStock { get; set; }
         JsonProcessor reader = new JsonProcessor();
-
+        public PageLoad()
+        {
+            allStock = JsonConvert.DeserializeObject<List<Products>>(File.ReadAllText("owners_inventory.json"));
+        }
         public int displayPageOne()
         {
             // Display Page 1 and get input for next function
+
             Console.Clear();
             Console.WriteLine("[!] Loading products from owners_inventory.json");
             displayTitle();
@@ -28,21 +33,47 @@ namespace MagicInventorySystem
             Console.WriteLine("[Legend: 'P' Next Page | 'R' Return to Menu | 'C' Complete Transaction]");
             Console.Write("Enter Item Number to purchase or Function(ID - Quantity) : ");
             choice = Console.ReadLine();
-            if (choice == "P" || choice == "p")
+            try
             {
-               isCompleted = displayPageTwo();
+                if (choice == "P" || choice == "p")
+                {
+                    isCompleted = displayPageTwo();
+                }
+                else if (choice == "R" || choice == "r")
+                {
+                    isCompleted = displayPageFour();
+                }
+                else if (choice == "C" || choice == "c")
+                {
+                    Console.WriteLine("Transaction done!");
+                    isCompleted = transactionComplete();
+                }
+                else if (Convert.ToInt32(choice) < allStock.Count
+                && Convert.ToInt32(choice) > 0)
+                {
+                    foreach (Products getItem in allStock)
+                    {
+                        if (choice == Convert.ToString(getItem.ID)
+                        && getItem.stockLevel > 0)
+                        {
+                            Console.Write("Choose the quantity of the product(current stock : "
+                                + getItem.stockLevel + ") : ");
+                            choice = Console.ReadLine();
+                        }
+                        // out of stock
+                        else if (choice == Convert.ToString(getItem.ID) && getItem.stockLevel <= 0)
+                        {
+                            outOfStock();                        }
+                    }
+                }
+                else
+                {
+                    isCompleted = invalidInput();
+                }
             }
-            else if(choice == "R" || choice == "r")
+            catch (FormatException e)
             {
-                isCompleted = displayPageFour();
-            }
-            else if(choice == "C" || choice =="c")
-            {
-                isCompleted = transactionComplete();
-            }
-            else
-            {
-                invalidInput();
+                isCompleted = invalidInput();
             }
             return isCompleted;
         }
@@ -60,21 +91,47 @@ namespace MagicInventorySystem
             Console.WriteLine("[Legend: 'P' Next Page | 'R' Return to Menu | 'C' Complete Transaction]");
             Console.Write("Enter Item Number to purchase or Function(ID - Quantity) : ");
             choice = Console.ReadLine();
-            if (choice == "P" || choice == "p")
+            try
             {
-                isCompleted = displayPageThree();
+                if (choice == "P" || choice == "p")
+                {
+                    isCompleted = displayPageThree();
+                }
+                else if (choice == "R" || choice == "r")
+                {
+                    isCompleted = displayPageOne();
+                }
+                else if (choice == "C" || choice == "c")
+                {
+                    Console.WriteLine("Transaction done!");
+                    isCompleted = transactionComplete();
+                }
+                else if (Convert.ToInt32(choice) < allStock.Count
+                && Convert.ToInt32(choice) > 0)
+                {
+                    foreach (Products getItem in allStock)
+                    {
+                        if (choice == Convert.ToString(getItem.ID)
+                        && getItem.stockLevel > 0)
+                        {
+                            Console.Write("Choose the quantity of the product(current stock : "
+                                + getItem.stockLevel + ") : ");
+                            choice = Console.ReadLine();
+                        }
+                        // out of stock
+                        else if (choice == Convert.ToString(getItem.ID) && getItem.stockLevel <= 0)
+                        {
+                            outOfStock();                        }
+                    }
+                }
+                else
+                {
+                    isCompleted = invalidInput();
+                }
             }
-            else if(choice == "R" || choice == "r")
+            catch (FormatException e)
             {
-                isCompleted = displayPageOne();
-            }
-            else if (choice == "C" || choice == "c")
-            {
-                isCompleted = transactionComplete();
-            }
-            else
-            {
-                invalidInput();
+                isCompleted = invalidInput();
             }
             return isCompleted;
         }
@@ -92,21 +149,48 @@ namespace MagicInventorySystem
             Console.WriteLine("[Legend: 'P' Next Page | 'R' Return to Menu | 'C' Complete Transaction]");
             Console.Write("Enter Item Number to purchase or Function(ID - Quantity) : ");
             choice = Console.ReadLine();
-            if(choice == "P" || choice == "p")
+            try
             {
-                isCompleted = displayPageFour();
+                if (choice == "P" || choice == "p")
+                {
+                    isCompleted = displayPageFour();
+                }
+                else if (choice == "R" || choice == "r")
+                {
+                    isCompleted = displayPageTwo();
+                }
+                else if (choice == "C" || choice == "c")
+                {
+                    Console.WriteLine("Transaction done!");
+                    isCompleted = transactionComplete();
+                }
+                else if (Convert.ToInt32(choice) < allStock.Count
+                && Convert.ToInt32(choice) > 0)
+                {
+                    foreach (Products getItem in allStock)
+                    {
+                        if (choice == Convert.ToString(getItem.ID)
+                        && getItem.stockLevel > 0)
+                        {
+                            Console.Write("Choose the quantity of the product(current stock : "
+                                + getItem.stockLevel + ") : ");
+                            choice = Console.ReadLine();
+                        }
+                        // out of stock
+                        else if (choice == Convert.ToString(getItem.ID) && getItem.stockLevel <= 0)
+                        {
+                            outOfStock();
+                        }
+                    }
+                }
+                else
+                {
+                    isCompleted = invalidInput();
+                }
             }
-            else if (choice == "R" || choice == "r")
+            catch (FormatException e)
             {
-                isCompleted = displayPageTwo();
-            }
-            else if (choice == "C" || choice == "c")
-            {
-                isCompleted = transactionComplete();
-            }
-            else
-            {
-                invalidInput();
+                isCompleted = invalidInput();
             }
             return isCompleted;
         }
@@ -123,22 +207,71 @@ namespace MagicInventorySystem
             Console.WriteLine("[Legend: 'P' Next Page | 'R' Return to Menu | 'C' Complete Transaction]");
             Console.Write("Enter Item Number to purchase or Function(ID - Quantity) : ");
             choice = Console.ReadLine();
-            if (choice == "P" || choice == "p")
+            try
             {
-                isCompleted = displayPageOne();
+                if (choice == "P" || choice == "p")
+                {
+                    isCompleted = displayPageOne();
+                }
+                else if (choice == "R" || choice == "r")
+                {
+                    isCompleted = displayPageThree();
+                }
+                else if (choice == "C" || choice == "c")
+                {
+                    Console.WriteLine("Transaction done!");
+                    isCompleted = transactionComplete();
+                }
+                else if (Convert.ToInt32(choice) < allStock.Count
+                && Convert.ToInt32(choice) > 0)
+                {
+                    foreach (Products getItem in allStock)
+                    {
+                        if (choice == Convert.ToString(getItem.ID)
+                        && getItem.stockLevel > 0)
+                        {
+                            Console.Write("Choose the quantity of the product(current stock : "
+                                + getItem.stockLevel + ") : ");
+                            choice = Console.ReadLine();
+                        }
+                        // out of stock
+                        else if (choice == Convert.ToString(getItem.ID) && getItem.stockLevel <= 0)
+                        {
+                            Console.WriteLine("The product is currently out of stock!");
+                        }
+                    }
+                }
+                else
+                {
+                    isCompleted = invalidInput();
+                }
             }
-            else if (choice == "R" || choice == "r")
+            catch (FormatException e)
             {
-                isCompleted = displayPageThree();
+                isCompleted = invalidInput();
             }
-            else if (choice == "C" || choice == "c")
+            return isCompleted;
+        }
+
+        public int outOfStock()
+        {
+            Console.Clear();
+            displayTitle();
+
+            if (currentPage == 1)
             {
-                isCompleted = transactionComplete();
+                pageOne();
             }
-            else
+            else if (currentPage == 2)
             {
-                invalidInput();
+                pageTwo();
             }
+            else if (currentPage == 3)
+            {
+                pageThree();
+            }
+            Console.WriteLine("The product is currently out of stock!");
+            isCompleted = 0;
             return isCompleted;
         }
 
@@ -159,7 +292,7 @@ namespace MagicInventorySystem
             {
                 pageThree();
             }
-
+            Console.WriteLine("Invalid input. Try again.");
             isCompleted = 0;
             return isCompleted;
         }
@@ -173,7 +306,6 @@ namespace MagicInventorySystem
         public int pageOne()
         {
             // Display first page's products
-            List<Products> allStock = JsonConvert.DeserializeObject<List<Products>>(File.ReadAllText("owners_inventory.json"));
             for (int currentItem = 0; currentItem < 5; currentItem++)
             {
                 String productLine = String.Format("{0, -5} | {1,  -15} | {2,  -10}", allStock[currentItem].ID, allStock[currentItem].name, allStock[currentItem].stockLevel);
@@ -188,8 +320,6 @@ namespace MagicInventorySystem
         public int pageTwo()
         {
             // Display second page's products
-            List<Products> allStock = JsonConvert.DeserializeObject<List<Products>>(File.ReadAllText("owners_inventory.json"));
-
             for (int currentItem = 5; currentItem < 10; currentItem++)
             {
                 String productLine = String.Format("{0, -5} | {1,  -15} | {2,  -10}", allStock[currentItem].ID, allStock[currentItem].name, allStock[currentItem].stockLevel);
@@ -202,7 +332,6 @@ namespace MagicInventorySystem
         public int pageThree()
         {
             // Display third page's products
-            List<Products> allStock = JsonConvert.DeserializeObject<List<Products>>(File.ReadAllText("owners_inventory.json"));
             for (int currentItem = 10; currentItem < 15; currentItem++)
             {
                 String productLine = String.Format("{0, -5} | {1,  -15} | {2,  -10}", allStock[currentItem].ID, allStock[currentItem].name, allStock[currentItem].stockLevel);
@@ -215,7 +344,6 @@ namespace MagicInventorySystem
 
         public int pageFour()
         {
-            List<Products> allStock = JsonConvert.DeserializeObject<List<Products>>(File.ReadAllText("owners_inventory.json"));
             for (int currentItem = 15; currentItem < 20; currentItem++)
             {
                 try

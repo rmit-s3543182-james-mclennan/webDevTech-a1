@@ -109,7 +109,7 @@ namespace MagicInventorySystem
 
         public void CustomerOrder()
         {
-            List<Products> allStock = JsonConvert.DeserializeObject<List<Products>>(File.ReadAllText("owners_inventory.json"));
+            //List<Products> allStock = JsonConvert.DeserializeObject<List<Products>>(File.ReadAllText("owners_inventory.json"));
             totalPage = 4;
             currentPage = 1;
             isCompleted = 0;
@@ -153,61 +153,27 @@ namespace MagicInventorySystem
                                 choice = Console.ReadLine();
                             }
                             // out of stock
-                            else if (getItem.stockLevel <= 0)
+                            else if (choice == Convert.ToString(getItem.ID) && getItem.stockLevel <= 0)
                             {
-                                Console.WriteLine("The product is currently out of stock!");
-
+                                outOfStock();
                             }
-                            //// invalid input
-                            //else if (choice != )
-                            //{
-                            //    invalidInput();
-                            //    break;
-                            //}
                         }
                     }
                     else
                     {
                         isCompleted = invalidInput();
-                        Console.WriteLine("Invalid Input. Try again.");
                     }
                 }
                 catch (FormatException e)
                 {
-
+                    isCompleted = invalidInput();
                 }
-
-
-
-
                 /* compare product request with current stocklevel
                  * and then if stocklevel is > 0
                  * update current stock(-1)
                  * afterwards ask again to buy more stuff
                  * and book a workshop(if so, 10% discount of price)
                  */
-                //foreach (Products getItem in allStock)
-                //{
-                //    // compare input with getItem ID and stockLevel > 0
-                //    if (choice == Convert.ToString(getItem.ID)
-                //    && getItem.stockLevel > 0)
-                //    {
-                //        Console.Write("Choose the quantity of the product(current stock : "
-                //            + getItem.stockLevel + ") : ");
-                //        choice = Console.ReadLine();
-                //    }
-                //    // out of stock
-                //    else if (getItem.stockLevel <= 0)
-                //    {
-                //        Console.WriteLine("The product is currently out of stock!");
-
-                //    }
-                //    else if(choice != Convert.ToString(getItem.ID))
-                //    {
-                //        invalidInput();
-                //        break;
-                //    }
-                //}
             }
 
         }

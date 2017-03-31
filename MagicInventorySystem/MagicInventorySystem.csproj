@@ -66,6 +66,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="ClassDiagram1.cd" />
     <None Include="Melbourne_CBD_Inventory.json" />
     <None Include="Melbourne_East_Inventory.json" />
     <None Include="Melbourne_North_Inventory.json" />
