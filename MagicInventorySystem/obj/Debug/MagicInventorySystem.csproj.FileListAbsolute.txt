@@ -19,3 +19,11 @@ D:\Bachelor of Software Engineering\Web Dev Tech\webDevTech-a1\MagicInventorySys
 D:\Bachelor of Software Engineering\Web Dev Tech\webDevTech-a1\MagicInventorySystem\bin\Debug\UtilityLibrary.dll
 D:\Bachelor of Software Engineering\Web Dev Tech\webDevTech-a1\MagicInventorySystem\bin\Debug\Newtonsoft.Json.xml
 D:\Bachelor of Software Engineering\Web Dev Tech\webDevTech-a1\MagicInventorySystem\bin\Debug\UtilityLibrary.pdb
+C:\Users\Allen Cho\Documents\GitHub\webDevTech-a1\MagicInventorySystem\bin\Debug\MagicInventorySystem.exe.config
+C:\Users\Allen Cho\Documents\GitHub\webDevTech-a1\MagicInventorySystem\obj\Debug\MagicInventorySystem.exe
+C:\Users\Allen Cho\Documents\GitHub\webDevTech-a1\MagicInventorySystem\obj\Debug\MagicInventorySystem.pdb
+C:\Users\Allen Cho\Documents\GitHub\webDevTech-a1\MagicInventorySystem\obj\Debug\MagicInventorySystem.csprojResolveAssemblyReference.cache
+C:\Users\Allen Cho\Documents\GitHub\webDevTech-a1\MagicInventorySystem\bin\Debug\MagicInventorySystem.exe
+C:\Users\Allen Cho\Documents\GitHub\webDevTech-a1\MagicInventorySystem\bin\Debug\MagicInventorySystem.pdb
+C:\Users\Allen Cho\Documents\GitHub\webDevTech-a1\MagicInventorySystem\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Allen Cho\Documents\GitHub\webDevTech-a1\MagicInventorySystem\bin\Debug\Newtonsoft.Json.xml
