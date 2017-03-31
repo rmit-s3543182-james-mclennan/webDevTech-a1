@@ -19,6 +19,9 @@ namespace MagicInventorySystem
         public PageLoad()
         {
             allStock = JsonConvert.DeserializeObject<List<Products>>(File.ReadAllText("owners_inventory.json"));
+            totalPage = 4;
+            currentPage = 1;
+            isCompleted = 0;
         }
         public int displayPageOne()
         {
@@ -376,8 +379,5 @@ namespace MagicInventorySystem
                 }
             }
         }
-
-
-
     }
 }

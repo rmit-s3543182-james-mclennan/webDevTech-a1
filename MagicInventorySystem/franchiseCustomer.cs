@@ -109,11 +109,6 @@ namespace MagicInventorySystem
 
         public void CustomerOrder()
         {
-            //List<Products> allStock = JsonConvert.DeserializeObject<List<Products>>(File.ReadAllText("owners_inventory.json"));
-            totalPage = 4;
-            currentPage = 1;
-            isCompleted = 0;
-
             Console.Clear();
             Console.WriteLine("[!] Loading products from owners_inventory.json");
             displayTitle();
