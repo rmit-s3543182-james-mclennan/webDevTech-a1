@@ -1,0 +1,40 @@
+﻿
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch WDT-working
+# Your branch is behind 'origin/WDT-working' by 1 commit, and can be fast-forwarded.
+#   (use "git pull" to update your local branch)
+#
+# Changes to be committed:
+#	modified:   MagicInventorySystem/CustomerMenu.cs
+#	modified:   MagicInventorySystem/MagicInventorySystem.csproj
+#	modified:   MagicInventorySystem/MainMenu.cs
+#	modified:   MagicInventorySystem/Owner.cs
+#	modified:   MagicInventorySystem/bin/Debug/Newtonsoft.Json.xml
+#	modified:   MagicInventorySystem/obj/Debug/MagicInventorySystem.csproj.FileListAbsolute.txt
+#	modified:   MagicInventorySystem/packages.config
+#	deleted:    packages/Newtonsoft.Json.9.0.1/Newtonsoft.Json.9.0.1.nupkg
+#	deleted:    packages/Newtonsoft.Json.9.0.1/lib/net20/Newtonsoft.Json.xml
+#	deleted:    packages/Newtonsoft.Json.9.0.1/lib/net35/Newtonsoft.Json.xml
+#	deleted:    packages/Newtonsoft.Json.9.0.1/lib/net40/Newtonsoft.Json.xml
+#	deleted:    packages/Newtonsoft.Json.9.0.1/lib/net45/Newtonsoft.Json.xml
+#	deleted:    packages/Newtonsoft.Json.9.0.1/lib/netstandard1.0/Newtonsoft.Json.xml
+#	deleted:    packages/Newtonsoft.Json.9.0.1/lib/portable-net40+sl5+wp80+win8+wpa81/Newtonsoft.Json.xml
+#	deleted:    packages/Newtonsoft.Json.9.0.1/lib/portable-net45+wp80+win8+wpa81/Newtonsoft.Json.xml
+#	deleted:    packages/Newtonsoft.Json.9.0.1/tools/install.ps1
+#
+# Untracked files:
+#	.vs/MagicInventorySystem/
+#	MagicInventorySystem/PageLoad.cs
+#	MagicInventorySystem/bin/Debug/MagicInventorySystem.exe
+#	MagicInventorySystem/bin/Debug/MagicInventorySystem.pdb
+#	MagicInventorySystem/bin/Debug/MagicInventorySystem.vshost.exe
+#	MagicInventorySystem/bin/Debug/MagicInventorySystem.vshost.exe.manifest
+#	MagicInventorySystem/bin/Debug/Newtonsoft.Json.dll
+#	MagicInventorySystem/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+#	MagicInventorySystem/obj/Debug/MagicInventorySystem.csprojResolveAssemblyReference.cache
+#	MagicInventorySystem/obj/Debug/MagicInventorySystem.exe
+#	MagicInventorySystem/obj/Debug/MagicInventorySystem.pdb
+#	packages/
+#
+

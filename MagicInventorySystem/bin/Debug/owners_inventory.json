@@ -2,7 +2,7 @@
   {
     "ID": 1,
     "name": "Rabbit",
-    "stockLevel": 5
+    "stockLevel": -15
   },
   {
     "ID": 2,
@@ -47,7 +47,7 @@
   {
     "ID": 10,
     "name": "Hand cuffs",
-    "stockLevel": 25
+    "stockLevel": 20
   },
   {
     "ID": 11,

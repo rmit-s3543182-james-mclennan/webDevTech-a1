@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using System.IO;
 
 namespace MagicInventorySystem
 {
-    class CustomerMenu
+    class CustomerMenu : PageLoad
     {
         JsonProcessor reader = new JsonProcessor();
-        Owner displayProducts = new Owner();
+        PageLoad pageLoad = new PageLoad();
+
         public MagicMenuCollection loadCustomerMenu(MagicMenuCollection collection)
         {
             collection.Menus.Add(new MagicMenuList()
@@ -24,7 +27,6 @@ namespace MagicInventorySystem
                             Execute = () =>
                             {
                                 Console.Clear();
-                                displayProducts.displayAllStock();
                                 CustomerOrder();
                                 Console.ReadKey();
                                 Console.Clear();
@@ -64,58 +66,77 @@ namespace MagicInventorySystem
 
         public void CustomerOrder()
         {
-            int isComplete = 0;
-            while(isComplete == 0)
+            List<Products> allStock = JsonConvert.DeserializeObject<List<Products>>(File.ReadAllText("owners_inventory.json"));
+            totalPage = 4;
+            currentPage = 1;
+            isCompleted = 0;
+
+            Console.Clear();
+            Console.WriteLine("[!] Loading products from owners_inventory.json");
+            displayTitle();
+            currentPage = pageOne();
+            isCompleted = 0;
+            while (isCompleted == 0)
             {
+                Console.WriteLine("Page " + currentPage + "/" + totalPage);
                 Console.WriteLine("[Legend: 'P' Next Page | 'R' Return to Menu | 'C' Complete Transaction]");
-                Console.Write("Enter Item Number to purchase or Function: ");
-                string choice = Console.ReadLine();
+                Console.Write("Enter Item Number to purchase or Function(ID - Quantity) : ");
+                choice = Console.ReadLine();
                 if (choice == "P" || choice == "p")
                 {
-                    // Get to next product page
-                    Console.Clear();
-                    displayProducts.displayAllStock();
-                    Console.WriteLine("got to next product page");
-                    moveProductPage();
-                    isComplete = 0;   
+                    isCompleted = displayPageTwo();
                 }
                 else if (choice == "R" || choice == "r")
                 {
-                    // Get back to previous product page
-                    Console.Clear();
-                    displayProducts.displayAllStock();
-                    Console.WriteLine("Got back to previous page");
-                    moveProductPage();
-                    
-                    isComplete = 0;
+                    isCompleted = displayPageFour();
                 }
                 else if (choice == "C" || choice == "c")
                 {
-                    // Transaction done
-                    Console.WriteLine("need to implement function");
-                    isComplete = 1;
+                    isCompleted = transactionComplete();
                 }
-                else
-                {
-                    // Invalid input. try again
-                    Console.Clear();
-                    displayProducts.displayAllStock();
-                    Console.WriteLine("Invalid input - try again");
-                    isComplete = 0;
+                //else
+                //{
+                //    isCompleted = invalidInput();
+                //    Console.WriteLine("Invalid Input. Try again.");
+                //}
 
+                /* compare product request with current stocklevel
+                 * and then if stocklevel is > 0
+                 * update current stock(-1)
+                 * afterwards ask again to buy more stuff
+                 * and book a workshop(if so, 10% discount of price)
+                 */
+                foreach (Products getItem in allStock)
+                {
+                    // compare input with getItem ID and stockLevel > 0
+                    if (choice == Convert.ToString(getItem.ID)
+                    && getItem.stockLevel > 0)
+                    {
+                        Console.Write("Choose the quantity of the product(current stock : "
+                            + getItem.stockLevel + ") : ");
+                        choice = Console.ReadLine();
+                        //switch(choice)
+                        //{
+                        //    case "1":
+                        //        break;
+                        //    case "2":
+                        //        break;
+                        //    case "3":
+                        //        break;
+                        //        case
+
+                        //}
+                        
+                    }
+                    // out of stock
+                    else
+                    {
+                        Console.WriteLine("The product is currently out of stock!");
+                    }
                 }
             }
 
         }
-
-        public void moveProductPage()
-        {
-            /* need to implement function to paginate json file objects
-             * to indicate 5 products in a page
-             */
-              
-             
-        }
-
     }
+    
 }
