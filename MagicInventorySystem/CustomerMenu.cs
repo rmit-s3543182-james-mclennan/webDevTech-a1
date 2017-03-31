@@ -24,14 +24,14 @@ namespace MagicInventorySystem
                         {
                             Option = "Display Products\n",
                             CannotExecute = true,
-                            Execute = () =>
-                            {
-                                Console.Clear();
-                                CustomerOrder();
-                                Console.ReadKey();
-                                Console.Clear();
-                                collection.ShowMenu(4);
-                            }
+                            SubMenuId = 6
+
+                                //Console.Clear();
+                                //CustomerOrder();
+                                //Console.ReadKey();
+                                //Console.Clear();
+                                //collection.ShowMenu(4);
+                            
                         },
                         new MagicMenuItem()
                         {
@@ -60,9 +60,12 @@ namespace MagicInventorySystem
 
                     }
             });
-
             return collection;
         }
+            
+
+            
+        
 
         public void CustomerOrder()
         {
