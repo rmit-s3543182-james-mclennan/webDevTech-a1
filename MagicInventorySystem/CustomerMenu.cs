@@ -23,7 +23,7 @@ namespace MagicInventorySystem
                         new MagicMenuItem()
                         {
                             Option = "Display Products\n",
-                            CannotExecute = false,
+                            CannotExecute = true,
                             Execute = () =>
                             {
                                 Console.Clear();
