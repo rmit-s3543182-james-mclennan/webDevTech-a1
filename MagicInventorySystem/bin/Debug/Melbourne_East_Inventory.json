@@ -1,1 +1,7 @@
-﻿
+[
+  {
+    "ID": 1,
+    "name": "Rabbit",
+    "stockLevel": 5
+  }
+]

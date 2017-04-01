@@ -26,3 +26,4 @@ C:\Users\Allen Cho\Documents\GitHub\webDevTech-a1\MagicInventorySystem\bin\Debug
 C:\Users\Allen Cho\Documents\GitHub\webDevTech-a1\MagicInventorySystem\bin\Debug\MagicInventorySystem.pdb
 C:\Users\Allen Cho\Documents\GitHub\webDevTech-a1\MagicInventorySystem\bin\Debug\Newtonsoft.Json.dll
 C:\Users\Allen Cho\Documents\GitHub\webDevTech-a1\MagicInventorySystem\bin\Debug\Newtonsoft.Json.xml
+D:\Bachelor of Software Engineering\Web Dev Tech\webDevTech-a1\MagicInventorySystem\obj\Debug\MagicInventorySystem.csprojResolveAssemblyReference.cache

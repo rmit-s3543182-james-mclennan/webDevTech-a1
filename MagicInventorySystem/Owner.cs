@@ -146,6 +146,28 @@ namespace MagicInventorySystem
 
         }
 
+        public int promptTrueorFalse()
+        {
+            Console.WriteLine("Please enter the stock requests you wish to view (True/False):");
+            int type = 0;
+
+            string input = Console.ReadLine().ToLower();
+
+            if (input.Equals("t") || input.Equals("true"))
+            {
+                type = 1;
+            }
+            else if(input.Equals("f") || input.Equals("false"))
+            {
+                type = 2;
+            }
+            else
+            {
+                Console.WriteLine("Invalid input. Please enter any combination of True/False (T/F)");
+            }
+            return type;
+        }
+
         private stockRequestItem checkIDAndRemove(List<stockRequestItem> stockRequests, int stringid)
         {
             stockRequestItem requestedItem = null;
@@ -183,5 +205,6 @@ namespace MagicInventorySystem
             return largest;
         }
 
+        
     }
 }

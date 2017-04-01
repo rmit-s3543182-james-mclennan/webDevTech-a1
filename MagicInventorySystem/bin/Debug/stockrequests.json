@@ -1,1 +1,8 @@
-[]
+[
+  {
+    "listID": 1,
+    "store": "CBD",
+    "quantity": 5,
+    "availableStock": true
+  }
+]

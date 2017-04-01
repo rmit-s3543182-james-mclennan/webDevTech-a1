@@ -24,7 +24,7 @@ namespace MagicInventorySystem
                             {
                                 Console.Clear();
                                 Console.WriteLine("Display All Stock Requests: ");
-                                access.displayAllStockRequests();
+                                access.displayStockRequests(true, true);
                                 Console.Clear();
                                 collection.ShowMenu(2);
                             }
@@ -35,7 +35,25 @@ namespace MagicInventorySystem
                             CannotExecute = false,
                             Execute = () =>
                             {
-                                Console.WriteLine("Need to implement function!");
+                                Console.Clear();
+                                int type = access.promptTrueorFalse();
+                                Console.Clear();
+                                if(type == 0)
+                                {
+                                    Console.WriteLine("Invalid input. Please enter T/F or True/False");
+                                    collection.ShowMenu(2);
+                                }
+                                Console.WriteLine("Display All Stock Requests: ");
+                                if( type == 1)
+                                {
+                                    access.displayStockRequests(false, true);
+                                }
+                                else
+                                {
+                                    access.displayStockRequests(false, false);
+                                }
+                                Console.Clear();
+                                collection.ShowMenu(2);
                             }
                         },
                         new MagicMenuItem()
