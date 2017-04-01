@@ -22,10 +22,19 @@ namespace MagicInventorySystem
                             CannotExecute = false,
                             Execute = () =>
                             {
+                                Boolean processStatus;
                                 Console.Clear();
                                 Console.WriteLine("Display All Stock Requests: ");
-                                access.displayStockRequests(true, true);
+                                processStatus = access.displayStockRequests(true, true);
                                 Console.Clear();
+                                if(processStatus)
+                                {
+                                    Console.WriteLine("Successfully processed order.\n");
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Failed to process order. Please ensure you selected a valid ID and there is enough stock to process order.\n");
+                                }
                                 collection.ShowMenu(2);
                             }
                         },
@@ -35,6 +44,7 @@ namespace MagicInventorySystem
                             CannotExecute = false,
                             Execute = () =>
                             {
+                                Boolean processStatus;
                                 Console.Clear();
                                 int type = access.promptTrueorFalse();
                                 Console.Clear();
@@ -46,13 +56,21 @@ namespace MagicInventorySystem
                                 Console.WriteLine("Display All Stock Requests: ");
                                 if( type == 1)
                                 {
-                                    access.displayStockRequests(false, true);
+                                    processStatus = access.displayStockRequests(false, true);
                                 }
                                 else
                                 {
-                                    access.displayStockRequests(false, false);
+                                    processStatus = access.displayStockRequests(false, false);
                                 }
                                 Console.Clear();
+                                if(processStatus)
+                                {
+                                    Console.WriteLine("Successfully processed order.\n");
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Failed to process order. Please ensure you selected a valid ID and there is enough stock to process order.\n");
+                                }
                                 collection.ShowMenu(2);
                             }
                         },

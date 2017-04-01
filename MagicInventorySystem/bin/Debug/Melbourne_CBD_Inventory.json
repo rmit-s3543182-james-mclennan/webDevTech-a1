@@ -1,22 +1,32 @@
 [
   {
-    "ID": 1,
-    "name": "Rabbit",
-    "stockLevel": 20
-  },
-  {
-    "ID": 6,
-    "name": "Moustache",
-    "stockLevel": 10
-  },
-  {
-    "ID": 11,
-    "name": "Bottle of air",
+    "ID": 4,
+    "name": "Deck of Cards",
     "stockLevel": 5
   },
   {
     "ID": 2,
     "name": "Wand",
-    "stockLevel": 10
+    "stockLevel": 5
+  },
+  {
+    "ID": 3,
+    "name": "Magic Hat",
+    "stockLevel": 5
+  },
+  {
+    "ID": 6,
+    "name": "Moustache",
+    "stockLevel": 5
+  },
+  {
+    "ID": 5,
+    "name": "Cape",
+    "stockLevel": 5
+  },
+  {
+    "ID": 1,
+    "name": "Rabbit",
+    "stockLevel": 5
   }
 ]

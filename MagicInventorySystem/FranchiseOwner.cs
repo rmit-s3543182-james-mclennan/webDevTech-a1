@@ -36,22 +36,8 @@ namespace MagicInventorySystem
                     if(item.ID == selectedItem)
                     {
                         requestedItem = item;
-                        Boolean isInStore = false;
-                        foreach(Products storeItems in storeInventory)
-                        {
-                            if(storeItems.ID == requestedItem.ID)
-                            {
-                                isInStore = true;
-                                sendStockRequest(requestedItem, storeItems.stockLevel + 5, storeID);
-                            }
-                        }
-
-                        if (!isInStore)
-                        {
-                            Console.WriteLine(item.stockLevel);
-                            sendStockRequest(requestedItem, item.stockLevel, storeID);
-
-                        }
+                        Console.WriteLine(item.stockLevel);
+                        sendStockRequest(requestedItem, item.stockLevel, storeID);
                     }
                 }
             }

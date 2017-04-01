@@ -83,7 +83,11 @@ namespace MagicInventorySystem
             List<stockRequestItem> stockRequests = reader.readRequestFile("stockrequests.json");
             foreach (stockRequestItem item in stockRequests)
             {
-                if(item.itemName == fullfilledItem.itemName)
+                if(item.listID > fullfilledItem.listID)
+                {
+                    item.listID = item.listID - 1;
+                }
+                if (item.itemName == fullfilledItem.itemName)
                 {
                     item.currentStock = item.currentStock - 5;
                     if(item.currentStock >= item.quantity)
@@ -99,11 +103,12 @@ namespace MagicInventorySystem
             File.WriteAllText("stockrequests.json", JsonConvert.SerializeObject(stockRequests, Formatting.Indented));
 
         }
-        public void displayStockRequests(Boolean isAllStock, Boolean StockToShow)
+        public Boolean displayStockRequests(Boolean isAllStock, Boolean StockToShow)
         {
             List<stockRequestItem> stockRequests = reader.readRequestFile("stockrequests.json");
 
             int formatProductName = getLengthOfProduct(stockRequests);
+            Boolean processStatus = false;
 
             String titleLine = String.Format("\n{0, -5} | {1, -10} | {2, -"+formatProductName+"} | {3, -10} | {4, -15} | {5, -10}", "ID", "Store", "Product", "Quantity", "Current Stock", "Stock Availability");
 
@@ -143,10 +148,17 @@ namespace MagicInventorySystem
                 }
             }
             Console.WriteLine();
+            processStatus = processStockRequest(stockRequests);
+            return processStatus;
+
+        }
+
+        public Boolean processStockRequest(List<stockRequestItem> stockRequests)
+        {
             Console.WriteLine("Enter Request to Process: ");
             string stringID = Console.ReadLine();
             int id = 0;
-            if(int.TryParse(stringID, out id))
+            if (int.TryParse(stringID, out id))
             {
                 stockRequestItem itemRequested = checkIDAndRemove(stockRequests, id);
                 if (itemRequested != null)
@@ -154,20 +166,18 @@ namespace MagicInventorySystem
                     updateStockFromWarehouse(itemRequested.itemName, itemRequested.quantity);
                     sendStockFromWarehouse(itemRequested, itemRequested.quantity);
                     updateStockRequests(itemRequested);
+                    return true;
                 }
                 else
                 {
-                    Console.WriteLine("Request cannot be processed.");
+                    return false;
                 }
             }
             else
             {
-                Console.WriteLine("Request cannot be processed.");
+                return false;
             }
-
-
         }
-
         public int promptTrueorFalse()
         {
             Console.WriteLine("Please enter the stock requests you wish to view (True/False):");
@@ -222,6 +232,11 @@ namespace MagicInventorySystem
                 {
                     largest = current;
                 }
+            }
+
+            if(largest < 9)
+            {
+                largest = 9;
             }
 
             return largest;
