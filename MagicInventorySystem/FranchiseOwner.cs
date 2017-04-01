@@ -12,17 +12,18 @@ namespace MagicInventorySystem
     {
         JsonProcessor reader = new JsonProcessor();
         private Owner wareHouse = new Owner();
-        public String identifyStore(String storeName)
+        public string storeFileName { get; set; }
+        
+        public void identifyStore(String storeName)
         {
-            String fileName = storeName + "_Inventory.json";
-            Console.WriteLine("[!] " + fileName + " is being loaded!\n");
-            return fileName;
+            storeFileName = "Melbourne_"+storeName + "_Inventory.json";
         }
 
-        public void addNewItem(String storeID)
+        public void addNewItem(string storeID)
         {
             int selectedItem = 0;
-            List<Products> storeInventory = reader.readFile(storeID);
+            List<Products> storeInventory = reader.readFile(storeFileName);
+            Products requestedItem;
 
             wareHouse.displayAllStock();
 
@@ -35,32 +36,58 @@ namespace MagicInventorySystem
                 {
                     if(item.ID == selectedItem)
                     {
+                        requestedItem = item;
                         Boolean isInStore = false;
                         Console.WriteLine("[!] ID Found in Owners Inventory!: " + selectedItem);
                         foreach(Products storeItems in storeInventory)
                         {
-                            if(storeItems.ID == selectedItem)
+                            if(storeItems.ID == requestedItem.ID)
                             {
-                                Console.WriteLine("[!] Item is already in store! - Added 5 stock");
+                                Console.WriteLine("[!] Item is being restocked! Sending request!");
                                 isInStore = true;
-                                storeItems.stockLevel = storeItems.stockLevel + 5;
-                                wareHouse.updateStock(storeItems.ID, 5);
-                                File.WriteAllText(storeID, JsonConvert.SerializeObject(storeInventory, Formatting.Indented));
+                                sendStockRequest(requestedItem, storeItems.stockLevel + 5, storeID);
                             }
                         }
 
                         if (!isInStore)
                         {
-                            Console.WriteLine("[!] Item is not in store - Added 5 stock");
-                            item.stockLevel = 5;
-                            storeInventory.Add(item);
-                            wareHouse.updateStock(item.ID, 5);
-                            File.WriteAllText(storeID, JsonConvert.SerializeObject(storeInventory, Formatting.Indented));
+                            Console.WriteLine("[!] Item is out of your stock! Sending urgent request!");
+                            Console.WriteLine(item.stockLevel);
+                            sendStockRequest(requestedItem, item.stockLevel, storeID);
+
                         }
                     }
                 }
             }
 
         }
+           
+        public void sendStockRequest(Products requestedItem, int currentStock, string storeID)
+        {
+            List<stockRequestItem> requestList = reader.readRequestFile("stockrequests.json");
+
+            stockRequestItem addRequest = new stockRequestItem();
+            int listSize = requestList.Count + 1;
+            addRequest.listID = listSize;
+            addRequest.ID = requestedItem.ID;
+            addRequest.currentStock = currentStock;
+            addRequest.store = storeID;
+            addRequest.itemName = requestedItem.name;
+            addRequest.quantity = 5;
+
+            if(currentStock >= addRequest.quantity)
+            {
+                addRequest.availableStock = true;
+            }
+            else
+            {
+                addRequest.availableStock = false;
+            }
+
+            requestList.Add(addRequest);
+
+            File.WriteAllText("stockrequests.json", JsonConvert.SerializeObject(requestList, Formatting.Indented));
+        }
+        
     }
 }
