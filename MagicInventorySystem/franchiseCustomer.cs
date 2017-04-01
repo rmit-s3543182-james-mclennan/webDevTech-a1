@@ -111,10 +111,7 @@ namespace MagicInventorySystem
         {
             Console.Clear();
             Console.WriteLine("[!] Loading products from owners_inventory.json");
-            //displayTitle();
-            //currentPage = pageOne();
-            //isCompleted = 0;
-            initialPage();
+            firstPage();
             while (isCompleted == 0)
             {
                 if (itemIndex == lastItem
@@ -135,10 +132,11 @@ namespace MagicInventorySystem
                     isCompleted = invalidPage();
                     lastPage();
                 }
-                else if (itemIndex < 1)
+                else if (itemIndex < 0)
                 {
+                    Console.WriteLine("mehhhh");
                     isCompleted = invalidPage();
-                    initialPage();
+                    firstPage();
                 }
                 else if (itemIndex == lastItem
                 && (choice == "C" || choice == "c")

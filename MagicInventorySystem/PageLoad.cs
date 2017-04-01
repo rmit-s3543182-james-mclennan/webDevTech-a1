@@ -36,7 +36,7 @@ namespace MagicInventorySystem
             lastItem = 5;
         }
 
-        public int initialPage()
+        public int firstPage()
         {
             displayTitle();
             try
@@ -62,6 +62,7 @@ namespace MagicInventorySystem
             Console.WriteLine("Page " + currentPage + "/" + totalPage);
             Console.WriteLine("[Legend: 'P' Next Page | 'R' Return to Menu | 'C' Complete Transaction]");
             Console.Write("Enter Item Number to purchase or Function(ID - Quantity) : ");
+            itemIndex = 1;
             choice = Console.ReadLine();
             return isCompleted;
         }
@@ -183,11 +184,10 @@ namespace MagicInventorySystem
             Console.WriteLine("[Legend: 'P' Next Page | 'R' Return to Menu | 'C' Complete Transaction]");
             Console.Write("Enter Item Number to purchase or Function(ID - Quantity) : ");
             isCompleted = 0;
+            itemIndex = 1;
             choice = Console.ReadLine();
             return isCompleted;
         }
-
-
 
         //public int outOfStock()
         //{
@@ -203,6 +203,7 @@ namespace MagicInventorySystem
             Console.Clear();
             Console.WriteLine("Invalid input. Try again.");
             isCompleted = 0;
+            choice = Console.ReadLine();
             return isCompleted;
         }
 
