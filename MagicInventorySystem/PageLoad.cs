@@ -66,90 +66,6 @@ namespace MagicInventorySystem
             return isCompleted;
         }
 
-        public void displayProductPage()
-        {
-            displayTitle();
-            for (itemIndex = firstItem - 1; itemIndex < lastItem; itemIndex++)
-            {
-                if (allStock[itemIndex].ID >= firstItem
-                && allStock[itemIndex].ID <= lastItem
-                && allStock.IndexOf(allStock[itemIndex]) <= allStock.Count)
-                {
-                    String productLine = String.Format("{0, -5} | {1,  -15} | {2,  -10}", allStock[itemIndex].ID, allStock[itemIndex].name, allStock[itemIndex].stockLevel);
-                    Console.WriteLine(productLine);
-
-
-
-                }
-            }
-            Console.WriteLine("Page " + currentPage + "/" + totalPage);
-            Console.WriteLine("[Legend: 'P' Next Page | 'R' Return to Menu | 'C' Complete Transaction]");
-            Console.Write("Enter Item Number to purchase or Function(ID - Quantity) : ");
-            choice = Console.ReadLine();
-            // Go to page 2
-            if (itemIndex == lastItem && (choice == "P" || choice == "p"))
-            {
-                firstItem = lastItem;
-                lastItem += firstItem;
-                displayTitle();
-                for (itemIndex = firstItem - 1; itemIndex < lastItem; itemIndex++)
-                {
-                    if (allStock[itemIndex].ID >= firstItem
-                    && allStock[itemIndex].ID <= lastItem
-                    && allStock.IndexOf(allStock[itemIndex]) <= allStock.Count)
-                    {
-                        String productLine = String.Format("{0, -5} | {1,  -15} | {2,  -10}", allStock[itemIndex].ID, allStock[itemIndex].name, allStock[itemIndex].stockLevel);
-                        Console.WriteLine(productLine);
-                    }
-                }
-                Console.WriteLine("Page " + currentPage + "/" + totalPage);
-                Console.WriteLine("[Legend: 'P' Next Page | 'R' Return to Menu | 'C' Complete Transaction]");
-                Console.Write("Enter Item Number to purchase or Function(ID - Quantity) : ");
-                choice = Console.ReadLine();
-            }
-
-                // Go back to last page
-                else if (itemIndex == lastItem && (choice == "R" || choice == "r"))
-                            {
-                firstItem = allStock.Count - 4;
-                lastItem += firstItem;
-                displayTitle();
-                for (itemIndex = firstItem - 1; itemIndex < lastItem; itemIndex++)
-                {
-                    if (allStock[itemIndex].ID >= firstItem
-                    && allStock[itemIndex].ID <= lastItem
-                    && allStock.IndexOf(allStock[itemIndex]) <= allStock.Count)
-                    {
-                        String productLine = String.Format("{0, -5} | {1,  -15} | {2,  -10}", allStock[itemIndex].ID, allStock[itemIndex].name, allStock[itemIndex].stockLevel);
-                        Console.WriteLine(productLine);                        
-                    }
-
-
-                    if (itemIndex == lastItem)
-                    {
-                        pageIndex++;
-                        firstItem = lastItem;
-                        lastItem += firstItem;
-                    }
-                }
-                Console.WriteLine("Page " + currentPage + "/" + totalPage);
-                Console.WriteLine("[Legend: 'P' Next Page | 'R' Return to Menu | 'C' Complete Transaction]");
-                Console.Write("Enter Item Number to purchase or Function(ID - Quantity) : ");
-                choice = Console.ReadLine();
-            }
-        }
-
-        public int invalidPage()
-        {
-            Console.WriteLine("No more page!");
-            Console.WriteLine("Page " + currentPage + "/" + totalPage);
-            Console.WriteLine("[Legend: 'P' Next Page | 'R' Return to Menu | 'C' Complete Transaction]");
-            Console.Write("Enter Item Number to purchase or Function(ID - Quantity) : ");
-            isCompleted = 0;
-            choice = Console.ReadLine();
-            return isCompleted;
-        }
-
         public int lastPage()
         {
             if (currentPage <= totalPage)
@@ -179,7 +95,7 @@ namespace MagicInventorySystem
                 Console.Clear();
                 Console.WriteLine("This is the last page!");
             }
-            
+
             isCompleted = 0;
             Console.WriteLine("Page " + currentPage + "/" + totalPage);
             Console.WriteLine("[Legend: 'P' Next Page | 'R' Return to Menu | 'C' Complete Transaction]");
@@ -216,7 +132,7 @@ namespace MagicInventorySystem
                 Console.Clear();
                 Console.WriteLine("This is the last page!");
             }
-            
+
             isCompleted = 0;
             Console.WriteLine("Page " + currentPage + "/" + totalPage);
             Console.WriteLine("[Legend: 'P' Next Page | 'R' Return to Menu | 'C' Complete Transaction]");
@@ -259,6 +175,19 @@ namespace MagicInventorySystem
             choice = Console.ReadLine();
             return isCompleted;
         }
+
+        public int invalidPage()
+        {
+            Console.WriteLine("No more page!");
+            Console.WriteLine("Page " + currentPage + "/" + totalPage);
+            Console.WriteLine("[Legend: 'P' Next Page | 'R' Return to Menu | 'C' Complete Transaction]");
+            Console.Write("Enter Item Number to purchase or Function(ID - Quantity) : ");
+            isCompleted = 0;
+            choice = Console.ReadLine();
+            return isCompleted;
+        }
+
+
 
         //public int outOfStock()
         //{

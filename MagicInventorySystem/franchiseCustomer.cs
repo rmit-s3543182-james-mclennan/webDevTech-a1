@@ -150,8 +150,7 @@ namespace MagicInventorySystem
                 {
                     isCompleted = invalidInput();
                 }
-                                //displayProductPage();
-                //displayProductPage();
+
                 /* compare product request with current stocklevel
                  * and then if stocklevel is > 0
                  * update current stock(-1)
