@@ -37,7 +37,7 @@ namespace MagicInventorySystem
             Console.WriteLine();
         }
 
-        public void updateStockFromWarehouse(string name, int amountSentToStore)
+        private void updateStockFromWarehouse(string name, int amountSentToStore)
         {
             List<Products> allStock = reader.readFile("owners_inventory.json");
 
@@ -52,7 +52,7 @@ namespace MagicInventorySystem
             File.WriteAllText("owners_inventory.json", JsonConvert.SerializeObject(allStock, Formatting.Indented));
         }
 
-        public void sendStockFromWarehouse(stockRequestItem requestedItem, int amountSentToStore)
+        private void sendStockFromWarehouse(stockRequestItem requestedItem, int amountSentToStore)
         {
             List<Products> storeInventory = reader.readFile("Melbourne_"+requestedItem.store+"_Inventory.json");
             Products newItem = new Products();
@@ -78,6 +78,27 @@ namespace MagicInventorySystem
                 JsonConvert.SerializeObject(storeInventory, Formatting.Indented));
         }
 
+        private void updateStockRequests(stockRequestItem fullfilledItem)
+        {
+            List<stockRequestItem> stockRequests = reader.readRequestFile("stockrequests.json");
+            foreach (stockRequestItem item in stockRequests)
+            {
+                if(item.itemName == fullfilledItem.itemName)
+                {
+                    item.currentStock = item.currentStock - 5;
+                    if(item.currentStock >= item.quantity)
+                    {
+                        item.availableStock = true;
+                    }
+                    else
+                    {
+                        item.availableStock = false;
+                    }
+                }
+            }
+            File.WriteAllText("stockrequests.json", JsonConvert.SerializeObject(stockRequests, Formatting.Indented));
+
+        }
         public void displayStockRequests(Boolean isAllStock, Boolean StockToShow)
         {
             List<stockRequestItem> stockRequests = reader.readRequestFile("stockrequests.json");
@@ -132,6 +153,7 @@ namespace MagicInventorySystem
                 {
                     updateStockFromWarehouse(itemRequested.itemName, itemRequested.quantity);
                     sendStockFromWarehouse(itemRequested, itemRequested.quantity);
+                    updateStockRequests(itemRequested);
                 }
                 else
                 {
