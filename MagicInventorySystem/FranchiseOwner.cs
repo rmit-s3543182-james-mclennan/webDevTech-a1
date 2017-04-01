@@ -24,7 +24,6 @@ namespace MagicInventorySystem
             int selectedItem = 0;
             List<Products> storeInventory = reader.readFile(storeFileName);
             Products requestedItem;
-
             wareHouse.displayAllStock();
 
             Console.WriteLine("Enter item ID to stock in store: ");

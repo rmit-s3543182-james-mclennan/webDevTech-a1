@@ -23,6 +23,7 @@ namespace MagicInventorySystem
                             Execute = () =>
                             {
                                 Console.Clear();
+                                Console.WriteLine("Display All Stock Requests: ");
                                 access.displayAllStockRequests();
                                 Console.Clear();
                                 collection.ShowMenu(2);
@@ -44,6 +45,7 @@ namespace MagicInventorySystem
                             Execute = () =>
                             {
                                 Console.Clear();
+                                Console.WriteLine("Display All Products: ");
                                 access.displayAllStock();
                                 Console.WriteLine("Press any key to continue...");
                                 Console.ReadKey();
