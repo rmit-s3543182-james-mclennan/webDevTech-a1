@@ -24,8 +24,6 @@ namespace MagicInventorySystem
                             {
                                 Console.Clear();
                                 access.displayAllStockRequests();
-                                Console.ReadKey();
-                                Console.Clear();
                                 collection.ShowMenu(2);
                             }
                         },
@@ -46,6 +44,7 @@ namespace MagicInventorySystem
                             {
                                 Console.Clear();
                                 access.displayAllStock();
+                                Console.WriteLine("Press any key to continue...");
                                 Console.ReadKey();
                                 Console.Clear();
                                 collection.ShowMenu(2);
