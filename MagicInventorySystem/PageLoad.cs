@@ -27,10 +27,14 @@ namespace MagicInventorySystem
         {
             allStock = JsonConvert.DeserializeObject<List<Products>>(File.ReadAllText("owners_inventory.json"));
             pageDistributor = new List<Products>(allStock.Count / 5 + 1);
-            totalPage = 4;
+            totalPage = allStock.Count / 5;
+            if(allStock.Count % 5 != 0)
+            {
+                totalPage += 1;
+            }
             currentPage = 1;
             isCompleted = 0;
-            itemIndex = 1;
+            //itemIndex = 1;
             pageIndex = 1;
             firstItem = 1;
             lastItem = 5;
@@ -335,24 +339,71 @@ namespace MagicInventorySystem
 
         public void displayProductPage()
         {
+            // Page 1
             displayTitle();
-            foreach (Products currentItem in allStock)
+            for (itemIndex = firstItem - 1; itemIndex < lastItem; itemIndex++)
             {
-                if (currentItem.ID >= firstItem
-                && currentItem.ID <= lastItem
-                && allStock.IndexOf(currentItem) <= allStock.Count)
+                if (allStock[itemIndex].ID >= firstItem
+                && allStock[itemIndex].ID <= lastItem
+                && allStock.IndexOf(allStock[itemIndex]) <= allStock.Count)
                 {
-                    String productLine = String.Format("{0, -5} | {1,  -15} | {2,  -10}", currentItem.ID, currentItem.name, currentItem.stockLevel);
+                    String productLine = String.Format("{0, -5} | {1,  -15} | {2,  -10}", allStock[itemIndex].ID, allStock[itemIndex].name, allStock[itemIndex].stockLevel);
                     Console.WriteLine(productLine);
-                    itemIndex++;
-                    if (itemIndex == lastItem)
-                    {
-                        pageIndex++;
-                        firstItem = lastItem;
-                        lastItem += firstItem;
-                    }
-                }       
+
+                }
             }
+            Console.WriteLine("Page " + currentPage + "/" + totalPage);
+            Console.WriteLine("[Legend: 'P' Next Page | 'R' Return to Menu | 'C' Complete Transaction]");
+            Console.Write("Enter Item Number to purchase or Function(ID - Quantity) : ");
+            choice = Console.ReadLine();
+            // Go to page 2
+            if (itemIndex == lastItem && (choice == "P" || choice == "p"))
+            {
+                firstItem = lastItem;
+                lastItem += firstItem;
+                displayTitle();
+                for (itemIndex = firstItem - 1; itemIndex < lastItem; itemIndex++)
+                {
+                    if (allStock[itemIndex].ID >= firstItem
+                    && allStock[itemIndex].ID <= lastItem
+                    && allStock.IndexOf(allStock[itemIndex]) <= allStock.Count)
+                    {
+                        String productLine = String.Format("{0, -5} | {1,  -15} | {2,  -10}", allStock[itemIndex].ID, allStock[itemIndex].name, allStock[itemIndex].stockLevel);
+                        Console.WriteLine(productLine);
+
+                    }
+                }
+                Console.WriteLine("Page " + currentPage + "/" + totalPage);
+                Console.WriteLine("[Legend: 'P' Next Page | 'R' Return to Menu | 'C' Complete Transaction]");
+                Console.Write("Enter Item Number to purchase or Function(ID - Quantity) : ");
+                choice = Console.ReadLine();
+            }
+            // Go back to last page
+            else if(itemIndex == lastItem && (choice == "R" || choice == "r"))
+            {
+                firstItem = allStock.Count - 4;
+                lastItem += firstItem;
+                displayTitle();
+                for (itemIndex = firstItem - 1; itemIndex < lastItem; itemIndex++)
+                {
+                    if (allStock[itemIndex].ID >= firstItem
+                    && allStock[itemIndex].ID <= lastItem
+                    && allStock.IndexOf(allStock[itemIndex]) <= allStock.Count)
+                    {
+                        String productLine = String.Format("{0, -5} | {1,  -15} | {2,  -10}", allStock[itemIndex].ID, allStock[itemIndex].name, allStock[itemIndex].stockLevel);
+                        Console.WriteLine(productLine);
+
+                    }
+                }
+                Console.WriteLine("Page " + currentPage + "/" + totalPage);
+                Console.WriteLine("[Legend: 'P' Next Page | 'R' Return to Menu | 'C' Complete Transaction]");
+                Console.Write("Enter Item Number to purchase or Function(ID - Quantity) : ");
+                choice = Console.ReadLine();
+            }
+            //else if(itemIndex == lastItem - 1 && (choice == "R" || choice == "r"))
+            //{
+
+            //}
         }
 
         public int pageTwo()
