@@ -30,9 +30,8 @@ namespace MagicInventorySystem
             }
             currentPage = 1;
             isCompleted = 0;
-            itemIndex = 1;
             pageIndex = 1;
-            firstItem = 1;
+            firstItem = 0;
             lastItem = 5;
         }
 
@@ -41,45 +40,6 @@ namespace MagicInventorySystem
             displayTitle();
             try
             {
-                for (itemIndex = firstItem - 1; itemIndex < lastItem; itemIndex++)
-                {
-                    if (allStock[itemIndex].ID >= firstItem
-                    && allStock[itemIndex].ID <= lastItem
-                    && allStock.IndexOf(allStock[itemIndex]) <= allStock.Count)
-                    {
-                        String productLine = String.Format("{0, -5} | {1,  -15} | {2,  -10}", allStock[itemIndex].ID, allStock[itemIndex].name, allStock[itemIndex].stockLevel);
-                        Console.WriteLine(productLine);
-
-                    }
-                }
-            }
-            catch (ArgumentOutOfRangeException e)
-            {
-                Console.Clear();
-                Console.WriteLine("This is the first page!");
-            }
-            isCompleted = 0;
-            Console.WriteLine("Page " + currentPage + "/" + totalPage);
-            Console.WriteLine("[Legend: 'P' Next Page | 'R' Return to Menu | 'C' Complete Transaction]");
-            Console.Write("Enter Item Number to purchase or Function(ID - Quantity) : ");
-            itemIndex = 1;
-            choice = Console.ReadLine();
-            return isCompleted;
-        }
-
-        public int lastPage()
-        {
-            if (currentPage <= totalPage)
-            {
-                currentPage = totalPage;
-            }
-            Console.Clear();
-            currentPage = totalPage;
-            firstItem = allStock.Count - 5;
-            lastItem += firstItem;
-            displayTitle();
-            try
-            {
                 for (itemIndex = firstItem; itemIndex < lastItem; itemIndex++)
                 {
                     if (allStock[itemIndex].ID >= firstItem
@@ -88,52 +48,21 @@ namespace MagicInventorySystem
                     {
                         String productLine = String.Format("{0, -5} | {1,  -15} | {2,  -10}", allStock[itemIndex].ID, allStock[itemIndex].name, allStock[itemIndex].stockLevel);
                         Console.WriteLine(productLine);
+
                     }
                 }
             }
             catch (ArgumentOutOfRangeException e)
             {
                 Console.Clear();
-                Console.WriteLine("This is the last page!");
-            }
-
-            isCompleted = 0;
-            Console.WriteLine("Page " + currentPage + "/" + totalPage);
-            Console.WriteLine("[Legend: 'P' Next Page | 'R' Return to Menu | 'C' Complete Transaction]");
-            Console.Write("Enter Item Number to purchase or Function(ID - Quantity) : ");
-            choice = Console.ReadLine();
-            return isCompleted;
-        }
-
-        public int nextPage()
-        {
-            if (currentPage <= totalPage)
-            {
-                currentPage++;
-            }
-            Console.Clear();
-            firstItem = lastItem;
-            lastItem = firstItem + 5;
-            displayTitle();
-            try
-            {
-                for (itemIndex = firstItem; itemIndex < lastItem; itemIndex++)
+                Console.WriteLine("This is the first page! firstPage");
+                if (itemIndex < 0)
                 {
-                    if (allStock[itemIndex].ID >= firstItem
-                    && allStock[itemIndex].ID <= lastItem
-                    && allStock.IndexOf(allStock[itemIndex]) <= allStock.Count)
-                    {
-                        String productLine = String.Format("{0, -5} | {1,  -15} | {2,  -10}", allStock[itemIndex].ID, allStock[itemIndex].name, allStock[itemIndex].stockLevel);
-                        Console.WriteLine(productLine);
-                    }
+                    firstItem = 0;
+                    itemIndex = firstItem;
+                    lastItem = firstItem + 5;
                 }
             }
-            catch (ArgumentOutOfRangeException e)
-            {
-                Console.Clear();
-                Console.WriteLine("This is the last page!");
-            }
-
             isCompleted = 0;
             Console.WriteLine("Page " + currentPage + "/" + totalPage);
             Console.WriteLine("[Legend: 'P' Next Page | 'R' Return to Menu | 'C' Complete Transaction]");
@@ -144,7 +73,7 @@ namespace MagicInventorySystem
 
         public int previousPage()
         {
-            if (currentPage <= totalPage)
+            if (currentPage < totalPage && currentPage > 1)
             {
                 currentPage--;
             }
@@ -167,7 +96,128 @@ namespace MagicInventorySystem
             }
             catch (ArgumentOutOfRangeException e)
             {
-                Console.WriteLine("This is the first page!");
+                if (itemIndex < 0)
+                {
+                    firstItem = 0;
+                    itemIndex = firstItem;
+                    lastItem = firstItem + 5;
+                }
+                Console.Clear();
+                Console.WriteLine("This is the first page! previousPage");
+                firstPage();
+            }
+            isCompleted = 0;
+            Console.WriteLine("Page " + currentPage + "/" + totalPage);
+            Console.WriteLine("[Legend: 'P' Next Page | 'R' Return to Menu | 'C' Complete Transaction]");
+            Console.Write("Enter Item Number to purchase or Function(ID - Quantity) : ");
+            choice = Console.ReadLine();
+            return isCompleted;
+        }
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        public int lastPage()
+        {
+            if (currentPage >= totalPage)
+            {
+                currentPage = totalPage;
+            }
+            //Console.Clear();
+            //firstItem = allStock.Count - 5;
+            //lastItem = firstItem + 5;
+            displayTitle();
+            try
+            {
+                for (itemIndex = firstItem; itemIndex < lastItem; itemIndex++)
+                {
+                    if (allStock[itemIndex].ID >= firstItem
+                    && allStock[itemIndex].ID <= lastItem
+                    && allStock.IndexOf(allStock[itemIndex]) <= allStock.Count)
+                    {
+                        String productLine = String.Format("{0, -5} | {1,  -15} | {2,  -10}", allStock[itemIndex].ID, allStock[itemIndex].name, allStock[itemIndex].stockLevel);
+                        Console.WriteLine(productLine);
+                    }
+                }
+            }
+            catch (ArgumentOutOfRangeException e)
+            {
+                Console.Clear();
+                Console.WriteLine("This is the last page! lastPage");
+                if (lastItem > allStock.Count)
+                {
+                    lastItem = allStock.Count;
+                    firstItem = lastItem - 5;
+                    itemIndex = firstItem;
+                }
+
+            }
+            isCompleted = 0;
+            Console.WriteLine("Page " + currentPage + "/" + totalPage);
+            Console.WriteLine("[Legend: 'P' Next Page | 'R' Return to Menu | 'C' Complete Transaction]");
+            Console.Write("Enter Item Number to purchase or Function(ID - Quantity) : ");
+            
+            choice = Console.ReadLine();
+            return isCompleted;
+        }
+
+        public int nextPage()
+        {
+            if (currentPage < totalPage)
+            {
+                currentPage++;
+            }
+            Console.Clear();
+            firstItem = lastItem;
+            lastItem = firstItem + 5;
+            displayTitle();
+            try
+            {
+                for (itemIndex = firstItem; itemIndex < lastItem; itemIndex++)
+                {
+                    if (allStock[itemIndex].ID >= firstItem
+                    && allStock[itemIndex].ID <= lastItem
+                    && allStock.IndexOf(allStock[itemIndex]) <= allStock.Count)
+                    {
+                        String productLine = String.Format("{0, -5} | {1,  -15} | {2,  -10}", allStock[itemIndex].ID, allStock[itemIndex].name, allStock[itemIndex].stockLevel);
+                        Console.WriteLine(productLine);
+                    }
+                }
+            }
+            catch (ArgumentOutOfRangeException e)
+            {
+
+                if (lastItem > allStock.Count)
+                {
+                    lastItem = allStock.Count;
+                    firstItem = lastItem - 5;
+                    itemIndex = firstItem;
+                }
+                Console.Clear();
+                Console.WriteLine("This is the last page! nextPage");
+                lastPage();
             }
             isCompleted = 0;
             Console.WriteLine("Page " + currentPage + "/" + totalPage);
