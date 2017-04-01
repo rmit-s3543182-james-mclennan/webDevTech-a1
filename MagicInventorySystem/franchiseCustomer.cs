@@ -111,58 +111,47 @@ namespace MagicInventorySystem
         {
             Console.Clear();
             Console.WriteLine("[!] Loading products from owners_inventory.json");
-            displayTitle();
-            currentPage = pageOne();
-            isCompleted = 0;
+            //displayTitle();
+            //currentPage = pageOne();
+            //isCompleted = 0;
+            initialPage();
             while (isCompleted == 0)
             {
-                Console.WriteLine("Page " + currentPage + "/" + totalPage);
-                Console.WriteLine("[Legend: 'P' Next Page | 'R' Return to Menu | 'C' Complete Transaction]");
-                Console.Write("Enter Item Number to purchase or Function(ID - Quantity) : ");
-                choice = Console.ReadLine();
-                try
-                {
-                    if (choice == "P" || choice == "p")
-                    {
-                        isCompleted = displayPageTwo();
-                    }
-                    else if (choice == "R" || choice == "r")
-                    {
-                        isCompleted = displayPageFour();
-                    }
-                    else if (choice == "C" || choice == "c")
-                    {
-                        Console.WriteLine("Transaction done!");
-                        isCompleted = transactionComplete();
-                    }
-                    else if (Convert.ToInt32(choice) < allStock.Count
-                    && Convert.ToInt32(choice) > 0)
-                    {
-                        foreach (Products getItem in allStock)
-                        {
-                            if (choice == Convert.ToString(getItem.ID)
-                            && getItem.stockLevel > 0)
-                            {
-                                Console.Write("Choose the quantity of the product(current stock : "
-                                    + getItem.stockLevel + ") : ");
-                                choice = Console.ReadLine();
-                            }
-                            // out of stock
-                            else if (choice == Convert.ToString(getItem.ID) && getItem.stockLevel <= 0)
-                            {
-                                outOfStock();
-                            }
-                        }
-                    }
-                    else
-                    {
-                        isCompleted = invalidInput();
-                    }
+                if (itemIndex == lastItem
+                && (choice == "P" || choice == "p")
+                && itemIndex <= allStock.Count)
+                {                    
+                    isCompleted = nextPage();
                 }
-                catch (FormatException e)
+                else if (itemIndex == lastItem
+                && (choice == "R" || choice == "r")
+                && itemIndex <= allStock.Count)
+                {
+                    
+                    isCompleted = previousPage();
+                }
+                else if (itemIndex > allStock.Count)
+                {
+                    isCompleted = invalidPage();
+                    lastPage();
+                }
+                else if (itemIndex < 1)
+                {
+                    isCompleted = invalidPage();
+                    initialPage();
+                }
+                else if (itemIndex == lastItem
+                && (choice == "C" || choice == "c")
+                && itemIndex <= allStock.Count)
+                {
+                    isCompleted = transactionComplete();
+                }
+                else
                 {
                     isCompleted = invalidInput();
                 }
+                                //displayProductPage();
+                //displayProductPage();
                 /* compare product request with current stocklevel
                  * and then if stocklevel is > 0
                  * update current stock(-1)
