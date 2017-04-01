@@ -127,17 +127,16 @@ namespace MagicInventorySystem
                     
                     isCompleted = previousPage();
                 }
-                else if (itemIndex > allStock.Count)
-                {
-                    isCompleted = invalidPage();
-                    lastPage();
-                }
-                else if (itemIndex < 0)
-                {
-                    Console.WriteLine("mehhhh");
-                    isCompleted = invalidPage();
-                    firstPage();
-                }
+                //else if (itemIndex > allStock.Count)
+                //{
+                //    isCompleted = invalidPage();
+                //    lastPage();
+                //}
+                //else if (itemIndex < 0)
+                //{
+                //    isCompleted = invalidPage();
+                //    firstPage();
+                //}
                 else if (itemIndex == lastItem
                 && (choice == "C" || choice == "c")
                 && itemIndex <= allStock.Count)
