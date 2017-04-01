@@ -42,7 +42,10 @@ namespace MagicInventorySystem
                             CannotExecute = false,
                             Execute = () =>
                             {
+                                Console.Clear();
+                                Console.WriteLine("Add New Inventory Item: ");
                                 access.addNewItem(storeID);
+                                Console.Clear();
                                 collection.ShowMenu(3);
                             }
                         },

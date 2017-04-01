@@ -24,7 +24,6 @@ namespace MagicInventorySystem
             int selectedItem = 0;
             List<Products> storeInventory = reader.readFile(storeFileName);
             Products requestedItem;
-
             wareHouse.displayAllStock();
 
             Console.WriteLine("Enter item ID to stock in store: ");
@@ -38,12 +37,10 @@ namespace MagicInventorySystem
                     {
                         requestedItem = item;
                         Boolean isInStore = false;
-                        Console.WriteLine("[!] ID Found in Owners Inventory!: " + selectedItem);
                         foreach(Products storeItems in storeInventory)
                         {
                             if(storeItems.ID == requestedItem.ID)
                             {
-                                Console.WriteLine("[!] Item is being restocked! Sending request!");
                                 isInStore = true;
                                 sendStockRequest(requestedItem, storeItems.stockLevel + 5, storeID);
                             }
@@ -51,7 +48,6 @@ namespace MagicInventorySystem
 
                         if (!isInStore)
                         {
-                            Console.WriteLine("[!] Item is out of your stock! Sending urgent request!");
                             Console.WriteLine(item.stockLevel);
                             sendStockRequest(requestedItem, item.stockLevel, storeID);
 

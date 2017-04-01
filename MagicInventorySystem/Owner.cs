@@ -35,7 +35,6 @@ namespace MagicInventorySystem
                 Console.WriteLine(productLine);
             }
             Console.WriteLine();
-            Console.WriteLine("Press any key to continue...");
         }
 
         public void updateStockFromWarehouse(string name, int amountSentToStore)
@@ -115,7 +114,6 @@ namespace MagicInventorySystem
                 stockRequestItem itemRequested = checkIDAndRemove(stockRequests, id);
                 if (itemRequested != null)
                 {
-                    Console.WriteLine("[!] Updating stock");
                     updateStockFromWarehouse(itemRequested.itemName, itemRequested.quantity);
                     sendStockFromWarehouse(itemRequested, itemRequested.quantity);
                 }
@@ -140,10 +138,8 @@ namespace MagicInventorySystem
             {
                 if (item.availableStock)
                 {
-                    Console.WriteLine("[!] Stock available");
                     if (stringid == item.listID)
                     {
-                        Console.WriteLine("[!] Located item");
                         requestedItem = item;
                         stockRequests.Remove(item);
                         File.WriteAllText("stockrequests.json", JsonConvert.SerializeObject(stockRequests, Formatting.Indented));
