@@ -24,7 +24,23 @@ namespace MagicInventorySystem
                             CannotExecute = false,
                             Execute = () =>
                             {
-                                Console.WriteLine("Need to implement function!");
+                                Console.Clear();
+                                Console.WriteLine("Display Inventory:");
+                                Console.WriteLine("Press enter value for re-stock threshold: ");
+                                int threshold = access.promptThreshold();
+                                if(threshold >= 0)
+                                {
+                                    access.displayInventory(threshold);
+                                    Console.WriteLine("Press any key to continue...");
+                                    Console.ReadKey();
+                                    Console.Clear();
+                                    collection.ShowMenu(3);
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Invalid input. Please try again.");
+                                    collection.ShowMenu(3);
+                                }
                             }
                         },
                         new MagicMenuItem()
