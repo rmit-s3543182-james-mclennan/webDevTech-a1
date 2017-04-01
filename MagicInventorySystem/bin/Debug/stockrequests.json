@@ -1,11 +1,1 @@
-[
-  {
-    "ID": 2,
-    "listID": 1,
-    "store": "CBD",
-    "itemName": "Wand",
-    "quantity": 5,
-    "currentStock": 25,
-    "availableStock": true
-  }
-]
+[]

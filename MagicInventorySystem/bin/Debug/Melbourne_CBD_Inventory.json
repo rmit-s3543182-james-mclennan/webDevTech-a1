@@ -7,11 +7,16 @@
   {
     "ID": 6,
     "name": "Moustache",
-    "stockLevel": 5
+    "stockLevel": 10
   },
   {
     "ID": 11,
     "name": "Bottle of air",
+    "stockLevel": 5
+  },
+  {
+    "ID": 2,
+    "name": "Wand",
     "stockLevel": 5
   }
 ]

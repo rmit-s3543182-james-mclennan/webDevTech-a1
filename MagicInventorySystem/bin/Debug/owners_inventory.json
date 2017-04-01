@@ -7,7 +7,7 @@
   {
     "ID": 2,
     "name": "Wand",
-    "stockLevel": 25
+    "stockLevel": 20
   },
   {
     "ID": 3,
@@ -27,7 +27,7 @@
   {
     "ID": 6,
     "name": "Moustache",
-    "stockLevel": 20
+    "stockLevel": 15
   },
   {
     "ID": 7,
