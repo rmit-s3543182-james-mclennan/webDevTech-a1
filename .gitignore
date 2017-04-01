@@ -3,3 +3,5 @@ MagicInventorySystem/bin/Debug/MagicInventorySystem.exe
 MagicInventorySystem/bin/Debug/MagicInventorySystem.pdb
 MagicInventorySystem/bin/Debug/Melbourne_CBD_Inventory.json
 *.json
+*.exe
+*.pdb
