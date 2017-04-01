@@ -14,15 +14,28 @@ namespace MagicInventorySystem
         public int currentPage { get; set; }
         public int isCompleted { get; set; }
         public string choice { get; set; }
+        public int itemIndex { get; set; }
+        public int pageIndex { get; set; }
+        public int firstItem { get; set; }
+        public int lastItem { get; set; }
         public List<Products> allStock { get; set; }
+        public List<Products> pageDistributor { get; set; }
+        //public IEnumerable<Products> pageDistributor { get; set; }
         JsonProcessor reader = new JsonProcessor();
+        
         public PageLoad()
         {
             allStock = JsonConvert.DeserializeObject<List<Products>>(File.ReadAllText("owners_inventory.json"));
+            pageDistributor = new List<Products>(allStock.Count / 5 + 1);
             totalPage = 4;
             currentPage = 1;
             isCompleted = 0;
+            itemIndex = 1;
+            pageIndex = 1;
+            firstItem = 1;
+            lastItem = 5;
         }
+
         public int displayPageOne()
         {
             // Display Page 1 and get input for next function
@@ -318,6 +331,28 @@ namespace MagicInventorySystem
             Console.WriteLine();
             currentPage = 1;
             return currentPage;
+        }
+
+        public void displayProductPage()
+        {
+            displayTitle();
+            foreach (Products currentItem in allStock)
+            {
+                if (currentItem.ID >= firstItem
+                && currentItem.ID <= lastItem
+                && allStock.IndexOf(currentItem) <= allStock.Count)
+                {
+                    String productLine = String.Format("{0, -5} | {1,  -15} | {2,  -10}", currentItem.ID, currentItem.name, currentItem.stockLevel);
+                    Console.WriteLine(productLine);
+                    itemIndex++;
+                    if (itemIndex == lastItem)
+                    {
+                        pageIndex++;
+                        firstItem = lastItem;
+                        lastItem += firstItem;
+                    }
+                }       
+            }
         }
 
         public int pageTwo()

@@ -118,7 +118,8 @@ namespace MagicInventorySystem
             {
                 Console.WriteLine("Page " + currentPage + "/" + totalPage);
                 Console.WriteLine("[Legend: 'P' Next Page | 'R' Return to Menu | 'C' Complete Transaction]");
-                Console.Write("Enter Item Number to purchase or Function(ID - Quantity) : ");
+                Console.WriteLine("Enter Item Number to purchase or Function(ID - Quantity) : ");
+                displayProductPage();
                 choice = Console.ReadLine();
                 try
                 {
