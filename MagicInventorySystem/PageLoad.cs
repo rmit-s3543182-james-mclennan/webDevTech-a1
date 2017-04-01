@@ -184,7 +184,14 @@ namespace MagicInventorySystem
             Console.WriteLine("[Legend: 'P' Next Page | 'R' Return to Menu | 'C' Complete Transaction]");
             Console.Write("Enter Item Number to purchase or Function(ID - Quantity) : ");
             isCompleted = 0;
-            itemIndex = 1;
+            if(itemIndex < 0)
+            {
+                itemIndex = 1;
+            }
+            else if(itemIndex > allStock.Count)
+            {
+                itemIndex = allStock.Count - 4;
+            }
             choice = Console.ReadLine();
             return isCompleted;
         }
