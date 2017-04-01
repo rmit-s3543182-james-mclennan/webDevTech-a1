@@ -24,6 +24,7 @@ namespace MagicInventorySystem
                             {
                                 Console.Clear();
                                 access.displayAllStockRequests();
+                                Console.Clear();
                                 collection.ShowMenu(2);
                             }
                         },
