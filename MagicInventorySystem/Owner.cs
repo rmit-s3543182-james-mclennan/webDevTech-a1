@@ -78,7 +78,7 @@ namespace MagicInventorySystem
                 JsonConvert.SerializeObject(storeInventory, Formatting.Indented));
         }
 
-        public void displayAllStockRequests()
+        public void displayStockRequests(Boolean isAllStock, Boolean StockToShow)
         {
             List<stockRequestItem> stockRequests = reader.readRequestFile("stockrequests.json");
 
@@ -97,13 +97,29 @@ namespace MagicInventorySystem
                 }
             }
 
-            foreach (stockRequestItem requestItem in stockRequests)
+            if (isAllStock)
             {
-                String productLine = String.Format("{0, -5} | {1, -10} | {2, -" + formatProductName + "} | {3, -10} | {4, -15} | {5, -10}", 
-                    requestItem.listID, requestItem.store, requestItem.itemName,
-                    requestItem.quantity, requestItem.currentStock, requestItem.availableStock);
+                foreach (stockRequestItem requestItem in stockRequests)
+                {
+                    String productLine = String.Format("{0, -5} | {1, -10} | {2, -" + formatProductName + "} | {3, -10} | {4, -15} | {5, -10}",
+                        requestItem.listID, requestItem.store, requestItem.itemName,
+                        requestItem.quantity, requestItem.currentStock, requestItem.availableStock);
 
-                Console.WriteLine(productLine);
+                    Console.WriteLine(productLine);
+                }
+            }
+            else
+            {
+                foreach (stockRequestItem requestItem in stockRequests)
+                {
+                    if (StockToShow == requestItem.availableStock)
+                    {
+                        String productLine = String.Format("{0, -5} | {1, -10} | {2, -" + formatProductName + "} | {3, -10} | {4, -15} | {5, -10}",
+                        requestItem.listID, requestItem.store, requestItem.itemName,
+                        requestItem.quantity, requestItem.currentStock, requestItem.availableStock);
+                        Console.WriteLine(productLine);
+                    } 
+                }
             }
             Console.WriteLine();
             Console.WriteLine("Enter Request to Process: ");
