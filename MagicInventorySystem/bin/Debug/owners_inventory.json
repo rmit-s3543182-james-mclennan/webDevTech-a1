@@ -2,12 +2,12 @@
   {
     "ID": 1,
     "name": "Rabbit",
-    "stockLevel": -15
+    "stockLevel": 5
   },
   {
     "ID": 2,
     "name": "Wand",
-    "stockLevel": 15
+    "stockLevel": 25
   },
   {
     "ID": 3,
@@ -17,7 +17,7 @@
   {
     "ID": 4,
     "name": "Deck of Cards",
-    "stockLevel": 25
+    "stockLevel": 15
   },
   {
     "ID": 5,
@@ -27,12 +27,12 @@
   {
     "ID": 6,
     "name": "Moustache",
-    "stockLevel": 25
+    "stockLevel": 20
   },
   {
     "ID": 7,
     "name": "Fake blood",
-    "stockLevel": 25
+    "stockLevel": 20
   },
   {
     "ID": 8,
@@ -52,7 +52,7 @@
   {
     "ID": 11,
     "name": "Bottle of air",
-    "stockLevel": 25
+    "stockLevel": 20
   },
   {
     "ID": 12,
@@ -62,7 +62,7 @@
   {
     "ID": 13,
     "name": "Wizard Hat",
-    "stockLevel": 25
+    "stockLevel": 20
   },
   {
     "ID": 14,
@@ -72,6 +72,6 @@
   {
     "ID": 15,
     "name": "Flying Powder",
-    "stockLevel": 20
+    "stockLevel": 25
   }
 ]

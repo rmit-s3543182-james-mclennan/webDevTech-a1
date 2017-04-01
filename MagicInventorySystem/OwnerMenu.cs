@@ -22,7 +22,11 @@ namespace MagicInventorySystem
                             CannotExecute = false,
                             Execute = () =>
                             {
-                                Console.WriteLine("Need to implement function!");
+                                Console.Clear();
+                                access.displayAllStockRequests();
+                                Console.ReadKey();
+                                Console.Clear();
+                                collection.ShowMenu(2);
                             }
                         },
                         new MagicMenuItem()
