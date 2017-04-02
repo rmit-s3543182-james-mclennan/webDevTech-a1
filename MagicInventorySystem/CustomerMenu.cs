@@ -22,25 +22,25 @@ namespace MagicInventorySystem
                     {
                         new MagicMenuItem()
                         {
-                            Option = "Display Products\n",
+                            Option = "Display Products",
                             CannotExecute = true,
                             SubMenuId = 6
                         },
                         new MagicMenuItem()
                         {
-                            Option = "Display Workshops\n",
+                            Option = "Display Workshops",
                             CannotExecute = true,
                             SubMenuId = 7
                         },
                         new MagicMenuItem()
                         {
-                            Option = "Return to Main Menu\n",
+                            Option = "Return to Main Menu",
                             CannotExecute = true,
                             SubMenuId = 1
                         },
                         new MagicMenuItem()
                         {
-                            Option = "Exit\n",
+                            Option = "Exit",
                             CannotExecute = false,
                             Execute = () =>
                             {

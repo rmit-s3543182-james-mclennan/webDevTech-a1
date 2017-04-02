@@ -25,12 +25,13 @@ namespace MagicInventorySystem
                             Execute = () =>
                             {
                                 Console.Clear();
-                                Console.WriteLine("Display Inventory:");
                                 Console.WriteLine("Press enter value for re-stock threshold: ");
                                 int threshold = access.promptThreshold();
+                                Console.Clear();
                                 if(threshold >= 0)
                                 {
-                                    access.displayInventory(threshold);
+                                    Console.WriteLine("Inventory of " + storeID);
+                                    access.displayInventory(threshold, false);
                                     Console.WriteLine("Press any key to continue...");
                                     Console.ReadKey();
                                     Console.Clear();
@@ -49,7 +50,24 @@ namespace MagicInventorySystem
                             CannotExecute = false,
                             Execute = () =>
                             {
-                                Console.WriteLine("Need to implement function!");
+                                Console.Clear();
+                                Console.WriteLine("Press enter value for re-stock threshold: ");
+                                int threshold = access.promptThreshold();
+                                Console.Clear();
+                                if(threshold >= 0)
+                                {
+                                    Console.WriteLine("Inventory of " + storeID);
+                                    access.displayInventory(threshold, true);
+                                    Console.WriteLine("Press any key to continue...");
+                                    Console.ReadKey();
+                                    Console.Clear();
+                                    collection.ShowMenu(3);
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Invalid input. Please try again.");
+                                    collection.ShowMenu(3);
+                                }
                             }
                         },
                         new MagicMenuItem()
@@ -96,7 +114,7 @@ namespace MagicInventorySystem
                     {
                         new MagicMenuItem()
                         {
-                            Option = "Melbourne CBD\n",
+                            Option = "Melbourne CBD",
                             CannotExecute = false,
                             Execute = () =>
                             {
@@ -109,7 +127,7 @@ namespace MagicInventorySystem
                         },
                         new MagicMenuItem()
                         {
-                            Option = "Melbourne North\n",
+                            Option = "Melbourne North",
                             CannotExecute = false,
                             Execute = () =>
                             {
@@ -121,7 +139,7 @@ namespace MagicInventorySystem
                         },
                         new MagicMenuItem()
                         {
-                            Option = "Melbourne South\n",
+                            Option = "Melbourne South",
                             CannotExecute = false,
                             Execute = () =>
                             {
@@ -133,7 +151,7 @@ namespace MagicInventorySystem
                         },
                         new MagicMenuItem()
                         {
-                            Option = "Melbourne East\n",
+                            Option = "Melbourne East",
                             CannotExecute = false,
                             Execute = () =>
                             {
@@ -145,7 +163,7 @@ namespace MagicInventorySystem
                         },
                         new MagicMenuItem()
                         {
-                            Option = "Melbourne West\n",
+                            Option = "Melbourne West",
                             CannotExecute = false,
                             Execute = () =>
                             {
@@ -157,13 +175,13 @@ namespace MagicInventorySystem
                         },
                         new MagicMenuItem()
                         {
-                            Option = "Return to Main Menu\n",
+                            Option = "Return to Main Menu",
                             CannotExecute = true,
                             SubMenuId = 1
                         },
                         new MagicMenuItem()
                         {
-                            Option = "Exit\n",
+                            Option = "Exit",
                             CannotExecute = false,
                             Execute = () =>
                             {

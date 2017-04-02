@@ -43,8 +43,7 @@ namespace MagicInventorySystem
             }
 
         }
-          
-        public void displayInventory(int threshold)
+        public void displayInventory(int threshold, Boolean filtered)
         {
             List<Products> storeInventory = reader.readFile(storeFileName);
             storeInventory = storeInventory.OrderBy(id => id.ID).ToList();
@@ -72,13 +71,23 @@ namespace MagicInventorySystem
                 {
                     reStock = false;
                 }
-                String productLine = String.Format("{0, -5} | {1,  -15} | {2,  -10} | {3, -10}", stockItem.ID, stockItem.name, stockItem.stockLevel, reStock);
-
-                Console.WriteLine(productLine);
+                if (filtered)
+                {
+                    if (reStock)
+                    {
+                        String productLine = String.Format("{0, -5} | {1,  -15} | {2,  -10} | {3, -10}", stockItem.ID, stockItem.name, stockItem.stockLevel, reStock);
+                        Console.WriteLine(productLine);
+                    }
+                }
+                else
+                {
+                    String productLine = String.Format("{0, -5} | {1,  -15} | {2,  -10} | {3, -10}", stockItem.ID, stockItem.name, stockItem.stockLevel, reStock);
+                    Console.WriteLine(productLine);
+                }
             }
+            Console.WriteLine();
 
         }
-
         public int promptThreshold()
         {
             int threshold = -1;

@@ -18,7 +18,7 @@ namespace MagicInventorySystem
                     {
                         new MagicMenuItem()
                         {
-                            Option = "Display All Stock Requests\n",
+                            Option = "Display All Stock Requests",
                             CannotExecute = false,
                             Execute = () =>
                             {
@@ -40,7 +40,7 @@ namespace MagicInventorySystem
                         },
                         new MagicMenuItem()
                         {
-                            Option = "Display Stock Requests (True / False)\n",
+                            Option = "Display Stock Requests (True / False)",
                             CannotExecute = false,
                             Execute = () =>
                             {
@@ -65,7 +65,7 @@ namespace MagicInventorySystem
                                 Console.Clear();
                                 if(processStatus)
                                 {
-                                    Console.WriteLine("Successfully processed order.\n");
+                                    Console.WriteLine("Successfully processed order.");
                                 }
                                 else
                                 {
@@ -76,7 +76,7 @@ namespace MagicInventorySystem
                         },
                         new MagicMenuItem()
                         {
-                            Option = "Display All Product Lines\n",
+                            Option = "Display All Product Lines",
                             CannotExecute = false,
                             Execute = () =>
                             {
@@ -91,13 +91,13 @@ namespace MagicInventorySystem
                         },
                         new MagicMenuItem()
                         {
-                            Option = "Return to Main Menu\n",
+                            Option = "Return to Main Menu",
                             CannotExecute = true,
                             SubMenuId = 1
                         },
                         new MagicMenuItem()
                         {
-                            Option = "Exit\n",
+                            Option = "Exit",
                             CannotExecute = false,
                             Execute = () =>
                             {
