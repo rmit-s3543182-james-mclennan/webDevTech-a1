@@ -137,7 +137,7 @@ namespace MagicInventorySystem
                 // compare choice with product ID
                 else if (Convert.ToInt32(choice) > 0 && Convert.ToInt32(choice) <= allStock.Count)
                 {
-                    isCompleted = transactionComplete();
+                    isCompleted = purchaseItems();
                 }
 
 

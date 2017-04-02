@@ -33,9 +33,20 @@ namespace MagicInventorySystem
             lastItem = 5;
         }
 
+        public int purchaseItems()
+        {
+            foreach(Products purchaseItem in allStock)
+            {
+                String productLine = String.Format("{0, -5} | {1,  -15} | {2,  -10}"
+                                    , allStock[itemIndex].ID, allStock[itemIndex].name, allStock[itemIndex].stockLevel);
+                Console.WriteLine(productLine);
+            }
+            isCompleted = 0;
+            return isCompleted;
+        }
+
         public int firstPage()
         {
-
             displayTitle();
             try
             {
@@ -46,7 +57,9 @@ namespace MagicInventorySystem
                     && allStock.IndexOf(allStock[itemIndex]) <= allStock.Count)
                     {
                         String productLine = String.Format("{0, -5} | {1,  -15} | {2,  -10}"
-                            , allStock[itemIndex].ID, allStock[itemIndex].name, allStock[itemIndex].stockLevel);
+                                                            , allStock[itemIndex].ID
+                                                            , allStock[itemIndex].name
+                                                            , allStock[itemIndex].stockLevel);
                         Console.WriteLine(productLine);
 
                     }
@@ -116,7 +129,10 @@ namespace MagicInventorySystem
                     && allStock[itemIndex].ID <= lastItem
                     && allStock.IndexOf(allStock[itemIndex]) <= allStock.Count)
                     {
-                        String productLine = String.Format("{0, -5} | {1,  -15} | {2,  -10}", allStock[itemIndex].ID, allStock[itemIndex].name, allStock[itemIndex].stockLevel);
+                        String productLine = String.Format("{0, -5} | {1,  -15} | {2,  -10}"
+                                                            , allStock[itemIndex].ID
+                                                            , allStock[itemIndex].name
+                                                            , allStock[itemIndex].stockLevel);
                         Console.WriteLine(productLine);
                     }
                 }
@@ -195,7 +211,10 @@ namespace MagicInventorySystem
                     && allStock[itemIndex].ID <= lastItem
                     && allStock.IndexOf(allStock[itemIndex]) <= allStock.Count)
                     {
-                        String productLine = String.Format("{0, -5} | {1,  -15} | {2,  -10}", allStock[itemIndex].ID, allStock[itemIndex].name, allStock[itemIndex].stockLevel);
+                        String productLine = String.Format("{0, -5} | {1,  -15} | {2,  -10}"
+                                                            , allStock[itemIndex].ID
+                                                            , allStock[itemIndex].name
+                                                            , allStock[itemIndex].stockLevel);
                         Console.WriteLine(productLine);
                     }
                 }
@@ -247,7 +266,6 @@ namespace MagicInventorySystem
 
         public void displayTitle()
         {
-            // Display title line
             String titleLine = String.Format("\n{0, -5} | {1, -15} | {2, -10}", "ID", "Name", "Stock Level");
 
             Console.WriteLine(titleLine);
