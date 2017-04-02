@@ -3,18 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
-using System.IO;
-using System.Text.RegularExpressions;
 
 namespace MagicInventorySystem
 {
-
-    class franchiseCustomer : PageLoad
+    class Customer : PageLoad
     {
         FranchiseOwner access = new FranchiseOwner();
-        
-        public MagicMenuCollection loadFranchiseCustomerMenu(MagicMenuCollection collection)
+
+        public MagicMenuCollection loadCustomerPurchaseMenu(MagicMenuCollection collection)
         {
             collection.Menus.Add(new MagicMenuList()
             {
@@ -87,7 +83,7 @@ namespace MagicInventorySystem
                             {
                                 collection.ShowMenu(6);
                             }
-                            
+
                         }
                     },
                     new MagicMenuItem()
@@ -98,8 +94,8 @@ namespace MagicInventorySystem
                         {
                             Console.Clear();
                             storeFileName = "Melbourne_East_Inventory.json";
-                            
-                            
+
+
                             CustomerOrder();
                             Console.ReadKey();
                             Console.Clear();
@@ -200,17 +196,16 @@ namespace MagicInventorySystem
                 }
 
             }
-                /* compare product request with current stocklevel
-                 * and then if stocklevel is > 0
-                 * update current stock(-1)
-                 * afterwards ask again to buy more stuff
-                 * and book a workshop(if so, 10% discount of price)
-                 */
+            /* compare product request with current stocklevel
+             * and then if stocklevel is > 0
+             * update current stock(-1)
+             * afterwards ask again to buy more stuff
+             * and book a workshop(if so, 10% discount of price)
+             */
 
 
 
         }
     }
-        
-}
 
+}

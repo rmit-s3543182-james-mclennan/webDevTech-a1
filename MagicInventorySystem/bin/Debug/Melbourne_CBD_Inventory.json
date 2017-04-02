@@ -2,7 +2,7 @@
   {
     "ID": 1,
     "name": "Deck of Cards",
-    "stockLevel": 5
+    "stockLevel": 4
   },
   {
     "ID": 2,
@@ -12,7 +12,7 @@
   {
     "ID": 3,
     "name": "Magic Hat",
-    "stockLevel": 9
+    "stockLevel": 8
   },
   {
     "ID": 4,
