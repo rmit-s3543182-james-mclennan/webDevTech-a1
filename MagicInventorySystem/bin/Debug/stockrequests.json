@@ -7,5 +7,59 @@
     "quantity": 5,
     "currentStock": 20,
     "availableStock": true
+  },
+  {
+    "ID": 1,
+    "listID": 2,
+    "store": "CBD",
+    "itemName": "Rabbit",
+    "quantity": 5,
+    "currentStock": 20,
+    "availableStock": true
+  },
+  {
+    "ID": 1,
+    "listID": 3,
+    "store": "CBD",
+    "itemName": "Rabbit",
+    "quantity": 5,
+    "currentStock": 20,
+    "availableStock": true
+  },
+  {
+    "ID": 2,
+    "listID": 4,
+    "store": "CBD",
+    "itemName": "Wand",
+    "quantity": 5,
+    "currentStock": 20,
+    "availableStock": true
+  },
+  {
+    "ID": 1,
+    "listID": 5,
+    "store": "CBD",
+    "itemName": "Rabbit",
+    "quantity": 5,
+    "currentStock": 20,
+    "availableStock": true
+  },
+  {
+    "ID": 1,
+    "listID": 6,
+    "store": "CBD",
+    "itemName": "Rabbit",
+    "quantity": 5,
+    "currentStock": 20,
+    "availableStock": true
+  },
+  {
+    "ID": 3,
+    "listID": 7,
+    "store": "CBD",
+    "itemName": "Magic Hat",
+    "quantity": 5,
+    "currentStock": 20,
+    "availableStock": true
   }
 ]

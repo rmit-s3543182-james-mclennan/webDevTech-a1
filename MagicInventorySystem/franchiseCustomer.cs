@@ -139,8 +139,6 @@ namespace MagicInventorySystem
                 {
                     isCompleted = purchaseItems();
                 }
-
-
                 else
                 {
                     isCompleted = invalidInput();

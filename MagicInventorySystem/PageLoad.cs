@@ -35,6 +35,9 @@ namespace MagicInventorySystem
 
         public int purchaseItems()
         {
+            Console.WriteLine("You have chosen " + allStock[itemIndex].name + ".");
+            Console.WriteLine("Select the amount of the product : ");
+            choice =  Console.ReadLine();
             foreach(Products purchaseItem in allStock)
             {
                 String productLine = String.Format("{0, -5} | {1,  -15} | {2,  -10}"
