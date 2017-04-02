@@ -15,6 +15,7 @@ namespace MagicInventorySystem
         public int isCompleted { get; set; }      
         public int itemIndex { get; set; }
         public int currentItemIndex { get; set; }
+        public int purchaseItemIndex { get; set; }
         public int firstItem { get; set; }
         public int lastItem { get; set; }
         public int purchaseCount { get; set; }
@@ -31,6 +32,7 @@ namespace MagicInventorySystem
         {
             storeFileName = "owners_inventory.json";
             //allStock = reader.readFile(storeFileName);
+            purchaseItemIndex = 0;
             purchaseCount = 0;
             pageIndex = 1;
             isCompleted = 0;
@@ -48,21 +50,24 @@ namespace MagicInventorySystem
 
         public int displayPurchaseSummary()
         {
-            Console.WriteLine("You have purchased : ");
+            Console.WriteLine("You have purchased : \n");
             try
             {
-
-                    Console.WriteLine(soldItems[currentItemIndex].name + " " + soldItems[currentItemIndex].stockLevel + "ea");
-                
-            }catch(ArgumentOutOfRangeException e)
+                for(int i = 0; i < purchaseItemIndex; i++)
+                {
+                    Console.WriteLine(soldItems[i].name + " " + soldItems[i].stockLevel + "ea");
+                }
+            }
+            catch(ArgumentOutOfRangeException e)
             {
 
             }
-            Console.WriteLine("Would you like to book a workshop?");
+            Console.WriteLine("Would you like to book a workshop?\n");
             choice = Console.ReadLine();
             if (choice == "Y" || choice == "y")
             {
                 Console.WriteLine("The total price of your purchase has got 10% discount!");
+                transactionComplete();
             }
             else if (choice == "N" || choice == "n")
             {
@@ -88,14 +93,13 @@ namespace MagicInventorySystem
             && choiceIndex > 0
             && choiceIndex <= allStock[currentItemIndex].stockLevel)
             {
-                //choice = Console.ReadLine();
                 /* Deduct the amount of the product from appropriate store json file
                  * and purchasedItem++
                  */
                 purchaseProgress(choiceIndex, currentItemIndex);    // works
                 Console.WriteLine("You have purchased " + choiceIndex + "ea of " + allStock[currentItemIndex].name);
-                soldItems[currentItemIndex].name = allStock[currentItemIndex].name;
-                soldItems[currentItemIndex].stockLevel = choiceIndex;
+                soldItems[purchaseItemIndex++].name = allStock[currentItemIndex].name;
+                soldItems[purchaseItemIndex++].stockLevel = choiceIndex;
 
 
                 // Ask again whether the customer wants to buy more products, if so purchaseItem++
@@ -103,10 +107,20 @@ namespace MagicInventorySystem
                 choice = Console.ReadLine();
                 if(choice == "Y" || choice == "y")
                 {
-                    isCompleted = 0;
+                    Console.Clear();
+                    currentPage();
                 }
                 else if(choice == "N" || choice == "n")
                 {
+                    Console.Write("Do you want to pay for credit card?");
+                    if(choice == "Y" || choice == "y")
+                    {
+                        Console.WriteLine("Credit card payment is being processed!");
+                    }
+                    else if(choice == "N" || choice == "n")
+                    {
+                        Console.WriteLine("Cash payment is being processed!");
+                    }
                     displayPurchaseSummary();
                     transactionComplete();
                 }
@@ -368,7 +382,6 @@ namespace MagicInventorySystem
                 currentPage();
             }
             isCompleted = 0;
-            //choice = Console.ReadLine();
             return isCompleted;
         }
 
