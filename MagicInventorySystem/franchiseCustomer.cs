@@ -154,7 +154,9 @@ namespace MagicInventorySystem
                 }
 
                 // compare choice with product ID
-                else if (int.TryParse(choice, out choiceIndex) && choiceIndex > 0 && choiceIndex <= allStock.Count)
+                else if (int.TryParse(choice, out choiceIndex)
+                && choiceIndex > 0
+                && choiceIndex <= allStock.Count)
                 {
                     isCompleted = purchaseItems(choiceIndex - 1);
                 }

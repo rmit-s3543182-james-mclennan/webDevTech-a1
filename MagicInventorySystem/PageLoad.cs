@@ -17,7 +17,7 @@ namespace MagicInventorySystem
         public int currentItemIndex { get; set; }
         public int firstItem { get; set; }
         public int lastItem { get; set; }
-
+        
         public string storeID { get; set; }
         public string choice { get; set; }
         public List<Products> allStock { get; set; }
@@ -42,14 +42,25 @@ namespace MagicInventorySystem
         {
             currentItemIndex = choiceIndex;
             Console.WriteLine("You have chosen " + allStock[currentItemIndex].name + ".");
-            Console.Write("Select the amount of the product : ");
+            Console.Write("Enter the amount of the product : ");
             choice =  Console.ReadLine();
-            //if(choice == )
-            foreach(Products purchaseItem in allStock)
+            // if the item exists(true), ask how many to get
+            if (int.TryParse(choice, out choiceIndex)
+            && choiceIndex > 0
+            && choiceIndex <= allStock.Count)
             {
-                String productLine = String.Format("{0, -5} | {1,  -15} | {2,  -10}"
-                                    , allStock[currentItemIndex].ID, allStock[currentItemIndex].name, allStock[currentItemIndex].stockLevel);
-                Console.WriteLine(productLine);
+                choice = Console.ReadLine();
+                // Deduct the amount of the product from appropriate store json file
+            }
+            // else if the item is out of stock, print it is out of stock
+            else if(allStock[currentItemIndex].stockLevel <= 0)
+            {
+                outOfStock();
+            }
+            // else input is invalid
+            else
+            {
+                invalidInput();
             }
             isCompleted = 0;
             return isCompleted;
@@ -226,6 +237,7 @@ namespace MagicInventorySystem
             Console.WriteLine("[Legend: 'P' Next Page | 'R' Return to Menu | 'C' Complete Transaction]");
             Console.Write("Enter Product ID to purchase : ");
             choice = Console.ReadLine();
+
             isCompleted = 0;
             return isCompleted;
         }
@@ -256,14 +268,14 @@ namespace MagicInventorySystem
             }
         }
 
-        //public int outOfStock()
-        //{
-        //    Console.Clear();
-        //    displayTitle();
-        //    Console.WriteLine("The product is currently out of stock!");
-        //    isCompleted = 0;
-        //    return isCompleted;
-        //}
+        public int outOfStock()
+        {
+            Console.Clear();
+            displayTitle();
+            Console.WriteLine("The product is currently out of stock!");
+            isCompleted = 0;
+            return isCompleted;
+        }
 
         public int invalidInput()
         {
