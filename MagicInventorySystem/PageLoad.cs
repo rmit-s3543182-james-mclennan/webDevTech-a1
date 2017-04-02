@@ -63,6 +63,11 @@ namespace MagicInventorySystem
             {
                 totalPage += 1;
             }
+
+            if(allStock.Count < 5)
+            {
+                lastItem = allStock.Count;
+            }
             displayTitle();
             try
             {
@@ -137,6 +142,11 @@ namespace MagicInventorySystem
                 pageIndex = totalPage;
             }
             displayTitle();
+            
+            if(lastItem < 5)
+            {
+                firstItem = 0;
+            }
             try
             {
                 for (itemIndex = firstItem; itemIndex < lastItem; itemIndex++)
@@ -206,6 +216,10 @@ namespace MagicInventorySystem
 
         public int currentPage()
         {
+            if (allStock.Count < 5)
+            {
+                lastItem = allStock.Count;
+            }
             displayTitle();
             displayProducts();
             Console.WriteLine("Page " + pageIndex + "/" + totalPage);
@@ -276,6 +290,10 @@ namespace MagicInventorySystem
         public int transactionComplete()
         {
             Console.WriteLine("Transaction Done!");
+            firstItem = 0;
+            itemIndex = firstItem;
+            lastItem = firstItem + 5;
+            pageIndex = 1;
             isCompleted = 1;
             return isCompleted;
         }
