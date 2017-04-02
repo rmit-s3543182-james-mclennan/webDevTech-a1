@@ -17,26 +17,65 @@ namespace MagicInventorySystem
         public int currentItemIndex { get; set; }
         public int firstItem { get; set; }
         public int lastItem { get; set; }
-        
+        public int purchaseCount { get; set; }
+
         public string storeID { get; set; }
-        public string choice { get; set; }
-        public List<Products> allStock { get; set; }
-        JsonProcessor reader = new JsonProcessor();
-        
         public string storeFileName { get; set; }
+        public string choice { get; set; }
+
+        public List<Products> allStock { get; set; }
+        public List<Products> soldItems { get; set; }
+        JsonProcessor reader = new JsonProcessor();
 
         public PageLoad()
         {
             storeFileName = "owners_inventory.json";
             //allStock = reader.readFile(storeFileName);
-
+            purchaseCount = 0;
             pageIndex = 1;
             isCompleted = 0;
             firstItem = 0;
             lastItem = 5;
         }
 
+        private void purchaseProgress(int amount, int currentItemIndex)
+        {
+            //allStock = reader.readFile(storeFileName);
+            allStock[currentItemIndex].stockLevel -= amount;
+            File.WriteAllText(storeFileName, JsonConvert.SerializeObject(allStock, Formatting.Indented));
+            purchaseCount++;
+        }
 
+        public int displayPurchaseSummary()
+        {
+            Console.WriteLine("You have purchased : ");
+            try
+            {
+
+                    Console.WriteLine(soldItems[currentItemIndex].name + " " + soldItems[currentItemIndex].stockLevel + "ea");
+                
+            }catch(ArgumentOutOfRangeException e)
+            {
+
+            }
+            Console.WriteLine("Would you like to book a workshop?");
+            choice = Console.ReadLine();
+            if (choice == "Y" || choice == "y")
+            {
+                Console.WriteLine("The total price of your purchase has got 10% discount!");
+            }
+            else if (choice == "N" || choice == "n")
+            {
+                transactionComplete();
+            }
+            else
+            {
+                invalidInput();
+            }
+
+
+            return isCompleted = 0;
+        }
 
         public int purchaseItems(int choiceIndex)
         {
@@ -47,10 +86,43 @@ namespace MagicInventorySystem
             // if the item exists(true), ask how many to get
             if (int.TryParse(choice, out choiceIndex)
             && choiceIndex > 0
-            && choiceIndex <= allStock.Count)
+            && choiceIndex <= allStock[currentItemIndex].stockLevel)
             {
+                //choice = Console.ReadLine();
+                /* Deduct the amount of the product from appropriate store json file
+                 * and purchasedItem++
+                 */
+                purchaseProgress(choiceIndex, currentItemIndex);    // works
+                Console.WriteLine("You have purchased " + choiceIndex + "ea of " + allStock[currentItemIndex].name);
+                soldItems[currentItemIndex].name = allStock[currentItemIndex].name;
+                soldItems[currentItemIndex].stockLevel = choiceIndex;
+
+
+                // Ask again whether the customer wants to buy more products, if so purchaseItem++
+                Console.WriteLine("Do you want to buy more products?(Y / N)");
                 choice = Console.ReadLine();
-                // Deduct the amount of the product from appropriate store json file
+                if(choice == "Y" || choice == "y")
+                {
+                    isCompleted = 0;
+                }
+                else if(choice == "N" || choice == "n")
+                {
+                    displayPurchaseSummary();
+                    transactionComplete();
+                }
+                else
+                {
+                    invalidInput();
+                }
+
+                /* if the user enters c for transaction complete
+                 * , display summary of the purchase
+                 * also ask him if he wants to book a workshop
+                 */
+
+                /* if so, keep the purchasedItem value
+                 * and give him 10% discount by displaying in the summary
+                 */
             }
             // else if the item is out of stock, print it is out of stock
             else if(allStock[currentItemIndex].stockLevel <= 0)
@@ -69,6 +141,7 @@ namespace MagicInventorySystem
         public int firstPage()
         {
             allStock = JsonConvert.DeserializeObject<List<Products>>(File.ReadAllText(storeFileName));
+            soldItems = JsonConvert.DeserializeObject<List<Products>>(File.ReadAllText(storeFileName));
             totalPage = allStock.Count / 5;
             if (allStock.Count % 5 != 0)
             {
@@ -271,7 +344,7 @@ namespace MagicInventorySystem
         public int outOfStock()
         {
             Console.Clear();
-            displayTitle();
+            currentPage();
             Console.WriteLine("The product is currently out of stock!");
             isCompleted = 0;
             return isCompleted;

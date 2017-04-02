@@ -2,36 +2,36 @@
   {
     "ID": 1,
     "name": "Deck of Cards",
-    "stockLevel": 5
+    "stockLevel": 0
   },
   {
     "ID": 2,
     "name": "Wand",
-    "stockLevel": 5
+    "stockLevel": 18
   },
   {
     "ID": 3,
     "name": "Magic Hat",
-    "stockLevel": 5
+    "stockLevel": 16
   },
   {
     "ID": 4,
     "name": "Moustache",
-    "stockLevel": 5
+    "stockLevel": 17
   },
   {
     "ID": 5,
     "name": "Cape",
-    "stockLevel": 5
+    "stockLevel": 30
   },
   {
     "ID": 6,
     "name": "Rabbit",
-    "stockLevel": 10
+    "stockLevel": 30
   },
   {
     "ID": 7,
     "name": "Hoops",
-    "stockLevel": 5
+    "stockLevel": 30
   }
 ]
