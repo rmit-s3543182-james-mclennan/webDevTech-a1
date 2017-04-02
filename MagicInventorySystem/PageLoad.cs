@@ -25,6 +25,7 @@ namespace MagicInventorySystem
         public string choice { get; set; }
 
         public bool workshopBookingCheck { get; set; }
+
         public List<Products> allStock { get; set; }
         public List<Products> soldItems { get; set; }
         JsonProcessor reader = new JsonProcessor();

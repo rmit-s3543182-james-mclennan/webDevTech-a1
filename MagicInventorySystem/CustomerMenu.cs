@@ -29,11 +29,8 @@ namespace MagicInventorySystem
                         new MagicMenuItem()
                         {
                             Option = "Display Workshops\n",
-                            CannotExecute = false,
-                            Execute = () =>
-                            {
-                                Console.WriteLine("Need to implement function!");
-                            }
+                            CannotExecute = true,
+                            SubMenuId = 7
                         },
                         new MagicMenuItem()
                         {

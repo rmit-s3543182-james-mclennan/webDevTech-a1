@@ -67,12 +67,14 @@ namespace MagicInventorySystem
             FranchiseOwnerMenu franOwnerMenu = new FranchiseOwnerMenu();
             CustomerMenu customerMenu = new CustomerMenu();
             franchiseCustomer franCustomerMenu = new franchiseCustomer();
+            customerWorkshop custWorkshop = new customerWorkshop();
 
             collection = ownerMenu.loadOwnerMenu(collection);
             collection = franOwnerMenu.loadFranchiseOwnerMenu(collection);
             collection = franOwnerMenu.validateFranchiseStore(collection);
             collection = customerMenu.loadCustomerMenu(collection);
             collection = franCustomerMenu.loadFranchiseCustomerMenu(collection);
+            collection = custWorkshop.loadCustomerWorkshop(collection);
 
             return collection;
         }
