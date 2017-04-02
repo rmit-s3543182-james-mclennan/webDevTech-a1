@@ -1,6 +1,6 @@
 [
   {
-    "ID": 4,
+    "ID": 1,
     "name": "Deck of Cards",
     "stockLevel": 5
   },
@@ -15,7 +15,7 @@
     "stockLevel": 5
   },
   {
-    "ID": 6,
+    "ID": 4,
     "name": "Moustache",
     "stockLevel": 5
   },
@@ -25,12 +25,12 @@
     "stockLevel": 5
   },
   {
-    "ID": 1,
+    "ID": 6,
     "name": "Rabbit",
     "stockLevel": 10
   },
   {
-    "ID": 9,
+    "ID": 7,
     "name": "Hoops",
     "stockLevel": 5
   }

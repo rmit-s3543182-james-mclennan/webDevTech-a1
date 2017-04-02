@@ -12,37 +12,39 @@ namespace MagicInventorySystem
     {
         public int totalPage { get; set; }
         public int pageIndex { get; set; }
-        public int isCompleted { get; set; }
-        public string choice { get; set; }
+        public int isCompleted { get; set; }      
         public int itemIndex { get; set; }
         public int currentItemIndex { get; set; }
         public int firstItem { get; set; }
         public int lastItem { get; set; }
+
+        public string storeID { get; set; }
+        public string choice { get; set; }
         public List<Products> allStock { get; set; }
         JsonProcessor reader = new JsonProcessor();
+        
+        public string storeFileName { get; set; }
+
         public PageLoad()
         {
-            allStock = JsonConvert.DeserializeObject<List<Products>>(File.ReadAllText("owners_inventory.json"));
-            totalPage = allStock.Count / 5;
-            if (allStock.Count % 5 != 0)
-            {
-                totalPage += 1;
-            }
+            storeFileName = "owners_inventory.json";
+            //allStock = reader.readFile(storeFileName);
+
             pageIndex = 1;
             isCompleted = 0;
             firstItem = 0;
             lastItem = 5;
         }
 
+
+
         public int purchaseItems(int choiceIndex)
         {
             currentItemIndex = choiceIndex;
-            //Console.WriteLine("itemIndex : " + itemIndex);
-            //Console.WriteLine("firstItem : " + firstItem);
-            //Console.WriteLine("lastItem : " + lastItem);
             Console.WriteLine("You have chosen " + allStock[currentItemIndex].name + ".");
-            Console.WriteLine("Select the amount of the product : ");
+            Console.Write("Select the amount of the product : ");
             choice =  Console.ReadLine();
+            //if(choice == )
             foreach(Products purchaseItem in allStock)
             {
                 String productLine = String.Format("{0, -5} | {1,  -15} | {2,  -10}"
@@ -55,6 +57,12 @@ namespace MagicInventorySystem
 
         public int firstPage()
         {
+            allStock = JsonConvert.DeserializeObject<List<Products>>(File.ReadAllText(storeFileName));
+            totalPage = allStock.Count / 5;
+            if (allStock.Count % 5 != 0)
+            {
+                totalPage += 1;
+            }
             displayTitle();
             try
             {
@@ -180,7 +188,7 @@ namespace MagicInventorySystem
             if (lastItem > allStock.Count)
             {
                 lastItem = allStock.Count;
-                firstItem = lastItem - 5 + (lastItem % 5) + 1;
+                firstItem = lastItem - 5;
                 itemIndex = firstItem;
 
                 lastPage();
