@@ -2,7 +2,7 @@
   {
     "ID": 1,
     "name": "Rabbit",
-    "stockLevel": 20
+    "stockLevel": 15
   },
   {
     "ID": 2,
@@ -42,7 +42,7 @@
   {
     "ID": 9,
     "name": "Hoops",
-    "stockLevel": 25
+    "stockLevel": 20
   },
   {
     "ID": 10,
@@ -73,5 +73,15 @@
     "ID": 15,
     "name": "Flying Powder",
     "stockLevel": 25
+  },
+  {
+    "ID": 16,
+    "name": "White Pigoen",
+    "stockLevel": 25
+  },
+  {
+    "ID": 17,
+    "name": "Cards",
+    "StockLevel": 15
   }
 ]

@@ -27,6 +27,11 @@
   {
     "ID": 1,
     "name": "Rabbit",
+    "stockLevel": 10
+  },
+  {
+    "ID": 9,
+    "name": "Hoops",
     "stockLevel": 5
   }
 ]

@@ -5,7 +5,7 @@
     "store": "CBD",
     "itemName": "Rabbit",
     "quantity": 5,
-    "currentStock": 20,
+    "currentStock": 15,
     "availableStock": true
   },
   {
@@ -14,21 +14,12 @@
     "store": "CBD",
     "itemName": "Rabbit",
     "quantity": 5,
-    "currentStock": 20,
-    "availableStock": true
-  },
-  {
-    "ID": 1,
-    "listID": 3,
-    "store": "CBD",
-    "itemName": "Rabbit",
-    "quantity": 5,
-    "currentStock": 20,
+    "currentStock": 15,
     "availableStock": true
   },
   {
     "ID": 2,
-    "listID": 4,
+    "listID": 3,
     "store": "CBD",
     "itemName": "Wand",
     "quantity": 5,
@@ -37,29 +28,65 @@
   },
   {
     "ID": 1,
+    "listID": 4,
+    "store": "CBD",
+    "itemName": "Rabbit",
+    "quantity": 5,
+    "currentStock": 15,
+    "availableStock": true
+  },
+  {
+    "ID": 1,
     "listID": 5,
     "store": "CBD",
     "itemName": "Rabbit",
+    "quantity": 5,
+    "currentStock": 15,
+    "availableStock": true
+  },
+  {
+    "ID": 3,
+    "listID": 6,
+    "store": "CBD",
+    "itemName": "Magic Hat",
     "quantity": 5,
     "currentStock": 20,
     "availableStock": true
   },
   {
     "ID": 1,
-    "listID": 6,
+    "listID": 7,
     "store": "CBD",
     "itemName": "Rabbit",
     "quantity": 5,
-    "currentStock": 20,
+    "currentStock": 15,
     "availableStock": true
   },
   {
-    "ID": 3,
-    "listID": 7,
+    "ID": 15,
+    "listID": 8,
     "store": "CBD",
-    "itemName": "Magic Hat",
+    "itemName": "Flying Powder",
     "quantity": 5,
-    "currentStock": 20,
+    "currentStock": 25,
+    "availableStock": true
+  },
+  {
+    "ID": 15,
+    "listID": 9,
+    "store": "CBD",
+    "itemName": "Flying Powder",
+    "quantity": 5,
+    "currentStock": 25,
+    "availableStock": true
+  },
+  {
+    "ID": 15,
+    "listID": 10,
+    "store": "CBD",
+    "itemName": "Flying Powder",
+    "quantity": 5,
+    "currentStock": 25,
     "availableStock": true
   }
 ]

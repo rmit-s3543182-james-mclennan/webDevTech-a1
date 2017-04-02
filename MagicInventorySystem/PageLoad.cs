@@ -15,6 +15,7 @@ namespace MagicInventorySystem
         public int isCompleted { get; set; }
         public string choice { get; set; }
         public int itemIndex { get; set; }
+        public int currentItemIndex { get; set; }
         public int firstItem { get; set; }
         public int lastItem { get; set; }
         public List<Products> allStock { get; set; }
@@ -33,15 +34,19 @@ namespace MagicInventorySystem
             lastItem = 5;
         }
 
-        public int purchaseItems()
+        public int purchaseItems(int choiceIndex)
         {
-            Console.WriteLine("You have chosen " + allStock[itemIndex].name + ".");
+            currentItemIndex = choiceIndex;
+            //Console.WriteLine("itemIndex : " + itemIndex);
+            //Console.WriteLine("firstItem : " + firstItem);
+            //Console.WriteLine("lastItem : " + lastItem);
+            Console.WriteLine("You have chosen " + allStock[currentItemIndex].name + ".");
             Console.WriteLine("Select the amount of the product : ");
             choice =  Console.ReadLine();
             foreach(Products purchaseItem in allStock)
             {
                 String productLine = String.Format("{0, -5} | {1,  -15} | {2,  -10}"
-                                    , allStock[itemIndex].ID, allStock[itemIndex].name, allStock[itemIndex].stockLevel);
+                                    , allStock[currentItemIndex].ID, allStock[currentItemIndex].name, allStock[currentItemIndex].stockLevel);
                 Console.WriteLine(productLine);
             }
             isCompleted = 0;
@@ -175,7 +180,7 @@ namespace MagicInventorySystem
             if (lastItem > allStock.Count)
             {
                 lastItem = allStock.Count;
-                firstItem = lastItem - 5;
+                firstItem = lastItem - 5 + (lastItem % 5) + 1;
                 itemIndex = firstItem;
 
                 lastPage();

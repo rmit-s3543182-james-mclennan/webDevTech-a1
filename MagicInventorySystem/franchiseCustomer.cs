@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace MagicInventorySystem
 {
@@ -109,22 +110,24 @@ namespace MagicInventorySystem
 
         public void CustomerOrder()
         {
+            int choiceIndex;
             Console.Clear();
             Console.WriteLine("[!] Loading products from owners_inventory.json");
             firstPage();
             while (isCompleted == 0)
             {
+
                 if (itemIndex == lastItem
                 && (choice == "P" || choice == "p")
                 && itemIndex <= allStock.Count)
-                {                    
+                {
                     isCompleted = nextPage();
                 }
                 else if (itemIndex == lastItem
                 && (choice == "R" || choice == "r")
                 && itemIndex <= allStock.Count)
                 {
-                    
+
                     isCompleted = previousPage();
                 }
                 else if (itemIndex == lastItem
@@ -135,22 +138,24 @@ namespace MagicInventorySystem
                 }
 
                 // compare choice with product ID
-                else if (Convert.ToInt32(choice) > 0 && Convert.ToInt32(choice) <= allStock.Count)
+                else if (int.TryParse(choice, out choiceIndex) && choiceIndex > 0 && choiceIndex <= allStock.Count)
                 {
-                    isCompleted = purchaseItems();
+                    isCompleted = purchaseItems(choiceIndex - 1);
                 }
                 else
                 {
                     isCompleted = invalidInput();
                 }
 
+            }
                 /* compare product request with current stocklevel
                  * and then if stocklevel is > 0
                  * update current stock(-1)
                  * afterwards ask again to buy more stuff
                  * and book a workshop(if so, 10% discount of price)
                  */
-            }
+
+
 
         }
     }
