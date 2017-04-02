@@ -45,7 +45,8 @@ namespace MagicInventorySystem
                     && allStock[itemIndex].ID <= lastItem
                     && allStock.IndexOf(allStock[itemIndex]) <= allStock.Count)
                     {
-                        String productLine = String.Format("{0, -5} | {1,  -15} | {2,  -10}", allStock[itemIndex].ID, allStock[itemIndex].name, allStock[itemIndex].stockLevel);
+                        String productLine = String.Format("{0, -5} | {1,  -15} | {2,  -10}"
+                            , allStock[itemIndex].ID, allStock[itemIndex].name, allStock[itemIndex].stockLevel);
                         Console.WriteLine(productLine);
 
                     }
@@ -65,7 +66,7 @@ namespace MagicInventorySystem
             isCompleted = 0;
             Console.WriteLine("Page " + pageIndex + "/" + totalPage);
             Console.WriteLine("[Legend: 'P' Next Page | 'R' Return to Menu | 'C' Complete Transaction]");
-            Console.Write("Enter Item Number to purchase or Function(ID - Quantity) : ");
+            Console.Write("Enter Product ID to purchase : ");
             choice = Console.ReadLine();
             return isCompleted;
         }
@@ -93,7 +94,7 @@ namespace MagicInventorySystem
             {
                 Console.WriteLine("Page " + pageIndex + "/" + totalPage);
                 Console.WriteLine("[Legend: 'P' Next Page | 'R' Return to Menu | 'C' Complete Transaction]");
-                Console.Write("Enter Item Number to purchase or Function(ID - Quantity) : ");
+                Console.Write("Enter Product ID to purchase : ");
                 choice = Console.ReadLine();
             }
             isCompleted = 0;
@@ -135,7 +136,7 @@ namespace MagicInventorySystem
             isCompleted = 0;
             Console.WriteLine("Page " + pageIndex + "/" + totalPage);
             Console.WriteLine("[Legend: 'P' Next Page | 'R' Return to Menu | 'C' Complete Transaction]");
-            Console.Write("Enter Item Number to purchase or Function(ID - Quantity) : ");
+            Console.Write("Enter Product ID to purchase : ");
             
             choice = Console.ReadLine();
             return isCompleted;
@@ -164,7 +165,7 @@ namespace MagicInventorySystem
             {
                 Console.WriteLine("Page " + pageIndex + "/" + totalPage);
                 Console.WriteLine("[Legend: 'P' Next Page | 'R' Return to Menu | 'C' Complete Transaction]");
-                Console.Write("Enter Item Number to purchase or Function(ID - Quantity) : ");
+                Console.Write("Enter Product ID to purchase : ");
                 choice = Console.ReadLine();
             }
             isCompleted = 0;
@@ -177,7 +178,7 @@ namespace MagicInventorySystem
             displayProducts();
             Console.WriteLine("Page " + pageIndex + "/" + totalPage);
             Console.WriteLine("[Legend: 'P' Next Page | 'R' Return to Menu | 'C' Complete Transaction]");
-            Console.Write("Enter Item Number to purchase or Function(ID - Quantity) : ");
+            Console.Write("Enter Product ID to purchase : ");
             choice = Console.ReadLine();
             isCompleted = 0;
             return isCompleted;
@@ -205,25 +206,6 @@ namespace MagicInventorySystem
                 Console.WriteLine("No more pages exist!");
             }
         }
-
-        //public int invalidPage()
-        //{
-        //    Console.WriteLine("No more page!");
-        //    Console.WriteLine("Page " + currentPage + "/" + totalPage);
-        //    Console.WriteLine("[Legend: 'P' Next Page | 'R' Return to Menu | 'C' Complete Transaction]");
-        //    Console.Write("Enter Item Number to purchase or Function(ID - Quantity) : ");
-        //    isCompleted = 0;
-        //    if(itemIndex < 0)
-        //    {
-        //        itemIndex = 1;
-        //    }
-        //    else if(itemIndex > allStock.Count)
-        //    {
-        //        itemIndex = allStock.Count - 4;
-        //    }
-        //    choice = Console.ReadLine();
-        //    return isCompleted;
-        //}
 
         //public int outOfStock()
         //{
