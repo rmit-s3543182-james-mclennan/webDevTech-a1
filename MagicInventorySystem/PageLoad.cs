@@ -42,7 +42,6 @@ namespace MagicInventorySystem
 
         private void purchaseProgress(int amount, int currentItemIndex)
         {
-            //allStock = reader.readFile(storeFileName);
             allStock[currentItemIndex].stockLevel -= amount;
             File.WriteAllText(storeFileName, JsonConvert.SerializeObject(allStock, Formatting.Indented));
             purchaseCount++;
@@ -55,14 +54,14 @@ namespace MagicInventorySystem
             {
                 for(int i = 0; i < purchaseItemIndex; i++)
                 {
-                    Console.WriteLine(soldItems[i].name + " " + soldItems[i].stockLevel + "ea");
+                    Console.WriteLine(soldItems[i].name + " " + soldItems[i].stockLevel + "ea\n");
                 }
             }
             catch(ArgumentOutOfRangeException e)
             {
 
             }
-            Console.WriteLine("Would you like to book a workshop?\n");
+            Console.Write("Would you like to book a workshop?(Y / N) : ");
             choice = Console.ReadLine();
             if (choice == "Y" || choice == "y")
             {
@@ -79,7 +78,7 @@ namespace MagicInventorySystem
             }
 
 
-            return isCompleted = 0;
+            return isCompleted;
         }
 
         public int purchaseItems(int choiceIndex)
@@ -98,12 +97,20 @@ namespace MagicInventorySystem
                  */
                 purchaseProgress(choiceIndex, currentItemIndex);    // works
                 Console.WriteLine("You have purchased " + choiceIndex + "ea of " + allStock[currentItemIndex].name);
-                soldItems[purchaseItemIndex++].name = allStock[currentItemIndex].name;
-                soldItems[purchaseItemIndex++].stockLevel = choiceIndex;
+                soldItems[purchaseItemIndex].name = allStock[currentItemIndex].name;
+                try
+                {
+                    soldItems[purchaseItemIndex].stockLevel = choiceIndex;
+                    purchaseItemIndex++;
+                }catch(ArgumentOutOfRangeException e)
+                {
+
+                }
+                
 
 
                 // Ask again whether the customer wants to buy more products, if so purchaseItem++
-                Console.WriteLine("Do you want to buy more products?(Y / N)");
+                Console.Write("Do you want to buy more products?(Y / N) : ");
                 choice = Console.ReadLine();
                 if(choice == "Y" || choice == "y")
                 {
@@ -112,8 +119,9 @@ namespace MagicInventorySystem
                 }
                 else if(choice == "N" || choice == "n")
                 {
-                    Console.Write("Do you want to pay for credit card?");
-                    if(choice == "Y" || choice == "y")
+                    Console.Write("Do you want to pay for credit card?(Y / N) : ");
+                    choice = Console.ReadLine();
+                    if (choice == "Y" || choice == "y")
                     {
                         Console.WriteLine("Credit card payment is being processed!");
                     }
@@ -122,7 +130,6 @@ namespace MagicInventorySystem
                         Console.WriteLine("Cash payment is being processed!");
                     }
                     displayPurchaseSummary();
-                    transactionComplete();
                 }
                 else
                 {
@@ -148,7 +155,6 @@ namespace MagicInventorySystem
             {
                 invalidInput();
             }
-            isCompleted = 0;
             return isCompleted;
         }
 
