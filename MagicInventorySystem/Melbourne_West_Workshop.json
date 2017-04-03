@@ -1,0 +1,17 @@
+[
+  {
+    "Name": "Introduction to Magic",
+    "Date": "Tuesday 9:30 am to 11:30 am",
+    "Seat": 3
+  },
+  {
+    "Name": "Advanced Magic Technique",
+    "Date": "Thursday 3:30 pm to 5:30 pm",
+    "Seat": 4
+  }
+  {
+    "Name": "Handling Card Magic",
+    "Date": "Friday 2:30 pm to 4:30 pm",
+    "Seat": 3
+  }
+]

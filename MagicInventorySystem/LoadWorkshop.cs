@@ -45,7 +45,7 @@ namespace MagicInventorySystem
             Console.WriteLine("Workshop Booking Status at " + storeName + " :");
             Console.WriteLine("================================================");
             Console.WriteLine("Morning : " + refNumCount + " / " + workshopMorningMax);
-            Console.WriteLine("Afternoon : " + )     
+            //Console.WriteLine("Afternoon : " );   
             Console.WriteLine("1. Morning");
             Console.WriteLine("2. Afternoon");
             Console.Write("Choose the booking session between Morning and Afternoon : ");
