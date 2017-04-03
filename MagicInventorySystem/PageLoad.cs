@@ -24,17 +24,16 @@ namespace MagicInventorySystem
         public string storeFileName { get; set; }
         public string choice { get; set; }
 
-
         public bool workshopBookingCheck { get; set; }
 
         public List<Products> allStock { get; set; }
         public List<Products> soldItems { get; set; }
         JsonProcessor reader = new JsonProcessor();
 
+        // Initialize variables in constructor
         public PageLoad()
         {
             storeFileName = "owners_inventory.json";
-            //allStock = reader.readFile(storeFileName);
             purchaseItemIndex = 0;
             purchaseCount = 0;
             pageIndex = 1;
@@ -43,6 +42,7 @@ namespace MagicInventorySystem
             lastItem = 5;
         }
 
+        // Display first page
         public int firstPage()
         {
             allStock = JsonConvert.DeserializeObject<List<Products>>(File.ReadAllText(storeFileName));
@@ -94,6 +94,7 @@ namespace MagicInventorySystem
             return isCompleted;
         }
 
+        // Moves to previous page
         public int previousPage()
         {
             if (pageIndex <= totalPage && pageIndex > 1)
@@ -124,6 +125,7 @@ namespace MagicInventorySystem
             return isCompleted;
         }
 
+        // Display last page
         public int lastPage()
         {
             if (pageIndex >= totalPage)
@@ -173,6 +175,7 @@ namespace MagicInventorySystem
             return isCompleted;
         }
 
+        // Moves to next page
         public int nextPage()
         {
             if (pageIndex < totalPage)
@@ -203,6 +206,7 @@ namespace MagicInventorySystem
             return isCompleted;
         }
 
+        // Display current page when invalid input is typed
         public int currentPage()
         {
             if (allStock.Count < 5)
@@ -220,7 +224,7 @@ namespace MagicInventorySystem
             return isCompleted;
         }
 
-
+        // Display current page's products
         public void displayProducts()
         {
             try
@@ -246,6 +250,7 @@ namespace MagicInventorySystem
             }
         }
 
+        // Called when the product is out of stock
         public int outOfStock()
         {
             Console.Clear();
@@ -255,6 +260,7 @@ namespace MagicInventorySystem
             return isCompleted;
         }
 
+        // Called when invalid input is typed
         public int invalidInput()
         {
             Console.Clear();
@@ -276,6 +282,7 @@ namespace MagicInventorySystem
             return isCompleted;
         }
 
+        // Called when products purchases are done
         public int transactionComplete()
         {
             Console.WriteLine("Transaction Done!");
@@ -287,6 +294,7 @@ namespace MagicInventorySystem
             return isCompleted;
         }
 
+        // Display title line
         public void displayTitle()
         {
             String titleLine = String.Format("\n{0, -5} | {1, -15} | {2, -10}", "ID", "Name", "Stock Level");
@@ -303,21 +311,18 @@ namespace MagicInventorySystem
             }
         }
 
+        // Products purchases progress 
         public int purchaseItems(int choiceIndex)
         {
             currentItemIndex = choiceIndex;
             Console.WriteLine("You have chosen " + allStock[currentItemIndex].name + ".");
             Console.Write("Enter the amount of the product : ");
             choice = Console.ReadLine();
-            // if the item exists(true), ask how many to get
             if (int.TryParse(choice, out choiceIndex)
             && choiceIndex > 0
             && choiceIndex <= allStock[currentItemIndex].stockLevel)
             {
-                /* Deduct the amount of the product from appropriate store json file
-                 * and purchasedItem++
-                 */
-                purchaseProgress(choiceIndex, currentItemIndex);    // works
+                purchaseProgress(choiceIndex, currentItemIndex);
                 Console.WriteLine("You have purchased " + choiceIndex + "ea of " + allStock[currentItemIndex].name);
                 soldItems[purchaseItemIndex].name = allStock[currentItemIndex].name;
                 try
@@ -366,6 +371,11 @@ namespace MagicInventorySystem
             return isCompleted;
         }
 
+        /* Deduct the amount of stocks from appropriate store json page 
+         * purchaseCount is to check whether the customer buys item,
+         * if so the customer will get 10% discount of the total price
+         * of their purchases
+         */
         private void purchaseProgress(int amount, int currentItemIndex)
         {
             allStock[currentItemIndex].stockLevel -= amount;
@@ -373,6 +383,7 @@ namespace MagicInventorySystem
             purchaseCount++;
         }
 
+        // Display what the customer bought
         public int displayPurchaseSummary()
         {
             Console.Write("Would you like to book a workshop?(Y / N) : ");

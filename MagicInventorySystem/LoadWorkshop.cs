@@ -19,17 +19,15 @@ namespace MagicInventorySystem
         public string workshopRef { get; set; }
         public string[] workshopCourse { get; set; }
 
-
         public string workshopDate { get; set; }
         public string customerName { get; set; }
         //public string pattern { get; set; }
         //Regex regexCheck { get; set; }
         public int currentIndex { get; set; }
 
-
+        // Initialize variables in constructor
         public LoadWorkshop()
-        {
-            
+        {  
             //pattern = @"(\w+)\s+(\w+)";
             //regexCheck = new Regex(pattern, RegexOptions.IgnoreCase);
             workshopCourse = new string[]
@@ -37,6 +35,7 @@ namespace MagicInventorySystem
             bookingCompleted = 0;
         }
 
+        // Workshop progresses begin
         public int workshopConfirmation()
         {
             allWorkshop = reader.readWorkshopFile(storeFileName + ".json");
@@ -44,6 +43,7 @@ namespace MagicInventorySystem
             Console.WriteLine("Workshop Status at " + storeFileName);
             displayWorkshopTitle();
             
+            // Display all workshops in a store
             foreach (Workshops workshop in allWorkshop)
             {
                 String workshopLine = String.Format("{0, -5} | {1, -25} | {2,  -30} | {3,  -20}", workshop.ID, workshop.Name, workshop.Date, workshop.availableSeat + " / " + workshop.maxSeat);
@@ -65,9 +65,6 @@ namespace MagicInventorySystem
                 && choiceIndex > 0
                 && choiceIndex <= allWorkshop.Count)
                 {
-                    /* if type is valid,
-                     * display workshop reference number with name or stuff
-                     */
                     Console.WriteLine("You have chosen " + allWorkshop[choiceIndex - 1].Name);
                     workshopAvailability(choiceIndex - 1);
                 }
@@ -89,19 +86,16 @@ namespace MagicInventorySystem
             return bookingCompleted;
         }
 
-
+        /* Once a workshop booking is completed
+         * deduct availableSeat
+         */
         private void deductAvailableSeat(int currentIndex)
         {
             allWorkshop[currentIndex].availableSeat -= 1;
             File.WriteAllText(storeFileName + ".json", JsonConvert.SerializeObject(allWorkshop, Formatting.Indented));
         }
 
-        private void addBookedSeat(int currentIndex)
-        {
-            allWorkshop[currentIndex].bookedSeat += 1;
-            File.WriteAllText(storeFileName + ".json", JsonConvert.SerializeObject(allWorkshop, Formatting.Indented));
-        }
-
+        // Display workshop title line
         public void displayWorkshopTitle()
         {
             String titleLine = String.Format("\n{0, -5} | {1, -25} | {2, -30} | {3, -10}", "ID", "Name", "Date", "Available Seat");
@@ -118,6 +112,7 @@ namespace MagicInventorySystem
             }
         }
 
+        // Called when invalid input is typed
         public void wrongInput()
         {
             Console.Clear();
@@ -125,14 +120,13 @@ namespace MagicInventorySystem
             bookingCompleted = 0;
         }
 
+        // Check whether the chosen workshop has available seat
         public int workshopAvailability(int index)
         {
             
             if (allWorkshop[index].availableSeat >= 1)
             {
-                Console.WriteLine("You have successfully booked into the " + allWorkshop[index].Name + " workshop!");
-                
-                // display the summary of booked workshop
+                Console.WriteLine("You have successfully booked into the " + allWorkshop[index].Name + " workshop!");                
                 bookingCompleted = workshopBookingSummary(index);
             }
             else if (allWorkshop[index].availableSeat < 1)
@@ -152,6 +146,7 @@ namespace MagicInventorySystem
             return bookingCompleted;
         }
 
+        // Display workshop summary
         public int workshopBookingSummary(int index)
         {
             int bookedSeat = 0;
@@ -170,13 +165,13 @@ namespace MagicInventorySystem
             {
                 Console.WriteLine("The workshop you have chosen is now fully booked");
             }            
-            Console.WriteLine("========== Workshop Booking Summary ==========");
+            Console.WriteLine("=============== Workshop Booking Summary ===============\n");
             Console.WriteLine(customerName + "'s booking summary is : \n");
             Console.WriteLine("Name : " + customerName);
             Console.WriteLine("Course Name : " + allWorkshop[index].Name);
             Console.WriteLine("Date : " + allWorkshop[index].Date);
             Console.WriteLine("Reference Number : " + workshopCourse[index] + storeFileName + "_" + bookedSeat);
-            Console.WriteLine("==============================================\n");
+            Console.WriteLine("\n========================================================\n");
             return bookingCompleted = 1;
         }
 

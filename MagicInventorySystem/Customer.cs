@@ -155,6 +155,9 @@ namespace MagicInventorySystem
             Console.Clear();
             Console.WriteLine("[!] Loading products from " + storeFileName + "");
             firstPage();
+            /* The while loop works until the user presses "c"
+             * or finishes products purchases
+             */
             while (isCompleted == 0)
             {
 
