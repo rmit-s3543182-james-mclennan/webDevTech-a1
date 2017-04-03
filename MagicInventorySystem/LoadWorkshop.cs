@@ -165,7 +165,7 @@ namespace MagicInventorySystem
             {
                 Console.WriteLine("The workshop you have chosen is now fully booked");
             }            
-            Console.WriteLine("=============== Workshop Booking Summary ===============\n");
+            Console.WriteLine("\n=============== Workshop Booking Summary ===============\n");
             Console.WriteLine(customerName + "'s booking summary is : \n");
             Console.WriteLine("Name : " + customerName);
             Console.WriteLine("Course Name : " + allWorkshop[index].Name);
