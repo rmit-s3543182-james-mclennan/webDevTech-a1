@@ -15,8 +15,12 @@ namespace MagicInventorySystem
         public List<Workshops> allWorkshop { get; set; }
         public int bookingCompleted { get; set; }
         public int maxSeat { get; set; }
+
+
         public string workshopRef { get; set; }
         public string[] workshopCourse { get; set; }
+
+
 
         public string customerName { get; set; }
         //public string pattern { get; set; }
@@ -60,7 +64,7 @@ namespace MagicInventorySystem
                  * if workshop's available seat != 0, go to next step
                  * if the session has no space then print theres no more space
                  */ 
-                Console.Write("\nChoose the workshop that you'd like to book");
+                Console.Write("\nChoose the workshop that you'd like to book : ");
                 choice = Console.ReadLine();
 
                 if(int.TryParse(choice, out choiceIndex)
@@ -71,30 +75,38 @@ namespace MagicInventorySystem
                      * display workshop reference number with name or stuff
                      */
                     Console.WriteLine("You have chosen " + allWorkshop[choiceIndex - 1].Name);
-                    //if(allWorkshop[choiceIndex].Seat > )
-                    
-                     
+                    if (allWorkshop[choiceIndex - 1].Seat >= 1)
+                    {
+                        Console.WriteLine("You have successfully booked into the " + allWorkshop[choiceIndex - 1].Name + " workshop!");
+                        workshopBookingProgress(1, choiceIndex - 1);
+                        bookingCompleted = 1;
+                        
+                    }
+                    else if(allWorkshop[choiceIndex - 1].Seat < 1)
+                    {
+                        Console.WriteLine("The workshop you have chosen is now fully booked");
+                        bookingCompleted = 0;
+                    }                     
                 }
-
-
-
-
-                bookingCompleted = 0;
+                
             }
             else if(choice == "N" || choice == "n")
             {
                 bookingCompleted = 1;
             }
-
-
-
-
-
+            else
+            {
+                Console.WriteLine("Invalid input. Try again");
+            }
             return bookingCompleted;
         }
 
-        
 
+        private void workshopBookingProgress(int amount, int currentIndex)
+        {
+            allWorkshop[currentIndex].Seat -= amount;
+            File.WriteAllText(storeFileName, JsonConvert.SerializeObject(allWorkshop, Formatting.Indented));
+        }
 
         public void displayWorkshopTitle()
         {
