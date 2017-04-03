@@ -8,8 +8,7 @@ namespace MagicInventorySystem
 {
     class Customer : PageLoad
     {
-        FranchiseOwner access = new FranchiseOwner();
-
+        //FranchiseOwner access = new FranchiseOwner();
         public MagicMenuCollection loadCustomerPurchaseMenu(MagicMenuCollection collection)
         {
             collection.Menus.Add(new MagicMenuList()
@@ -183,7 +182,6 @@ namespace MagicInventorySystem
                     isCompleted = transactionComplete();
                 }
 
-                // compare choice with product ID
                 else if (int.TryParse(choice, out choiceIndex)
                 && choiceIndex > 0
                 && choiceIndex <= allStock.Count)
@@ -196,15 +194,6 @@ namespace MagicInventorySystem
                 }
 
             }
-            /* compare product request with current stocklevel
-             * and then if stocklevel is > 0
-             * update current stock(-1)
-             * afterwards ask again to buy more stuff
-             * and book a workshop(if so, 10% discount of price)
-             */
-
-
-
         }
     }
 

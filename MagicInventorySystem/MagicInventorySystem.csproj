@@ -66,6 +66,7 @@
     <Compile Include="Products.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="stockRequestItem.cs" />
+    <Compile Include="Workshops.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

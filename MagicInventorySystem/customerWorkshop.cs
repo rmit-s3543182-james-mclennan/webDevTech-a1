@@ -8,7 +8,7 @@ namespace MagicInventorySystem
 {
     class customerWorkshop : LoadWorkshop
     {
-        FranchiseOwner access = new FranchiseOwner();
+        //FranchiseOwner access = new FranchiseOwner();
 
         public MagicMenuCollection loadCustomerWorkshop(MagicMenuCollection collection)
         {
@@ -24,8 +24,8 @@ namespace MagicInventorySystem
                         Execute = () =>
                         {
                             Console.Clear();
-                            
-                            confirmBooking(storeName[0], bookingRef[0], refNumMorningCount[0], workshopMorningMax[0], workshopAfternoonMax[0]);      // 50
+                            storeFileName = "Melbourne_CBD_Workshop.json";
+                            workshopConfirmation();
                             Console.ReadKey();
                             Console.Clear();
                             collection.ShowMenu(4);
@@ -39,8 +39,8 @@ namespace MagicInventorySystem
                         Execute = () =>
                         {
                             Console.Clear();
-                            
-                            confirmBooking(storeName[1], bookingRef[1], refNumMorningCount[1], workshopMorningMax[1], workshopAfternoonMax[1]);      // 30
+                            storeFileName = "Melbourne_North_Workshop.json";
+                            workshopConfirmation();
                             Console.ReadKey();
                             Console.Clear();
                             collection.ShowMenu(4);
@@ -53,8 +53,8 @@ namespace MagicInventorySystem
                         Execute = () =>
                         {
                             Console.Clear();
-                            
-                            confirmBooking(storeName[2], bookingRef[2], refNumMorningCount[2], workshopMorningMax[2], workshopAfternoonMax[2]);      // 20
+                            storeFileName = "Melbourne_South_Workshop.json";
+                            workshopConfirmation();
                             Console.ReadKey();
                             Console.Clear();
                             collection.ShowMenu(4);
@@ -67,8 +67,8 @@ namespace MagicInventorySystem
                         Execute = () =>
                         {
                             Console.Clear();
-                            
-                            confirmBooking(storeName[3], bookingRef[3], refNumMorningCount[3], workshopMorningMax[3], workshopAfternoonMax[3]);      //30
+                            storeFileName = "Melbourne_East_Workshop.json";
+                            workshopConfirmation();
                             Console.ReadKey();
                             Console.Clear();
                             collection.ShowMenu(4);
@@ -81,8 +81,8 @@ namespace MagicInventorySystem
                         Execute = () =>
                         {
                             Console.Clear();
-                            
-                            confirmBooking(storeName[4], bookingRef[4], refNumMorningCount[4], workshopMorningMax[4], workshopAfternoonMax[4]);      // 10
+                            storeFileName = "Melbourne_West_Workshop.json";
+                            workshopConfirmation();
                             Console.ReadKey();
                             Console.Clear();
                             collection.ShowMenu(4);

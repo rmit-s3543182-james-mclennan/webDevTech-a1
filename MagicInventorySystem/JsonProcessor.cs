@@ -26,5 +26,11 @@ namespace MagicInventorySystem
             return JsonConvert.DeserializeObject<List<stockRequestItem>>(File.ReadAllText(fileName))
                 ?? new List<stockRequestItem>();
         }
+
+        public List<Workshops> readWorkshopFile(string fileName)
+        {
+            return JsonConvert.DeserializeObject<List<Workshops>>(File.ReadAllText(fileName))
+                ?? new List<Workshops>();
+        }
     }
 }

@@ -10,9 +10,6 @@ namespace MagicInventorySystem
 {
     class CustomerMenu
     {
-        JsonProcessor reader = new JsonProcessor();
-        PageLoad pageLoad = new PageLoad();
-
         public MagicMenuCollection loadCustomerMenu(MagicMenuCollection collection)
         {
             collection.Menus.Add(new MagicMenuList()
