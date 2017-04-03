@@ -24,8 +24,6 @@ namespace MagicInventorySystem
                         {
                             Console.Clear();
                             storeFileName = "Melbourne_CBD_Inventory.json";
-
-
                             CustomerOrder();
                             Console.ReadKey();
                             Console.Clear();
@@ -69,8 +67,6 @@ namespace MagicInventorySystem
                         {
                             Console.Clear();
                             storeFileName = "Melbourne_South_Inventory.json";
-
-
                             CustomerOrder();
                             Console.ReadKey();
                             Console.Clear();

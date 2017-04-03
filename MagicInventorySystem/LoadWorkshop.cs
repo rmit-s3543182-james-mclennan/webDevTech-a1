@@ -16,12 +16,11 @@ namespace MagicInventorySystem
         public int bookingCompleted { get; set; }
         public int maxSeat { get; set; }
 
-
         public string workshopRef { get; set; }
         public string[] workshopCourse { get; set; }
 
 
-
+        public string workshopDate { get; set; }
         public string customerName { get; set; }
         //public string pattern { get; set; }
         //Regex regexCheck { get; set; }
@@ -30,44 +29,39 @@ namespace MagicInventorySystem
 
         public LoadWorkshop()
         {
+            
             //pattern = @"(\w+)\s+(\w+)";
             //regexCheck = new Regex(pattern, RegexOptions.IgnoreCase);
             workshopCourse = new string[]
-                {"ITM", "AMT", "HCM"};
+                            {"ITM_", "AMT_", "HCM_"};
             bookingCompleted = 0;
         }
 
         public int workshopConfirmation()
         {
+            allWorkshop = reader.readWorkshopFile(storeFileName + ".json");
             int choiceIndex;
-            
             Console.WriteLine("Workshop Status at " + storeFileName);
             displayWorkshopTitle();
-            allWorkshop = reader.readWorkshopFile(storeFileName);
+            
             foreach (Workshops workshop in allWorkshop)
             {
-                String workshopLine = String.Format("{0, -5} | {1, -25} | {2,  -30} | {3,  -10}", workshop.ID, workshop.Name, workshop.Date, workshop.Seat);
+                String workshopLine = String.Format("{0, -5} | {1, -25} | {2,  -30} | {3,  -20}", workshop.ID, workshop.Name, workshop.Date, workshop.availableSeat + " / " + workshop.maxSeat);
                 Console.WriteLine(workshopLine);
             }
             Console.WriteLine("");
-            Console.Write("Would you like to book into a workshop? ");
+            Console.Write("Would you like to book into a workshop?( Y / N) ");
             choice = Console.ReadLine();
-            if(choice == "Y" || choice == "y")
+            if (choice == "Y" || choice == "y")
             {
                 Console.WriteLine();
                 Console.Write("Enter your name : ");
                 // Try to add regex for valid name later if i have time to work on it
                 customerName = Console.ReadLine();
-
-
-                /* ask the customer to select workshop
-                 * if workshop's available seat != 0, go to next step
-                 * if the session has no space then print theres no more space
-                 */ 
                 Console.Write("\nChoose the workshop that you'd like to book : ");
                 choice = Console.ReadLine();
 
-                if(int.TryParse(choice, out choiceIndex)
+                if (int.TryParse(choice, out choiceIndex)
                 && choiceIndex > 0
                 && choiceIndex <= allWorkshop.Count)
                 {
@@ -75,37 +69,37 @@ namespace MagicInventorySystem
                      * display workshop reference number with name or stuff
                      */
                     Console.WriteLine("You have chosen " + allWorkshop[choiceIndex - 1].Name);
-                    if (allWorkshop[choiceIndex - 1].Seat >= 1)
-                    {
-                        Console.WriteLine("You have successfully booked into the " + allWorkshop[choiceIndex - 1].Name + " workshop!");
-                        workshopBookingProgress(1, choiceIndex - 1);
-                        bookingCompleted = 1;
-                        
-                    }
-                    else if(allWorkshop[choiceIndex - 1].Seat < 1)
-                    {
-                        Console.WriteLine("The workshop you have chosen is now fully booked");
-                        bookingCompleted = 0;
-                    }                     
+                    workshopAvailability(choiceIndex - 1);
                 }
-                
+                else
+                {
+                    wrongInput();
+                }
+
             }
-            else if(choice == "N" || choice == "n")
+            else if (choice == "N" || choice == "n")
             {
+                Console.WriteLine("Bye!");
                 bookingCompleted = 1;
             }
             else
             {
-                Console.WriteLine("Invalid input. Try again");
+                wrongInput();
             }
             return bookingCompleted;
         }
 
 
-        private void workshopBookingProgress(int amount, int currentIndex)
+        private void deductAvailableSeat(int currentIndex)
         {
-            allWorkshop[currentIndex].Seat -= amount;
-            File.WriteAllText(storeFileName, JsonConvert.SerializeObject(allWorkshop, Formatting.Indented));
+            allWorkshop[currentIndex].availableSeat -= 1;
+            File.WriteAllText(storeFileName + ".json", JsonConvert.SerializeObject(allWorkshop, Formatting.Indented));
+        }
+
+        private void addBookedSeat(int currentIndex)
+        {
+            allWorkshop[currentIndex].bookedSeat += 1;
+            File.WriteAllText(storeFileName + ".json", JsonConvert.SerializeObject(allWorkshop, Formatting.Indented));
         }
 
         public void displayWorkshopTitle()
@@ -124,7 +118,67 @@ namespace MagicInventorySystem
             }
         }
 
+        public void wrongInput()
+        {
+            Console.Clear();
+            Console.WriteLine("Invalid input. Try again");
+            bookingCompleted = 0;
+        }
 
+        public int workshopAvailability(int index)
+        {
+            
+            if (allWorkshop[index].availableSeat >= 1)
+            {
+                Console.WriteLine("You have successfully booked into the " + allWorkshop[index].Name + " workshop!");
+                
+                // display the summary of booked workshop
+                bookingCompleted = workshopBookingSummary(index);
+            }
+            else if (allWorkshop[index].availableSeat < 1)
+            {
+                Console.Clear();
+                Console.WriteLine("The workshop you have chosen is now fully booked");
+                bookingCompleted = 0;
+            }
+            else
+            {
+                Console.Clear();
+                Console.WriteLine("Invalid input. Try again");
+                Console.WriteLine("yay");
+                bookingCompleted = 0;
+                choice = Console.ReadLine();
+            }
+            return bookingCompleted;
+        }
+
+        public int workshopBookingSummary(int index)
+        {
+            int bookedSeat = 0;
+            if (allWorkshop[index].availableSeat == allWorkshop[index].maxSeat)      // 10 == 10
+            {
+                bookedSeat = 1;
+                deductAvailableSeat(index);
+            }
+            else if(allWorkshop[index].availableSeat < allWorkshop[index].maxSeat  // 0 < availableSeat(1 ~ 9) < 10
+            && allWorkshop[index].availableSeat > 0)
+            {
+                bookedSeat = allWorkshop[index].maxSeat - allWorkshop[index].availableSeat + 1;
+                deductAvailableSeat(index);
+            }
+            else if(allWorkshop[index].availableSeat == 0)
+            {
+                Console.WriteLine("The workshop you have chosen is now fully booked");
+            }            
+            Console.WriteLine("========== Workshop Booking Summary ==========");
+            Console.WriteLine(customerName + "'s booking summary is : \n");
+            Console.WriteLine("Name : " + customerName);
+            Console.WriteLine("Course Name : " + allWorkshop[index].Name);
+            Console.WriteLine("Date : " + allWorkshop[index].Date);
+            Console.WriteLine("Reference Number : " + workshopCourse[index] + storeFileName + "_" + bookedSeat);
+            Console.WriteLine("==============================================\n");
+            return bookingCompleted = 1;
+        }
 
     }
 }

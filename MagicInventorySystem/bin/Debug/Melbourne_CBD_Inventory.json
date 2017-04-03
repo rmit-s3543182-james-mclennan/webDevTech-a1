@@ -7,12 +7,12 @@
   {
     "ID": 2,
     "name": "Wand",
-    "stockLevel": 2
+    "stockLevel": 0
   },
   {
     "ID": 3,
     "name": "Magic Hat",
-    "stockLevel": 8
+    "stockLevel": 5
   },
   {
     "ID": 4,

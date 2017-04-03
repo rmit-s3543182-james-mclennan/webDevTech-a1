@@ -8,8 +8,6 @@ namespace MagicInventorySystem
 {
     class customerWorkshop : LoadWorkshop
     {
-        //FranchiseOwner access = new FranchiseOwner();
-
         public MagicMenuCollection loadCustomerWorkshop(MagicMenuCollection collection)
         {
             collection.Menus.Add(new MagicMenuList()
@@ -24,12 +22,11 @@ namespace MagicInventorySystem
                         Execute = () =>
                         {
                             Console.Clear();
-                            storeFileName = "Melbourne_CBD_Workshop.json";
-                            workshopConfirmation();
+                            storeFileName = "Melbourne_CBD_Workshop";
+                            bookingWorkshop();
                             Console.ReadKey();
                             Console.Clear();
-                            collection.ShowMenu(4);
-
+                            collection.ShowMenu(7);
                         }
                     },
                     new MagicMenuItem()
@@ -39,11 +36,11 @@ namespace MagicInventorySystem
                         Execute = () =>
                         {
                             Console.Clear();
-                            storeFileName = "Melbourne_North_Workshop.json";
-                            workshopConfirmation();
+                            storeFileName = "Melbourne_North_Workshop";
+                            bookingWorkshop();
                             Console.ReadKey();
                             Console.Clear();
-                            collection.ShowMenu(4);
+                            collection.ShowMenu(7);
                         }
                     },
                     new MagicMenuItem()
@@ -53,11 +50,11 @@ namespace MagicInventorySystem
                         Execute = () =>
                         {
                             Console.Clear();
-                            storeFileName = "Melbourne_South_Workshop.json";
-                            workshopConfirmation();
+                            storeFileName = "Melbourne_South_Workshop";
+                            bookingWorkshop();
                             Console.ReadKey();
                             Console.Clear();
-                            collection.ShowMenu(4);
+                            collection.ShowMenu(7);
                         }
                     },
                     new MagicMenuItem()
@@ -67,11 +64,11 @@ namespace MagicInventorySystem
                         Execute = () =>
                         {
                             Console.Clear();
-                            storeFileName = "Melbourne_East_Workshop.json";
-                            workshopConfirmation();
+                            storeFileName = "Melbourne_East_Workshop";
+                            bookingWorkshop();
                             Console.ReadKey();
                             Console.Clear();
-                            collection.ShowMenu(4);
+                            collection.ShowMenu(7);
                         }
                     },
                     new MagicMenuItem()
@@ -81,11 +78,11 @@ namespace MagicInventorySystem
                         Execute = () =>
                         {
                             Console.Clear();
-                            storeFileName = "Melbourne_West_Workshop.json";
-                            workshopConfirmation();
+                            storeFileName = "Melbourne_West_Workshop";
+                            bookingWorkshop();
                             Console.ReadKey();
                             Console.Clear();
-                            collection.ShowMenu(4);
+                            collection.ShowMenu(7);
                         }
                     },
                     new MagicMenuItem()
@@ -104,7 +101,7 @@ namespace MagicInventorySystem
                         }
                     }
 
-                    }
+                }
             });
 
             return collection;
@@ -114,8 +111,9 @@ namespace MagicInventorySystem
         {
             while(bookingCompleted == 0)
             {
-                workshopConfirmation();
+                bookingCompleted = workshopConfirmation();
             }
+            bookingCompleted = 0;
         }
     }
 }
