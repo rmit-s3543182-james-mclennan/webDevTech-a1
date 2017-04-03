@@ -1,0 +1,42 @@
+[
+  {
+    "ID": 1,
+    "name": "Deck of Cards",
+    "stockLevel": 0
+  },
+  {
+    "ID": 2,
+    "name": "Wand",
+    "stockLevel": 2
+  },
+  {
+    "ID": 3,
+    "name": "Magic Hat",
+    "stockLevel": 8
+  },
+  {
+    "ID": 4,
+    "name": "Moustache",
+    "stockLevel": 5
+  },
+  {
+    "ID": 5,
+    "name": "Cape",
+    "stockLevel": 14
+  },
+  {
+    "ID": 6,
+    "name": "Rabbit",
+    "stockLevel": 1
+  },
+  {
+    "ID": 7,
+    "name": "Hoops",
+    "stockLevel": 30
+  },
+  {
+    "ID": 15,
+    "name": "Flying Powder",
+    "stockLevel": 15
+  }
+]

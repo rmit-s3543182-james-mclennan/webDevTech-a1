@@ -5,37 +5,100 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace MagicInventorySystem
 {
     class LoadWorkshop : PageLoad
     {
-        public List<Workshops> allWorkshop { get; set; }
         JsonProcessor reader = new JsonProcessor();
+        public List<Workshops> allWorkshop { get; set; }
+        public int bookingCompleted { get; set; }
+        public int maxSeat { get; set; }
+        public string workshopRef { get; set; }
+        public string[] workshopCourse { get; set; }
+
+        public string customerName { get; set; }
+        //public string pattern { get; set; }
+        //Regex regexCheck { get; set; }
+        public int currentIndex { get; set; }
+
 
         public LoadWorkshop()
         {
-
+            //pattern = @"(\w+)\s+(\w+)";
+            //regexCheck = new Regex(pattern, RegexOptions.IgnoreCase);
+            workshopCourse = new string[]
+                {"ITM", "AMT", "HCM"};
+            bookingCompleted = 0;
         }
 
-        public void workshopConfirmation()
+        public int workshopConfirmation()
         {
-
-
+            int choiceIndex;
+            
             Console.WriteLine("Workshop Status at " + storeFileName);
             displayWorkshopTitle();
             allWorkshop = reader.readWorkshopFile(storeFileName);
             foreach (Workshops workshop in allWorkshop)
             {
-                String workshopLine = String.Format("{0, -25} | {1,  -30} | {2,  -10}", workshop.Name, workshop.Date, workshop.Seat);
+                String workshopLine = String.Format("{0, -5} | {1, -25} | {2,  -30} | {3,  -10}", workshop.ID, workshop.Name, workshop.Date, workshop.Seat);
                 Console.WriteLine(workshopLine);
             }
-            Console.WriteLine();
+            Console.WriteLine("");
+            Console.Write("Would you like to book into a workshop? ");
+            choice = Console.ReadLine();
+            if(choice == "Y" || choice == "y")
+            {
+                Console.WriteLine();
+                Console.Write("Enter your name : ");
+                // Try to add regex for valid name later if i have time to work on it
+                customerName = Console.ReadLine();
+
+
+                /* ask the customer to select workshop
+                 * if workshop's available seat != 0, go to next step
+                 * if the session has no space then print theres no more space
+                 */ 
+                Console.Write("\nChoose the workshop that you'd like to book");
+                choice = Console.ReadLine();
+
+                if(int.TryParse(choice, out choiceIndex)
+                && choiceIndex > 0
+                && choiceIndex <= allWorkshop.Count)
+                {
+                    /* if type is valid,
+                     * display workshop reference number with name or stuff
+                     */
+                    Console.WriteLine("You have chosen " + allWorkshop[choiceIndex - 1].Name);
+                    //if(allWorkshop[choiceIndex].Seat > )
+                    
+                     
+                }
+
+
+
+
+                bookingCompleted = 0;
+            }
+            else if(choice == "N" || choice == "n")
+            {
+                bookingCompleted = 1;
+            }
+
+
+
+
+
+            return bookingCompleted;
         }
+
+        
+
 
         public void displayWorkshopTitle()
         {
-            String titleLine = String.Format("\n{0, -25} | {1, -30} | {2, -10}", "Name", "Date", "Available Seat");
+            String titleLine = String.Format("\n{0, -5} | {1, -25} | {2, -30} | {3, -10}", "ID", "Name", "Date", "Available Seat");
 
             Console.WriteLine(titleLine);
 
@@ -68,90 +131,3 @@ namespace MagicInventorySystem
 
 
 
-
-
-
-
-
-
-
-
-//public string[] confirmedRefNum { get; set; }     
-//public string bookingRefMorning { get; set; }
-//public string bookingRefAfternoon { get; set; } 
-//public int[] refNumMorningCount { get; set; }
-//public int[] refNumAfternoonCount { get; set; }
-//public int workshopMembers { get; set; }
-//public int[] workshopMorningMax { get; set; }
-//public int[] workshopAfternoonMax { get; set; }
-//public int[] workshopEachStore { get; set; }
-//public int[] bookingRef { get; set; }
-//public string[] storeName { get; set; }
-
-//public LoadWorkshop()
-//{
-//    confirmedRefNum = new string[100];
-//    bookingRefMorning = "05Apr17M_0";
-//    bookingRefAfternoon = "05Apr17A_0";
-
-//    workshopMembers = 0;
-//    storeName = new string[]
-//                {"Melbourne_CBD", "Melbourne_North", "Melbourne_South", "Melbourne_East", "Melbounre_West"};
-//    workshopMorningMax = new int[]
-//                {50, 30, 20, 10, 30 };
-//    workshopAfternoonMax = new int[]
-//                {70, 30, 50, 30, 40};
-//    bookingRef = new int[]
-//                {0, 0, 0, 0, 0};
-//    refNumMorningCount = new int[]
-//                {0, 0, 0, 0, 0};
-//}
-
-//public int confirmBooking(string storeName, int bookingRef, int refNumCount, int workshopMorningMax, int workshopAfternoonMax)
-//{
-//    int choiceIndex;
-//    Console.WriteLine("Workshop Booking Status at " + storeName + " :");
-//    Console.WriteLine("================================================");
-//    Console.WriteLine("Morning : " + refNumCount + " / " + workshopMorningMax);
-//    //Console.WriteLine("Afternoon : " );   
-//    Console.WriteLine("1. Morning");
-//    Console.WriteLine("2. Afternoon");
-//    Console.Write("Choose the booking session between Morning and Afternoon : ");
-//    choice = Console.ReadLine();
-//    if(int.TryParse(choice, out choiceIndex)
-//    && choiceIndex == 1)
-//    {
-//        /* if the customer select morning workshop
-//         * the customer gets specific reference number
-//         * as well as refNumMorningCount++
-//         * and display current status of workshop booking
-//         */
-//        refNumCount++;
-//        bookingRefMorning = storeName + "_" + bookingRefMorning;
-//        bookingRef = int.Parse(bookingRefMorning);
-//        bookingRefMorning = (bookingRef + refNumCount).ToString();
-//        confirmedRefNum[workshopMembers] = bookingRefMorning;
-//        bookingRefMorning = bookingRefMorning;
-//    }
-//    else if(int.TryParse(choice, out choiceIndex)
-//    && choiceIndex == 2)
-//    {
-//        /* else if the customer select afternoon workshop
-//         * the customer gets specific reference number
-//         * as well as refNumMorningCount++
-//         * and display current status of workshop booking
-//         */
-//        refNumCount++;
-//        bookingRef = int.Parse(bookingRefAfternoon);
-//        bookingRefAfternoon = (bookingRef + refNumCount).ToString();
-//        confirmedRefNum[workshopMembers] = bookingRefAfternoon;                  
-//    }
-//    else
-//    {
-//        invalidInput();
-//    }
-//    Console.WriteLine("Your booking reference number is : " + confirmedRefNum[workshopMembers]);
-//    workshopMembers++;
-//    isCompleted = 0;
-//    return isCompleted;
-//}

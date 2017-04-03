@@ -1,0 +1,27 @@
+[
+  {
+    "ID": 1,
+    "name": "Mouse",
+    "stockLevel": 4
+  },
+  {
+    "ID": 2,
+    "name": "Wand",
+    "stockLevel": 5
+  },
+  {
+    "ID": 3,
+    "name": "Magic Hat",
+    "stockLevel": 5
+  },
+  {
+    "ID": 4,
+    "name": "Moustache",
+    "stockLevel": 5
+  },
+  {
+    "ID": 5,
+    "name": "Cape",
+    "stockLevel": 5
+  }
+]

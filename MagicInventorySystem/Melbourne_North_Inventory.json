@@ -1,0 +1,17 @@
+[
+  {
+    "ID": 1,
+    "name": "Rabbit",
+    "stockLevel": 9
+  },
+  {
+    "ID": 2,
+    "name": "Wand",
+    "stockLevel": 10
+  },
+  {
+    "ID": 3,
+    "name": "Magic Hat",
+    "stockLevel": 0
+  }
+]

@@ -23,7 +23,6 @@ namespace MagicInventorySystem
         public string storeID { get; set; }
         public string storeFileName { get; set; }
         public string choice { get; set; }
-        public string customerName { get; set; }
 
 
         public bool workshopBookingCheck { get; set; }

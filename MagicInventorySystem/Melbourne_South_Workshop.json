@@ -1,0 +1,14 @@
+[
+  {
+    "ID": 1,
+    "Name": "Introduction to Magic",
+    "Date": "Monday 11:30 am to 1:30 pm",
+    "Seat": 3
+  },
+  {
+    "ID": 2,
+    "Name": "Advanced Magic Technique",
+    "Date": "Thursday 2:30 pm to 4:30 pm",
+    "Seat": 3
+  }
+]

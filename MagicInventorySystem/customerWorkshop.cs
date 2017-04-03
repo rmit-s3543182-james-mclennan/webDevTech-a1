@@ -112,7 +112,10 @@ namespace MagicInventorySystem
 
         public void bookingWorkshop()
         {
-            
+            while(bookingCompleted == 0)
+            {
+                workshopConfirmation();
+            }
         }
     }
 }
