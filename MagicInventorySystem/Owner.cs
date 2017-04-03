@@ -103,12 +103,12 @@ namespace MagicInventorySystem
             File.WriteAllText("stockrequests.json", JsonConvert.SerializeObject(stockRequests, Formatting.Indented));
 
         }
-        public Boolean displayStockRequests(Boolean isAllStock, Boolean StockToShow)
+        public int displayStockRequests(Boolean isAllStock, Boolean StockToShow)
         {
             List<stockRequestItem> stockRequests = reader.readRequestFile("stockrequests.json");
 
             int formatProductName = getLengthOfProduct(stockRequests);
-            Boolean processStatus = false;
+            int processStatus = -1;
 
             String titleLine = String.Format("\n{0, -5} | {1, -10} | {2, -"+formatProductName+"} | {3, -10} | {4, -15} | {5, -10}", "ID", "Store", "Product", "Quantity", "Current Stock", "Stock Availability");
 
@@ -153,29 +153,36 @@ namespace MagicInventorySystem
 
         }
 
-        public Boolean processStockRequest(List<stockRequestItem> stockRequests)
+        public int processStockRequest(List<stockRequestItem> stockRequests)
         {
             Console.WriteLine("Enter Request to Process: ");
             string stringID = Console.ReadLine();
             int id = 0;
-            if (int.TryParse(stringID, out id))
+            if (!stringID.ToUpper().Equals("NO"))
             {
-                stockRequestItem itemRequested = checkIDAndRemove(stockRequests, id);
-                if (itemRequested != null)
+                if (int.TryParse(stringID, out id))
                 {
-                    updateStockFromWarehouse(itemRequested.itemName, itemRequested.quantity);
-                    sendStockFromWarehouse(itemRequested, itemRequested.quantity);
-                    updateStockRequests(itemRequested);
-                    return true;
+                    stockRequestItem itemRequested = checkIDAndRemove(stockRequests, id);
+                    if (itemRequested != null)
+                    {
+                        updateStockFromWarehouse(itemRequested.itemName, itemRequested.quantity);
+                        sendStockFromWarehouse(itemRequested, itemRequested.quantity);
+                        updateStockRequests(itemRequested);
+                        return 1;
+                    }
+                    else
+                    {
+                        return 2;
+                    }
                 }
                 else
                 {
-                    return false;
+                    return 2;
                 }
             }
             else
             {
-                return false;
+                return 0;
             }
         }
         public int promptTrueorFalse()

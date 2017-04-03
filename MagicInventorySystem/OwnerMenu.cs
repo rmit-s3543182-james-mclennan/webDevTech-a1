@@ -22,14 +22,18 @@ namespace MagicInventorySystem
                             CannotExecute = false,
                             Execute = () =>
                             {
-                                Boolean processStatus;
+                                int processStatus;
                                 Console.Clear();
                                 Console.WriteLine("Display All Stock Requests: ");
                                 processStatus = access.displayStockRequests(true, true);
                                 Console.Clear();
-                                if(processStatus)
+                                if(processStatus == 1)
                                 {
                                     Console.WriteLine("Successfully processed order.\n");
+                                }
+                                else if(processStatus == 0)
+                                {
+                                    Console.WriteLine();
                                 }
                                 else
                                 {
@@ -44,7 +48,7 @@ namespace MagicInventorySystem
                             CannotExecute = false,
                             Execute = () =>
                             {
-                                Boolean processStatus;
+                                int processStatus;
                                 Console.Clear();
                                 int type = access.promptTrueorFalse();
                                 Console.Clear();
@@ -54,7 +58,7 @@ namespace MagicInventorySystem
                                     collection.ShowMenu(2);
                                 }
                                 Console.WriteLine("Display All Stock Requests: ");
-                                if( type == 1)
+                                if(type == 1)
                                 {
                                     processStatus = access.displayStockRequests(false, true);
                                 }
@@ -63,9 +67,13 @@ namespace MagicInventorySystem
                                     processStatus = access.displayStockRequests(false, false);
                                 }
                                 Console.Clear();
-                                if(processStatus)
+                                if(processStatus == 1)
                                 {
-                                    Console.WriteLine("Successfully processed order.");
+                                    Console.WriteLine("Successfully processed order.\n");
+                                }
+                                else if(processStatus == 0)
+                                {
+                                    Console.WriteLine();
                                 }
                                 else
                                 {
