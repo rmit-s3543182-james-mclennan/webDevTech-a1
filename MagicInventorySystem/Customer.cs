@@ -8,7 +8,8 @@ namespace MagicInventorySystem
 {
     class Customer : PageLoad
     {
-        //FranchiseOwner access = new FranchiseOwner();
+        LoadWorkshop loadWorkshop = new LoadWorkshop();
+
         public MagicMenuCollection loadCustomerPurchaseMenu(MagicMenuCollection collection)
         {
             collection.Menus.Add(new MagicMenuList()
@@ -24,18 +25,8 @@ namespace MagicInventorySystem
                         {
                             Console.Clear();
                             storeFileName = "Melbourne_CBD_Inventory.json";
-                            CustomerOrder();
-                            Console.ReadKey();
-                            Console.Clear();
-                            if(workshopBookingCheck == true)
-                            {
-                                collection.ShowMenu(7);
-                            }
-                            else if(workshopBookingCheck == false)
-                            {
-                                collection.ShowMenu(6);
-                            }
-
+                            loadWorkshop.workshopBranch = "Melbourne_CBD";
+                            collection.ShowMenu(4);
                         }
                     },
                     new MagicMenuItem()
@@ -46,17 +37,8 @@ namespace MagicInventorySystem
                         {
                             Console.Clear();
                             storeFileName = "Melbourne_North_Inventory.json";
-                            CustomerOrder();
-                            Console.ReadKey();
-                            Console.Clear();
-                            if(workshopBookingCheck == true)
-                            {
-                                collection.ShowMenu(7);
-                            }
-                            else if(workshopBookingCheck == false)
-                            {
-                                collection.ShowMenu(6);
-                            }
+                            loadWorkshop.workshopBranch = "Melbourne_North";
+                            collection.ShowMenu(4);
                         }
                     },
                     new MagicMenuItem()
@@ -67,18 +49,8 @@ namespace MagicInventorySystem
                         {
                             Console.Clear();
                             storeFileName = "Melbourne_South_Inventory.json";
-                            CustomerOrder();
-                            Console.ReadKey();
-                            Console.Clear();
-                            if(workshopBookingCheck == true)
-                            {
-                                collection.ShowMenu(7);
-                            }
-                            else if(workshopBookingCheck == false)
-                            {
-                                collection.ShowMenu(6);
-                            }
-
+                            loadWorkshop.workshopBranch = "Melbourne_South";
+                            collection.ShowMenu(4);
                         }
                     },
                     new MagicMenuItem()
@@ -89,19 +61,8 @@ namespace MagicInventorySystem
                         {
                             Console.Clear();
                             storeFileName = "Melbourne_East_Inventory.json";
-
-
-                            CustomerOrder();
-                            Console.ReadKey();
-                            Console.Clear();
-                            if(workshopBookingCheck == true)
-                            {
-                                collection.ShowMenu(7);
-                            }
-                            else if(workshopBookingCheck == false)
-                            {
-                                collection.ShowMenu(6);
-                            }
+                            loadWorkshop.workshopBranch = "Melbourne_East";
+                            collection.ShowMenu(4);
                         }
                     },
                     new MagicMenuItem()
@@ -112,19 +73,8 @@ namespace MagicInventorySystem
                         {
                             Console.Clear();
                             storeFileName = "Melbourne_West_Inventory.json";
-
-
-                            CustomerOrder();
-                            Console.ReadKey();
-                            Console.Clear();
-                            if(workshopBookingCheck == true)
-                            {
-                                collection.ShowMenu(7);
-                            }
-                            else if(workshopBookingCheck == false)
-                            {
-                                collection.ShowMenu(6);
-                            }
+                            loadWorkshop.workshopBranch = "Melbourne_West";
+                            collection.ShowMenu(4);
                         }
                     },
                     new MagicMenuItem()
@@ -149,6 +99,61 @@ namespace MagicInventorySystem
             return collection;
         }
 
+        
+        public MagicMenuCollection loadCustomerMenu(MagicMenuCollection collection)
+        {
+            collection.Menus.Add(new MagicMenuList()
+            {
+                MenuId = 4,
+                MenuItems =
+                    {
+                        new MagicMenuItem()
+                        {
+                            Option = "Display Products",
+                            CannotExecute = false,
+                            Execute = () =>
+                            {
+                                Console.Clear();
+                                CustomerOrder();
+                                Console.ReadKey();
+                                Console.Clear();
+                                collection.ShowMenu(4);
+                            }
+                        },
+                        new MagicMenuItem()
+                        {
+                            Option = "Display Workshops",
+                            CannotExecute = false,
+                            Execute = () =>
+                            {
+                                Console.Clear();
+                                bookingWorkshop();
+                                Console.ReadKey();
+                                Console.Clear();
+                                collection.ShowMenu(4);
+                            }
+                        },
+                        new MagicMenuItem()
+                        {
+                            Option = "Return to Main Menu",
+                            CannotExecute = true,
+                            SubMenuId = 1
+                        },
+                        new MagicMenuItem()
+                        {
+                            Option = "Exit",
+                            CannotExecute = false,
+                            Execute = () =>
+                            {
+                                System.Environment.Exit(1);
+                            }
+                        }
+
+                    }
+            });
+            return collection;
+        }
+
         public void CustomerOrder()
         {
             int choiceIndex;
@@ -160,7 +165,6 @@ namespace MagicInventorySystem
              */
             while (isCompleted == 0)
             {
-
                 if (itemIndex == lastItem
                 && (choice == "P" || choice == "p")
                 && itemIndex <= allStock.Count)
@@ -193,6 +197,15 @@ namespace MagicInventorySystem
                 }
 
             }
+        }
+
+        public void bookingWorkshop()
+        {
+            while (loadWorkshop.bookingCompleted == 0)
+            {
+                loadWorkshop.bookingCompleted = loadWorkshop.workshopConfirmation();
+            }
+            loadWorkshop.bookingCompleted = 0;
         }
     }
 

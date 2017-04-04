@@ -2,6 +2,7 @@
   {
     "ID": 1,
     "name": "Rabbit",
-    "stockLevel": 3
+    "stockLevel": 50,
+    "price": 50.00
   }
 ]

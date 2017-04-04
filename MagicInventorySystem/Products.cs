@@ -11,5 +11,6 @@ namespace MagicInventorySystem
         public int ID { get; set; }
         public string name { get; set; }
         public int stockLevel { get; set; }
+        public double price { get; set; }
     }
 }

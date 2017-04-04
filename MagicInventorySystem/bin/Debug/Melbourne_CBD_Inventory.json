@@ -2,41 +2,49 @@
   {
     "ID": 1,
     "name": "Deck of Cards",
-    "stockLevel": 0
+    "stockLevel": 34,
+    "price": 10.0
   },
   {
     "ID": 2,
     "name": "Wand",
-    "stockLevel": 0
+    "stockLevel": 35,
+    "price": 30.0
   },
   {
     "ID": 3,
     "name": "Magic Hat",
-    "stockLevel": 4
+    "stockLevel": 40,
+    "price": 30.0
   },
   {
     "ID": 4,
     "name": "Moustache",
-    "stockLevel": 5
+    "stockLevel": 18,
+    "price": 5.5
   },
   {
     "ID": 5,
     "name": "Cape",
-    "stockLevel": 14
+    "stockLevel": 34,
+    "price": 15.0
   },
   {
     "ID": 6,
     "name": "Rabbit",
-    "stockLevel": 1
+    "stockLevel": 50,
+    "price": 50.0
   },
   {
     "ID": 7,
     "name": "Hoops",
-    "stockLevel": 30
+    "stockLevel": 50,
+    "price": 8.0
   },
   {
-    "ID": 15,
+    "ID": 8,
     "name": "Flying Powder",
-    "stockLevel": 15
+    "stockLevel": 150,
+    "price": 3.0
   }
 ]

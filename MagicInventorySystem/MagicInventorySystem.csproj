@@ -51,8 +51,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Customer.cs" />
-    <Compile Include="CustomerMenu.cs" />
-    <Compile Include="customerWorkshop.cs" />
     <Compile Include="FranchiseOwner.cs" />
     <Compile Include="FranchiseOwnerMenu.cs" />
     <Compile Include="JsonProcessor.cs" />

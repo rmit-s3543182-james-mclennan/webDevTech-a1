@@ -19,9 +19,12 @@ namespace MagicInventorySystem
         public int firstItem { get; set; }
         public int lastItem { get; set; }
         public int purchaseCount { get; set; }
+        public double totalPrice { get; set; }
 
-        public string storeID { get; set; }
+        
+        public string[] storeID { get; set; }
         public string storeFileName { get; set; }
+        
         public string choice { get; set; }
 
         public bool workshopBookingCheck { get; set; }
@@ -40,6 +43,7 @@ namespace MagicInventorySystem
             isCompleted = 0;
             firstItem = 0;
             lastItem = 5;
+            totalPrice = 0;
         }
 
         // Display first page
@@ -66,10 +70,11 @@ namespace MagicInventorySystem
                     && allStock[itemIndex].ID <= lastItem
                     && allStock.IndexOf(allStock[itemIndex]) <= allStock.Count)
                     {
-                        String productLine = String.Format("{0, -5} | {1,  -15} | {2,  -10}"
+                        String productLine = String.Format("{0, -5} | {1,  -15} | {2,  -10} | {3,  -10}"
                                                             , allStock[itemIndex].ID
                                                             , allStock[itemIndex].name
-                                                            , allStock[itemIndex].stockLevel);
+                                                            , allStock[itemIndex].stockLevel
+                                                            , allStock[itemIndex].price);
                         Console.WriteLine(productLine);
 
                     }
@@ -146,10 +151,11 @@ namespace MagicInventorySystem
                     && allStock[itemIndex].ID <= lastItem
                     && allStock.IndexOf(allStock[itemIndex]) <= allStock.Count)
                     {
-                        String productLine = String.Format("{0, -5} | {1,  -15} | {2,  -10}"
+                        String productLine = String.Format("{0, -5} | {1,  -15} | {2,  -10} | {3,  -10}"
                                                             , allStock[itemIndex].ID
                                                             , allStock[itemIndex].name
-                                                            , allStock[itemIndex].stockLevel);
+                                                            , allStock[itemIndex].stockLevel
+                                                            , allStock[itemIndex].price);
                         Console.WriteLine(productLine);
                     }
                 }
@@ -235,10 +241,11 @@ namespace MagicInventorySystem
                     && allStock[itemIndex].ID <= lastItem
                     && allStock.IndexOf(allStock[itemIndex]) <= allStock.Count)
                     {
-                        String productLine = String.Format("{0, -5} | {1,  -15} | {2,  -10}"
+                        String productLine = String.Format("{0, -5} | {1,  -15} | {2,  -10} | {3,  -10}"
                                                             , allStock[itemIndex].ID
                                                             , allStock[itemIndex].name
-                                                            , allStock[itemIndex].stockLevel);
+                                                            , allStock[itemIndex].stockLevel
+                                                            , allStock[itemIndex].price);
                         Console.WriteLine(productLine);
                     }
                 }
@@ -297,7 +304,7 @@ namespace MagicInventorySystem
         // Display title line
         public void displayTitle()
         {
-            String titleLine = String.Format("\n{0, -5} | {1, -15} | {2, -10}", "ID", "Name", "Stock Level");
+            String titleLine = String.Format("\n{0, -5} | {1, -15} | {2, -10} | {3,  -10}", "ID", "Name", "Stock Level","Price");
 
             Console.WriteLine(titleLine);
 
@@ -325,6 +332,9 @@ namespace MagicInventorySystem
                 purchaseProgress(choiceIndex, currentItemIndex);
                 Console.WriteLine("You have purchased " + choiceIndex + "ea of " + allStock[currentItemIndex].name);
                 soldItems[purchaseItemIndex].name = allStock[currentItemIndex].name;
+                soldItems[purchaseItemIndex].price = allStock[currentItemIndex].price;
+                soldItems[purchaseItemIndex].price *= choiceIndex;
+                Console.WriteLine("The price of purchases is " + soldItems[purchaseItemIndex].price);
                 try
                 {
                     soldItems[purchaseItemIndex].stockLevel = choiceIndex;
@@ -408,11 +418,22 @@ namespace MagicInventorySystem
             {
                 for(int i = 0; i < purchaseItemIndex; i++)
                 {
-                    Console.WriteLine(soldItems[i].name + " " + soldItems[i].stockLevel + "ea");
+                    Console.WriteLine(soldItems[i].name + " " + soldItems[i].stockLevel + "ea, price : " + soldItems[i].price);
+
+                    // compute each item's original price only
+                    totalPrice += soldItems[i].price;
                 }
+                
                 if(workshopBookingCheck == true)
                 {
+                    totalPrice -= (totalPrice * 0.1);
                     Console.WriteLine("Workshop booked, 10% discount of total price.");
+                    Console.WriteLine("The total price of purchased items is : " + totalPrice);
+                }
+                else if(workshopBookingCheck == false)
+                {
+                    Console.WriteLine("Workshop is not booked. 10% discount is not applied!");
+                    Console.WriteLine("The total price of purchased items is : " + totalPrice);
                 }
                 Console.WriteLine("======================================\n");
             }

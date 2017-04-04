@@ -20,6 +20,7 @@ namespace MagicInventorySystem
         public string[] workshopCourse { get; set; }
 
         public string workshopDate { get; set; }
+        public string workshopBranch { get; set; }
         public string customerName { get; set; }
         //public string pattern { get; set; }
         //Regex regexCheck { get; set; }
@@ -38,9 +39,9 @@ namespace MagicInventorySystem
         // Workshop progresses begin
         public int workshopConfirmation()
         {
-            allWorkshop = reader.readWorkshopFile(storeFileName + ".json");
+            allWorkshop = reader.readWorkshopFile(workshopBranch + "_Workshop.json");
             int choiceIndex;
-            Console.WriteLine("Workshop Status at " + storeFileName);
+            Console.WriteLine("Workshop Status at " + workshopBranch);
             displayWorkshopTitle();
             
             // Display all workshops in a store
@@ -92,7 +93,7 @@ namespace MagicInventorySystem
         private void deductAvailableSeat(int currentIndex)
         {
             allWorkshop[currentIndex].availableSeat -= 1;
-            File.WriteAllText(storeFileName + ".json", JsonConvert.SerializeObject(allWorkshop, Formatting.Indented));
+            File.WriteAllText(workshopBranch + "_Workshop.json", JsonConvert.SerializeObject(allWorkshop, Formatting.Indented));
         }
 
         // Display workshop title line
@@ -170,7 +171,7 @@ namespace MagicInventorySystem
             Console.WriteLine("Name : " + customerName);
             Console.WriteLine("Course Name : " + allWorkshop[index].Name);
             Console.WriteLine("Date : " + allWorkshop[index].Date);
-            Console.WriteLine("Reference Number : " + workshopCourse[index] + storeFileName + "_" + bookedSeat);
+            Console.WriteLine("Reference Number : " + workshopCourse[index] + workshopBranch + "_" + bookedSeat);
             Console.WriteLine("\n========================================================\n");
             return bookingCompleted = 1;
         }

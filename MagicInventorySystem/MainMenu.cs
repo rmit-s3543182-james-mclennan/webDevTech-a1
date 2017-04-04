@@ -39,7 +39,7 @@ namespace MagicInventorySystem
                         {
                             Option = "Customer",
                             CannotExecute = true,
-                            SubMenuId = 4
+                            SubMenuId = 6
                         },
 
                         new MagicMenuItem()
@@ -65,16 +65,13 @@ namespace MagicInventorySystem
         {
             OwnerMenu ownerMenu = new OwnerMenu();
             FranchiseOwnerMenu franOwnerMenu = new FranchiseOwnerMenu();
-            CustomerMenu customerMenu = new CustomerMenu();
             Customer franCustomerMenu = new Customer();
-            customerWorkshop custWorkshop = new customerWorkshop();
 
             collection = ownerMenu.loadOwnerMenu(collection);
             collection = franOwnerMenu.loadFranchiseOwnerMenu(collection);
             collection = franOwnerMenu.validateFranchiseStore(collection);
-            collection = customerMenu.loadCustomerMenu(collection);
+            collection = franCustomerMenu.loadCustomerMenu(collection);
             collection = franCustomerMenu.loadCustomerPurchaseMenu(collection);
-            collection = custWorkshop.loadCustomerWorkshop(collection);
 
             return collection;
         }

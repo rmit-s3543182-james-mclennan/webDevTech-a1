@@ -2,26 +2,31 @@
   {
     "ID": 1,
     "name": "Mouse",
-    "stockLevel": 4
+    "stockLevel": 50,
+    "price": 15.50
   },
   {
     "ID": 2,
     "name": "Wand",
-    "stockLevel": 5
+    "stockLevel": 50,
+    "price": 20.50
   },
   {
     "ID": 3,
     "name": "Magic Hat",
-    "stockLevel": 5
+    "stockLevel": 50,
+    "price": 30.00
   },
   {
     "ID": 4,
     "name": "Moustache",
-    "stockLevel": 5
+    "stockLevel": 50,
+    "price": 5.50
   },
   {
     "ID": 5,
     "name": "Cape",
-    "stockLevel": 5
+    "stockLevel": 50,
+    "price": 15.00
   }
 ]
