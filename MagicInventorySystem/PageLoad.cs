@@ -410,7 +410,7 @@ namespace MagicInventorySystem
             {
                 invalidInput();
             }
-            Console.WriteLine("========== Purchase Summary ==========");
+            Console.WriteLine("\n========== Purchase Summary ==========\n");
             Console.WriteLine("You have purchased : \n");
             try
             {
@@ -433,7 +433,7 @@ namespace MagicInventorySystem
                     Console.WriteLine("Workshop is not booked. 10% discount is not applied!");
                     Console.WriteLine("The total price of purchased items is : " + totalPrice);
                 }
-                Console.WriteLine("======================================\n");
+                Console.WriteLine("\n======================================\n");
             }
             catch(ArgumentOutOfRangeException e)
             {

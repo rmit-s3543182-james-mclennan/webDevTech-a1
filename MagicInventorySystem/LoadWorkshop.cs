@@ -66,7 +66,6 @@ namespace MagicInventorySystem
                 && choiceIndex > 0
                 && choiceIndex <= allWorkshop.Count)
                 {
-                    Console.WriteLine("You have chosen " + allWorkshop[choiceIndex - 1].Name);
                     workshopAvailability(choiceIndex - 1);
                 }
                 else

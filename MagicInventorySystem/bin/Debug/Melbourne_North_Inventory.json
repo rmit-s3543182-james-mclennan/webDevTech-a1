@@ -2,13 +2,13 @@
   {
     "ID": 1,
     "name": "Rabbit",
-    "stockLevel": 60,
+    "stockLevel": 50,
     "price": 50.0
   },
   {
     "ID": 2,
     "name": "Wand",
-    "stockLevel": 10,
+    "stockLevel": 7,
     "price": 30.0
   },
   {
