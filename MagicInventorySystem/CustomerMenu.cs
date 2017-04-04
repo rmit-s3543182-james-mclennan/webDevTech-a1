@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MagicInventorySystem
 {
-    class Customer : PageLoad
+    class CustomerMenu : PageLoad
     {
         LoadWorkshop loadWorkshop = new LoadWorkshop();
 
