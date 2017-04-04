@@ -53,6 +53,7 @@
     <Compile Include="Customer.cs" />
     <Compile Include="FranchiseOwner.cs" />
     <Compile Include="FranchiseOwnerMenu.cs" />
+    <Compile Include="IPageLoad.cs" />
     <Compile Include="JsonProcessor.cs" />
     <Compile Include="LoadWorkshop.cs" />
     <Compile Include="MagicMenuSystem.cs" />

@@ -2,19 +2,19 @@
   {
     "ID": 1,
     "name": "Rabbit",
-    "stockLevel": 90,
-    "price": 50.00
+    "stockLevel": 60,
+    "price": 50.0
   },
   {
     "ID": 2,
     "name": "Wand",
     "stockLevel": 10,
-    "price": 30.00
+    "price": 30.0
   },
   {
     "ID": 3,
     "name": "Magic Hat",
-    "stockLevel": 50,
-    "price": 30.00
+    "stockLevel": 48,
+    "price": 30.0
   }
 ]

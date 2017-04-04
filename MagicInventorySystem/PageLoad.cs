@@ -8,7 +8,7 @@ using System.IO;
 
 namespace MagicInventorySystem
 {
-    class PageLoad
+    class PageLoad : IPageLoad
     {
         public int totalPage { get; set; }
         public int pageIndex { get; set; }
@@ -384,7 +384,7 @@ namespace MagicInventorySystem
          * if so the customer will get 10% discount of the total price
          * of their purchases
          */
-        private void purchaseProgress(int amount, int currentItemIndex)
+        public void purchaseProgress(int amount, int currentItemIndex)
         {
             allStock[currentItemIndex].stockLevel -= amount;
             File.WriteAllText(storeFileName, JsonConvert.SerializeObject(allStock, Formatting.Indented));
