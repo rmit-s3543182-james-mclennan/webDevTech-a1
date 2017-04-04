@@ -70,16 +70,6 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="ClassDiagram1.cd" />
-    <None Include="Melbourne_CBD_Inventory.json" />
-    <None Include="Melbourne_CBD_Workshop.json" />
-    <None Include="Melbourne_East_Inventory.json" />
-    <None Include="Melbourne_East_Workshop.json" />
-    <None Include="Melbourne_North_Inventory.json" />
-    <None Include="Melbourne_North_Workshop.json" />
-    <None Include="Melbourne_South_Inventory.json" />
-    <None Include="Melbourne_South_Workshop.json" />
-    <None Include="Melbourne_West_Inventory.json" />
-    <None Include="Melbourne_West_Workshop.json" />
     <None Include="packages.config" />
     <None Include="stockrequests.json" />
   </ItemGroup>
