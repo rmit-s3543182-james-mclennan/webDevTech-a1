@@ -157,7 +157,7 @@ namespace MagicInventorySystem
                 //Add request.
                 requestList.Add(addRequest);
 
-                File.WriteAllText("stockrequests.json", JsonConvert.SerializeObject(requestList, Formatting.Indented));
+                reader.writeToStockFile("stockrequests.json", requestList);
             } catch (NullReferenceException)
             {
                 Console.WriteLine("Error. Please contact system admin.");

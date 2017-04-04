@@ -92,7 +92,7 @@ namespace MagicInventorySystem
         private void deductAvailableSeat(int currentIndex)
         {
             allWorkshop[currentIndex].availableSeat -= 1;
-            File.WriteAllText(workshopBranch + "_Workshop.json", JsonConvert.SerializeObject(allWorkshop, Formatting.Indented));
+            reader.writeToWorkshopFIle(workshopBranch + "_Workshop.json", allWorkshop);
         }
 
         // Display workshop title line

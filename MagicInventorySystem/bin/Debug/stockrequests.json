@@ -1,1 +1,11 @@
-[]
+[
+  {
+    "ID": 3,
+    "listID": 1,
+    "store": "CBD",
+    "itemName": "Magic Hat",
+    "quantity": 5,
+    "currentStock": 20,
+    "availableStock": true
+  }
+]

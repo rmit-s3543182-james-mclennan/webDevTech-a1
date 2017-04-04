@@ -387,7 +387,7 @@ namespace MagicInventorySystem
         public void purchaseProgress(int amount, int currentItemIndex)
         {
             allStock[currentItemIndex].stockLevel -= amount;
-            File.WriteAllText(storeFileName, JsonConvert.SerializeObject(allStock, Formatting.Indented));
+            reader.writeToProductsFile(storeFileName, allStock);
             purchaseCount++;
         }
 
