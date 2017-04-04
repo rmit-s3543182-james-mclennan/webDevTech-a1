@@ -13,7 +13,7 @@ namespace MagicInventorySystem
         JsonProcessor reader = new JsonProcessor();
         public void displayAllStock()
         {
-            List<Products> allStock = reader.readFile("owners_inventory.json");
+            List<Products> allStock = reader.readProductsFile("owners_inventory.json");
 
             String titleLine = String.Format("\n{0, -5} | {1, -15} | {2, -10}", "ID", "Name", "Stock Level");
 
@@ -39,7 +39,7 @@ namespace MagicInventorySystem
 
         private void updateStockFromWarehouse(string name, int amountSentToStore)
         {
-            List<Products> allStock = reader.readFile("owners_inventory.json");
+            List<Products> allStock = reader.readProductsFile("owners_inventory.json");
 
             foreach(Products item in allStock)
             {
@@ -54,7 +54,7 @@ namespace MagicInventorySystem
 
         private void sendStockFromWarehouse(stockRequestItem requestedItem, int amountSentToStore)
         {
-            List<Products> storeInventory = reader.readFile("Melbourne_"+requestedItem.store+"_Inventory.json");
+            List<Products> storeInventory = reader.readProductsFile("Melbourne_"+requestedItem.store+"_Inventory.json");
             Products newItem = new Products();
             Boolean inStore = false;
             foreach (Products item in storeInventory)
@@ -71,6 +71,7 @@ namespace MagicInventorySystem
                 newItem.name = requestedItem.itemName;
                 newItem.ID = requestedItem.ID;
                 newItem.stockLevel = requestedItem.quantity;
+                newItem.price = 10;
                 storeInventory.Add(newItem);
             }
 
@@ -103,6 +104,7 @@ namespace MagicInventorySystem
             File.WriteAllText("stockrequests.json", JsonConvert.SerializeObject(stockRequests, Formatting.Indented));
 
         }
+
         public int displayStockRequests(Boolean isAllStock, Boolean StockToShow)
         {
             List<stockRequestItem> stockRequests = reader.readRequestFile("stockrequests.json");
