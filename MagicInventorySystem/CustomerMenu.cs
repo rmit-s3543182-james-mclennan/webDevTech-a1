@@ -19,7 +19,7 @@ namespace MagicInventorySystem
                 {
                     new MagicMenuItem()
                     {
-                        Option = "Melbourne CBD\n",
+                        Option = "Melbourne CBD",
                         CannotExecute = false,
                         Execute = () =>
                         {
@@ -31,7 +31,7 @@ namespace MagicInventorySystem
                     },
                     new MagicMenuItem()
                     {
-                        Option = "Melbourne North\n",
+                        Option = "Melbourne North",
                         CannotExecute = false,
                         Execute = () =>
                         {
@@ -43,7 +43,7 @@ namespace MagicInventorySystem
                     },
                     new MagicMenuItem()
                     {
-                        Option = "Melbourne South\n",
+                        Option = "Melbourne South",
                         CannotExecute = false,
                         Execute = () =>
                         {
@@ -55,7 +55,7 @@ namespace MagicInventorySystem
                     },
                     new MagicMenuItem()
                     {
-                        Option = "Melbourne East\n",
+                        Option = "Melbourne East",
                         CannotExecute = false,
                         Execute = () =>
                         {
@@ -67,7 +67,7 @@ namespace MagicInventorySystem
                     },
                     new MagicMenuItem()
                     {
-                        Option = "Melbourne West\n",
+                        Option = "Melbourne West",
                         CannotExecute = false,
                         Execute = () =>
                         {
@@ -79,13 +79,13 @@ namespace MagicInventorySystem
                     },
                     new MagicMenuItem()
                     {
-                        Option = "Return to Main Menu\n",
+                        Option = "Return to Main Menu",
                         CannotExecute = true,
                         SubMenuId = 1
                     },
                     new MagicMenuItem()
                     {
-                        Option = "Exit\n",
+                        Option = "Exit",
                         CannotExecute = false,
                         Execute = () =>
                         {

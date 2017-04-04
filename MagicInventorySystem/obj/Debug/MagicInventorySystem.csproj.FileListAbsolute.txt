@@ -38,3 +38,8 @@ D:\Bachelor of Software Engineering\Web Dev Tech\webDevTech-a1\MagicInventorySys
 D:\Bachelor of Software Engineering\Web Dev Tech\webDevTech-a1\MagicInventorySystem\bin\Debug\JSONFiles\Melbourne_West_Inventory.json
 D:\Bachelor of Software Engineering\Web Dev Tech\webDevTech-a1\MagicInventorySystem\bin\Debug\JSONFiles\owners_inventory.json
 D:\Bachelor of Software Engineering\Web Dev Tech\webDevTech-a1\MagicInventorySystem\bin\Debug\JSONFiles\stockrequests.json
+D:\Bachelor of Software Engineering\Web Dev Tech\webDevTech-a1\MagicInventorySystem\bin\Debug\JSONFiles\Melbourne_CBD_Workshop.json
+D:\Bachelor of Software Engineering\Web Dev Tech\webDevTech-a1\MagicInventorySystem\bin\Debug\JSONFiles\Melbourne_East_Workshop.json
+D:\Bachelor of Software Engineering\Web Dev Tech\webDevTech-a1\MagicInventorySystem\bin\Debug\JSONFiles\Melbourne_North_Workshop.json
+D:\Bachelor of Software Engineering\Web Dev Tech\webDevTech-a1\MagicInventorySystem\bin\Debug\JSONFiles\Melbourne_South_Workshop.json
+D:\Bachelor of Software Engineering\Web Dev Tech\webDevTech-a1\MagicInventorySystem\bin\Debug\JSONFiles\Melbourne_West_Workshop.json

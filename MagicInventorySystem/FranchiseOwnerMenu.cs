@@ -22,7 +22,7 @@ namespace MagicInventorySystem
                         //Menu option 1 - Display Inventory
                         new MagicMenuItem()
                         {
-                            Option = "Display Inventory\n",
+                            Option = "Display Inventory",
                             CannotExecute = false,
                             Execute = () =>
                             {
@@ -61,7 +61,7 @@ namespace MagicInventorySystem
                         //Menu option 2 - Display Inventory (Threshold)
                         new MagicMenuItem()
                         {
-                            Option = "Display Inventory (Threshold)\n",
+                            Option = "Display Inventory (Threshold)",
                             CannotExecute = false,
                             Execute = () =>
                             {
@@ -101,7 +101,7 @@ namespace MagicInventorySystem
                         //Menu option 3 - Add an item into inventory.
                         new MagicMenuItem()
                         {
-                            Option = "Add New Inventory Item\n",
+                            Option = "Add New Inventory Item",
                             CannotExecute = false,
                             Execute = () =>
                             {
@@ -125,14 +125,14 @@ namespace MagicInventorySystem
                         //Menu option 4 - Return to main menu
                         new MagicMenuItem()
                         {
-                            Option = "Return to Main Menu\n",
+                            Option = "Return to Main Menu",
                             CannotExecute = true,
                             SubMenuId = 1
                         },
                         //Menu option 5 - Exit system.
                         new MagicMenuItem()
                         {
-                            Option = "Exit\n",
+                            Option = "Exit",
                             CannotExecute = false,
                             Execute = () =>
                             {
