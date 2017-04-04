@@ -21,8 +21,6 @@ namespace MagicInventorySystem
         public int purchaseCount { get; set; }
         public double totalPrice { get; set; }
 
-        
-        public string[] storeID { get; set; }
         public string storeFileName { get; set; }
         
         public string choice { get; set; }
