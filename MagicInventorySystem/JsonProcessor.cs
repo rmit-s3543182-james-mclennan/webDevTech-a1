@@ -10,27 +10,49 @@ namespace MagicInventorySystem
 {
     class JsonProcessor
     {
-        /*Use the function readFile(pass the name of the file) and it will 
-         * return a list of products.
-         * 
-         * Should only be used for products!
-         */
-        public List<Products> readFile(string fileName)
+        //Read Products from a file
+        public List<Products> readProductsFile(string fileName)
         {
-            return JsonConvert.DeserializeObject<List<Products>>(File.ReadAllText(fileName))
+            try
+            {
+                return JsonConvert.DeserializeObject<List<Products>>(File.ReadAllText(fileName))
                 ?? new List<Products>();
+            }
+            catch (FileNotFoundException)
+            {
+                Console.WriteLine("File does not exist.");
+                return null;
+            }
         }
 
+        //Read stockRequestItem from a file
         public List<stockRequestItem> readRequestFile (string fileName)
         {
-            return JsonConvert.DeserializeObject<List<stockRequestItem>>(File.ReadAllText(fileName))
+            try
+            {
+                return JsonConvert.DeserializeObject<List<stockRequestItem>>(File.ReadAllText(fileName))
                 ?? new List<stockRequestItem>();
-        }
+            }
+            catch (FileNotFoundException)
+            {
+                Console.WriteLine("File does not exist.");
+                return null;
+            }
+}
 
+        //Read Workshops from a file
         public List<Workshops> readWorkshopFile(string fileName)
         {
-            return JsonConvert.DeserializeObject<List<Workshops>>(File.ReadAllText(fileName))
+            try
+            {
+                return JsonConvert.DeserializeObject<List<Workshops>>(File.ReadAllText(fileName))
                 ?? new List<Workshops>();
+            }
+            catch (FileNotFoundException)
+            {
+                Console.WriteLine("File does not exist.");
+                return null;
+            }
         }
     }
 }
