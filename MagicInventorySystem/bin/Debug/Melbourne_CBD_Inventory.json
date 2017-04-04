@@ -1,20 +1,13 @@
 [
   {
     "ID": 1,
-<<<<<<< HEAD
     "name": "Deck of Cards",
     "stockLevel": 31,
     "price": 10.0
-=======
-    "name": "Rabbit",
-    "stockLevel": 7,
-    "price": 0.0
->>>>>>> origin/WDT-working
   },
   {
     "ID": 2,
     "name": "Wand",
-<<<<<<< HEAD
     "stockLevel": 35,
     "price": 30.0
   },
@@ -53,9 +46,5 @@
     "name": "Flying Powder",
     "stockLevel": 150,
     "price": 3.0
-=======
-    "stockLevel": 1,
-    "price": 10.0
->>>>>>> origin/WDT-working
   }
 ]
