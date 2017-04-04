@@ -340,7 +340,7 @@ namespace MagicInventorySystem
                 }
                 catch (ArgumentOutOfRangeException e)
                 {
-
+                    Console.WriteLine("Choose the item from the list.");
                 }
                 Console.Write("Do you want to buy more products?(Y / N) : ");
                 choice = Console.ReadLine();
@@ -437,7 +437,7 @@ namespace MagicInventorySystem
             }
             catch(ArgumentOutOfRangeException e)
             {
-
+                Console.WriteLine("Array index out of range");
             }
             transactionComplete();
             return isCompleted;
