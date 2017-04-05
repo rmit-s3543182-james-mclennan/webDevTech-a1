@@ -54,8 +54,8 @@ namespace MagicInventorySystem
             lastItem = 5;
             totalPrice = 0;
 
-            allStock = JsonConvert.DeserializeObject<List<Products>>(File.ReadAllText(storeFileName));
-            soldItems = JsonConvert.DeserializeObject<List<Products>>(File.ReadAllText(storeFileName));
+            allStock = reader.readProductsFile(storeFileName);
+            soldItems = reader.readProductsFile(storeFileName);
             totalPage = allStock.Count / 5;
             if (allStock.Count % 5 != 0)
             {
@@ -464,7 +464,6 @@ namespace MagicInventorySystem
                 }
                 else if (choice == "N" || choice == "n")
                 {
-                    Console.WriteLine("Workshop is not booked!");
                     workshopBookingCheck = false;
                     workshopConfirmation = 1;
                 }
@@ -494,7 +493,6 @@ namespace MagicInventorySystem
                 }
                 else if(workshopBookingCheck == false)
                 {
-                    Console.WriteLine("Workshop is not booked. 10% discount is not applied!");
                     Console.WriteLine("The total price of purchased items is : " + totalPrice);
                 }
                 Console.WriteLine("\n================================================\n");

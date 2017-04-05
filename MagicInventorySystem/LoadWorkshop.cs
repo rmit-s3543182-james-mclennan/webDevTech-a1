@@ -37,7 +37,7 @@ namespace MagicInventorySystem
         }
 
         // Workshop progresses begin
-        public int workshopConfirmation()
+        public int displayWorkshopConfirmation()
         {
             allWorkshop = reader.readWorkshopFile(workshopBranch + "_Workshop.json");
             int choiceIndex;
@@ -77,7 +77,6 @@ namespace MagicInventorySystem
             }
             else if (choice == "N" || choice == "n")
             {
-                Console.WriteLine("Bye!");
                 bookingCompleted = 1;
             }
             else
@@ -133,14 +132,13 @@ namespace MagicInventorySystem
             else if (allWorkshop[index].availableSeat < 1)
             {
                 Console.Clear();
-                Console.WriteLine("The workshop you have chosen is now fully booked");
+                Console.WriteLine("The workshop you have chosen is now fully booked.\n");
                 bookingCompleted = 0;
             }
             else
             {
                 Console.Clear();
                 Console.WriteLine("Invalid input. Try again");
-                Console.WriteLine("yay");
                 bookingCompleted = 0;
                 choice = Console.ReadLine();
             }
@@ -162,10 +160,7 @@ namespace MagicInventorySystem
                 bookedSeat = allWorkshop[index].maxSeat - allWorkshop[index].availableSeat + 1;
                 deductAvailableSeat(index);
             }
-            else if(allWorkshop[index].availableSeat == 0)
-            {
-                Console.WriteLine("The workshop you have chosen is now fully booked");
-            }            
+            Console.Clear();            
             Console.WriteLine("\n=============== Workshop Booking Summary ===============\n");
             Console.WriteLine(customerName + "'s booking summary is : \n");
             Console.WriteLine("Name : " + customerName);
@@ -173,6 +168,7 @@ namespace MagicInventorySystem
             Console.WriteLine("Date : " + allWorkshop[index].Date);
             Console.WriteLine("Reference Number : " + workshopCourse[index] + workshopBranch + "_" + bookedSeat);
             Console.WriteLine("\n========================================================\n");
+            Console.WriteLine("Press any key to return to the menu.");
             return bookingCompleted = 1;
         }
 

@@ -17,7 +17,6 @@ D:\Bachelor of Software Engineering\Web Dev Tech\webDevTech-a1\MagicInventorySys
 D:\Bachelor of Software Engineering\Web Dev Tech\webDevTech-a1\MagicInventorySystem\bin\Debug\UtilityLibrary.dll
 D:\Bachelor of Software Engineering\Web Dev Tech\webDevTech-a1\MagicInventorySystem\bin\Debug\Newtonsoft.Json.xml
 D:\Bachelor of Software Engineering\Web Dev Tech\webDevTech-a1\MagicInventorySystem\bin\Debug\UtilityLibrary.pdb
-C:\Users\Allen Cho\Documents\GitHub\webDevTech-a1\MagicInventorySystem\bin\Debug\MagicInventorySystem.exe.config
 C:\Users\Allen Cho\Documents\GitHub\webDevTech-a1\MagicInventorySystem\obj\Debug\MagicInventorySystem.exe
 C:\Users\Allen Cho\Documents\GitHub\webDevTech-a1\MagicInventorySystem\obj\Debug\MagicInventorySystem.pdb
 C:\Users\Allen Cho\Documents\GitHub\webDevTech-a1\MagicInventorySystem\obj\Debug\MagicInventorySystem.csprojResolveAssemblyReference.cache
@@ -43,3 +42,15 @@ D:\Bachelor of Software Engineering\Web Dev Tech\webDevTech-a1\MagicInventorySys
 D:\Bachelor of Software Engineering\Web Dev Tech\webDevTech-a1\MagicInventorySystem\bin\Debug\JSONFiles\Melbourne_North_Workshop.json
 D:\Bachelor of Software Engineering\Web Dev Tech\webDevTech-a1\MagicInventorySystem\bin\Debug\JSONFiles\Melbourne_South_Workshop.json
 D:\Bachelor of Software Engineering\Web Dev Tech\webDevTech-a1\MagicInventorySystem\bin\Debug\JSONFiles\Melbourne_West_Workshop.json
+C:\Users\Allen Cho\Documents\GitHub\webDevTech-a1\MagicInventorySystem\bin\Debug\JSONFiles\Melbourne_CBD_Inventory.json
+C:\Users\Allen Cho\Documents\GitHub\webDevTech-a1\MagicInventorySystem\bin\Debug\JSONFiles\Melbourne_CBD_Workshop.json
+C:\Users\Allen Cho\Documents\GitHub\webDevTech-a1\MagicInventorySystem\bin\Debug\JSONFiles\Melbourne_East_Inventory.json
+C:\Users\Allen Cho\Documents\GitHub\webDevTech-a1\MagicInventorySystem\bin\Debug\JSONFiles\Melbourne_East_Workshop.json
+C:\Users\Allen Cho\Documents\GitHub\webDevTech-a1\MagicInventorySystem\bin\Debug\JSONFiles\Melbourne_North_Inventory.json
+C:\Users\Allen Cho\Documents\GitHub\webDevTech-a1\MagicInventorySystem\bin\Debug\JSONFiles\Melbourne_North_Workshop.json
+C:\Users\Allen Cho\Documents\GitHub\webDevTech-a1\MagicInventorySystem\bin\Debug\JSONFiles\Melbourne_South_Inventory.json
+C:\Users\Allen Cho\Documents\GitHub\webDevTech-a1\MagicInventorySystem\bin\Debug\JSONFiles\Melbourne_South_Workshop.json
+C:\Users\Allen Cho\Documents\GitHub\webDevTech-a1\MagicInventorySystem\bin\Debug\JSONFiles\Melbourne_West_Inventory.json
+C:\Users\Allen Cho\Documents\GitHub\webDevTech-a1\MagicInventorySystem\bin\Debug\JSONFiles\Melbourne_West_Workshop.json
+C:\Users\Allen Cho\Documents\GitHub\webDevTech-a1\MagicInventorySystem\bin\Debug\JSONFiles\owners_inventory.json
+C:\Users\Allen Cho\Documents\GitHub\webDevTech-a1\MagicInventorySystem\bin\Debug\JSONFiles\stockrequests.json

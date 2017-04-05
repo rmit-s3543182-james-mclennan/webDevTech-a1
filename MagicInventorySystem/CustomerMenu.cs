@@ -158,7 +158,6 @@ namespace MagicInventorySystem
         {
             int choiceIndex;
             Console.Clear();
-            Console.WriteLine("[!] Loading products from " + storeFileName + "");
             firstPage();
             /* The while loop works until the user presses "c"
              * or finishes products purchases
@@ -203,7 +202,7 @@ namespace MagicInventorySystem
         {
             while (loadWorkshop.bookingCompleted == 0)
             {
-                loadWorkshop.bookingCompleted = loadWorkshop.workshopConfirmation();
+                loadWorkshop.bookingCompleted = loadWorkshop.displayWorkshopConfirmation();
             }
             loadWorkshop.bookingCompleted = 0;
         }
