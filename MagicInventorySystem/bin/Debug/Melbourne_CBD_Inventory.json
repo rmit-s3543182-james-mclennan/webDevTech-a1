@@ -2,31 +2,31 @@
   {
     "ID": 1,
     "name": "Deck of Cards",
-    "stockLevel": 26,
+    "stockLevel": 0,
     "price": 10.0
   },
   {
     "ID": 2,
     "name": "Wand",
-    "stockLevel": 35,
+    "stockLevel": 17,
     "price": 30.0
   },
   {
     "ID": 3,
     "name": "Magic Hat",
-    "stockLevel": 37,
+    "stockLevel": 32,
     "price": 30.0
   },
   {
     "ID": 4,
     "name": "Moustache",
-    "stockLevel": 18,
+    "stockLevel": 12,
     "price": 5.5
   },
   {
     "ID": 5,
     "name": "Cape",
-    "stockLevel": 34,
+    "stockLevel": 21,
     "price": 15.0
   },
   {

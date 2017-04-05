@@ -19,6 +19,9 @@ namespace MagicInventorySystem
         public int firstItem { get; set; }
         public int lastItem { get; set; }
         public int purchaseCount { get; set; }
+        public int multiplePurchases { get; set; }
+        public int paymentMethod { get; set; }
+        public int workshopConfirmation { get; set; }
         public double totalPrice { get; set; }
 
         public string storeFileName { get; set; }
@@ -34,19 +37,23 @@ namespace MagicInventorySystem
         // Initialize variables in constructor
         public PageLoad()
         {
-            storeFileName = "owners_inventory.json";
-            purchaseItemIndex = 0;
-            purchaseCount = 0;
-            pageIndex = 1;
+            storeFileName = "owners_inventory.json";           
             isCompleted = 0;
-            firstItem = 0;
-            lastItem = 5;
-            totalPrice = 0;
+            pageIndex = 1;
         }
 
         // Display first page
         public int firstPage()
         {
+            /* Initialize variables everytime 
+             * a customer choose display product
+             */
+            purchaseItemIndex = 0;
+            purchaseCount = 0;
+            firstItem = 0;
+            lastItem = 5;
+            totalPrice = 0;
+
             allStock = JsonConvert.DeserializeObject<List<Products>>(File.ReadAllText(storeFileName));
             soldItems = JsonConvert.DeserializeObject<List<Products>>(File.ReadAllText(storeFileName));
             totalPage = allStock.Count / 5;
@@ -210,23 +217,7 @@ namespace MagicInventorySystem
             return isCompleted;
         }
 
-        // Display current page when invalid input is typed
-        public int currentPage()
-        {
-            if (allStock.Count < 5)
-            {
-                lastItem = allStock.Count;
-            }
-            displayTitle();
-            displayProducts();
-            Console.WriteLine("Page " + pageIndex + "/" + totalPage);
-            Console.WriteLine("[Legend: 'P' Next Page | 'R' Return to Menu | 'C' Complete Transaction]");
-            Console.Write("Enter Product ID to purchase : ");
-            choice = Console.ReadLine();
 
-            isCompleted = 0;
-            return isCompleted;
-        }
 
         // Display current page's products
         public void displayProducts()
@@ -255,12 +246,31 @@ namespace MagicInventorySystem
             }
         }
 
+        // Display current page when invalid input is typed
+        public int currentPage()
+        {
+            if (allStock.Count < 5)
+            {
+                lastItem = allStock.Count;
+            }
+            displayTitle();
+            displayProducts();
+            Console.WriteLine("Page " + pageIndex + "/" + totalPage);
+            Console.WriteLine("[Legend: 'P' Next Page | 'R' Return to Menu | 'C' Complete Transaction]");
+            Console.Write("Enter Product ID to purchase : ");
+            choice = Console.ReadLine();
+
+            isCompleted = 0;
+            return isCompleted;
+        }
+
+
         // Called when the product is out of stock
         public int outOfStock()
         {
             Console.Clear();
-            currentPage();
             Console.WriteLine("The product is currently out of stock!");
+            currentPage();
             isCompleted = 0;
             return isCompleted;
         }
@@ -318,7 +328,7 @@ namespace MagicInventorySystem
 
         // Products purchases progress 
         public int purchaseItems(int choiceIndex)
-        {
+        {    
             currentItemIndex = choiceIndex;
             Console.WriteLine("You have chosen " + allStock[currentItemIndex].name + ".");
             Console.Write("Enter the amount of the product : ");
@@ -337,36 +347,63 @@ namespace MagicInventorySystem
                 {
                     soldItems[purchaseItemIndex].stockLevel = choiceIndex;
                     purchaseItemIndex++;
+                    multiplePurchases = 0;
+                    paymentMethod = 0;
+                    workshopConfirmation = 0;
                 }
                 catch (ArgumentOutOfRangeException e)
                 {
                     Console.WriteLine("Choose the item from the list.");
                 }
-                Console.Write("Do you want to buy more products?(Y / N) : ");
-                choice = Console.ReadLine();
-                if (choice == "Y" || choice == "y")
+                while(multiplePurchases == 0)
                 {
-                    Console.Clear();
-                    currentPage();
-                }
-                else if (choice == "N" || choice == "n")
-                {
-                    Console.Write("Do you want to pay for credit card?(Y / N) : ");
+                    Console.Write("Do you want to buy more products?(Y / N) : ");
                     choice = Console.ReadLine();
                     if (choice == "Y" || choice == "y")
                     {
-                        Console.WriteLine("Credit card payment is being processed!");
+                        Console.Clear();
+                        multiplePurchases = 1;
+                        currentPage();
+                        
+
                     }
                     else if (choice == "N" || choice == "n")
                     {
-                        Console.WriteLine("Cash payment is being processed!");
+                        while(paymentMethod == 0)
+                        {
+                            Console.Write("Do you want to pay for credit card?(Y / N) : ");
+                            choice = Console.ReadLine();
+                            if (choice == "Y" || choice == "y")
+                            {
+                                Console.WriteLine("Credit card payment is being processed!");
+                                displayPurchaseSummary();
+                                paymentMethod = 1;
+                                multiplePurchases = 1;
+                            }
+                            else if (choice == "N" || choice == "n")
+                            {
+                                Console.WriteLine("Cash payment is being processed!");
+                                displayPurchaseSummary();
+                                paymentMethod = 1;
+                                multiplePurchases = 1;
+                            }
+                            else
+                            {
+                                Console.WriteLine("Invalid input. Try again.");
+                                paymentMethod = 0;
+                                multiplePurchases = 0;            
+                            }
+                        }
+
                     }
-                    displayPurchaseSummary();
+                    else
+                    {
+                        Console.WriteLine("Invalid input. Try again.");
+                        multiplePurchases = 0;
+                        isCompleted = 0;
+                    }
                 }
-                else
-                {
-                    invalidInput();
-                }
+
             }
             else if (allStock[currentItemIndex].stockLevel <= 0)
             {
@@ -394,23 +431,29 @@ namespace MagicInventorySystem
         // Display what the customer bought
         public int displayPurchaseSummary()
         {
-            Console.Write("Would you like to book a workshop?(Y / N) : ");
-            choice = Console.ReadLine();
-            if ((choice == "Y" || choice == "y") && purchaseItemIndex > 0)
+            while(workshopConfirmation == 0)
             {
-                Console.WriteLine("The total price of your purchase has got 10% discount!");
-                workshopBookingCheck = true;
+                Console.Write("Would you like to book a workshop?(Y / N) : ");
+                choice = Console.ReadLine();
+                if ((choice == "Y" || choice == "y") && purchaseItemIndex > 0)
+                {
+                    Console.WriteLine("The total price of your purchase has got 10% discount!");
+                    workshopBookingCheck = true;
+                    workshopConfirmation = 1;
+                }
+                else if (choice == "N" || choice == "n")
+                {
+                    Console.WriteLine("Workshop is not booked!");
+                    workshopBookingCheck = false;
+                    workshopConfirmation = 1;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid input. Try again.");
+                    workshopConfirmation = 0;
+                }
             }
-            else if (choice == "N" || choice == "n")
-            {
-                Console.WriteLine("Workshop is not booked!");
-                workshopBookingCheck = false;
-            }
-            else
-            {
-                invalidInput();
-            }
-            Console.WriteLine("\n========== Purchase Summary ==========\n");
+            Console.WriteLine("\n=============== Purchase Summary ===============\n");
             Console.WriteLine("You have purchased : \n");
             try
             {
@@ -433,7 +476,7 @@ namespace MagicInventorySystem
                     Console.WriteLine("Workshop is not booked. 10% discount is not applied!");
                     Console.WriteLine("The total price of purchased items is : " + totalPrice);
                 }
-                Console.WriteLine("\n======================================\n");
+                Console.WriteLine("\n================================================\n");
             }
             catch(ArgumentOutOfRangeException e)
             {
