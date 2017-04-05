@@ -158,6 +158,7 @@ namespace MagicInventorySystem
         {
             int choiceIndex;
             Console.Clear();
+            Console.WriteLine("Products at " + loadWorkshop.workshopBranch + " store");
             firstPage();
             /* The while loop works until the user presses "c"
              * or finishes products purchases
@@ -170,12 +171,18 @@ namespace MagicInventorySystem
                 {
                     isCompleted = nextPage();
                 }
+                else if(itemIndex == lastItem
+                && (choice == "B" || choice == "b")
+                && itemIndex <= allStock.Count)
+                {
+                    isCompleted = previousPage();
+                }
                 else if (itemIndex == lastItem
                 && (choice == "R" || choice == "r")
                 && itemIndex <= allStock.Count)
                 {
-
-                    isCompleted = previousPage();
+                    Console.WriteLine("Press any key to return to the menu.");
+                    isCompleted = 1;
                 }
                 else if (itemIndex == lastItem
                 && (choice == "C" || choice == "c")
@@ -194,7 +201,6 @@ namespace MagicInventorySystem
                 {
                     isCompleted = invalidInput();
                 }
-
             }
         }
 

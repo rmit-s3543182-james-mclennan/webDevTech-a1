@@ -61,10 +61,6 @@ namespace MagicInventorySystem
             {
                 totalPage += 1;
             }
-            else
-            {
-                
-            }
             if (allStock.Count < 5)
             {
                 lastItem = allStock.Count;
@@ -101,7 +97,7 @@ namespace MagicInventorySystem
             }
             isCompleted = 0;
             Console.WriteLine("Page " + pageIndex + "/" + totalPage);
-            Console.WriteLine("[Legend: 'P' Next Page | 'R' Return to Menu | 'C' Complete Transaction]");
+            Console.WriteLine("[Legend: 'P' Next Page | 'B' Previous Page | 'R' Return to Menu | 'C' Complete Transaction]");
             Console.Write("Enter Product ID to purchase : ");
             choice = Console.ReadLine();
             return isCompleted;
@@ -130,7 +126,7 @@ namespace MagicInventorySystem
             else
             {
                 Console.WriteLine("Page " + pageIndex + "/" + totalPage);
-                Console.WriteLine("[Legend: 'P' Next Page | 'R' Return to Menu | 'C' Complete Transaction]");
+                Console.WriteLine("[Legend: 'P' Next Page | 'B' Previous Page | 'R' Return to Menu | 'C' Complete Transaction]");
                 Console.Write("Enter Product ID to purchase : ");
                 choice = Console.ReadLine();
             }
@@ -183,7 +179,7 @@ namespace MagicInventorySystem
             }
             isCompleted = 0;
             Console.WriteLine("Page " + pageIndex + "/" + totalPage);
-            Console.WriteLine("[Legend: 'P' Next Page | 'R' Return to Menu | 'C' Complete Transaction]");
+            Console.WriteLine("[Legend: 'P' Next Page | 'B' Previous Page | 'R' Return to Menu | 'C' Complete Transaction]");
             Console.Write("Enter Product ID to purchase : ");
 
             choice = Console.ReadLine();
@@ -231,7 +227,7 @@ namespace MagicInventorySystem
             else
             {
                 Console.WriteLine("Page " + pageIndex + "/" + totalPage);
-                Console.WriteLine("[Legend: 'P' Next Page | 'R' Return to Menu | 'C' Complete Transaction]");
+                Console.WriteLine("[Legend: 'P' Next Page | 'B' Previous Page | 'R' Return to Menu | 'C' Complete Transaction]");
                 Console.Write("Enter Product ID to purchase : ");
                 choice = Console.ReadLine();
             }
@@ -277,7 +273,7 @@ namespace MagicInventorySystem
             displayTitle();
             displayProducts();
             Console.WriteLine("Page " + pageIndex + "/" + totalPage);
-            Console.WriteLine("[Legend: 'P' Next Page | 'R' Return to Menu | 'C' Complete Transaction]");
+            Console.WriteLine("[Legend: 'P' Next Page | 'B' Previous Page | 'R' Return to Menu | 'C' Complete Transaction]");
             Console.Write("Enter Product ID to purchase : ");
             choice = Console.ReadLine();
 
