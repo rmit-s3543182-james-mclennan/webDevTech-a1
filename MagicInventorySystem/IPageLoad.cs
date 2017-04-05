@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace MagicInventorySystem
 {
+    // Interface of PageLoad((Super or Base)class)
     interface IPageLoad
     {
         int firstPage();

@@ -8,6 +8,7 @@ using System.IO;
 
 namespace MagicInventorySystem
 {
+    // Super(Base)class PageLoad
     class PageLoad : IPageLoad
     {
         public int totalPage { get; set; }
