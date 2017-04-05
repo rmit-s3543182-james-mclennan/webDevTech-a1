@@ -47,7 +47,8 @@ namespace MagicInventorySystem
             // Display all workshops in a store
             foreach (Workshops workshop in allWorkshop)
             {
-                String workshopLine = String.Format("{0, -5} | {1, -25} | {2,  -30} | {3,  -20}", workshop.ID, workshop.Name, workshop.Date, workshop.availableSeat + " / " + workshop.maxSeat);
+                String workshopLine = String.Format("{0, -5} | {1, -25} | {2,  -30} | {3,  -20}", workshop.ID, workshop.Name, workshop.Date, 
+                    workshop.availableSeat + " / " + workshop.maxSeat);
                 Console.WriteLine(workshopLine);
             }
             Console.WriteLine("");
@@ -92,7 +93,7 @@ namespace MagicInventorySystem
         private void deductAvailableSeat(int currentIndex)
         {
             allWorkshop[currentIndex].availableSeat -= 1;
-            File.WriteAllText(workshopBranch + "_Workshop.json", JsonConvert.SerializeObject(allWorkshop, Formatting.Indented));
+            reader.writeToWorkshopFIle(workshopBranch + "_Workshop.json", allWorkshop);
         }
 
         // Display workshop title line

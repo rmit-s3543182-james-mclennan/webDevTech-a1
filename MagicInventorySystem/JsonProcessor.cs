@@ -15,7 +15,7 @@ namespace MagicInventorySystem
         {
             try
             {
-                return JsonConvert.DeserializeObject<List<Products>>(File.ReadAllText(fileName))
+                return JsonConvert.DeserializeObject<List<Products>>(File.ReadAllText("JSONFiles/"+fileName))
                 ?? new List<Products>();
             }
             catch (FileNotFoundException)
@@ -30,7 +30,7 @@ namespace MagicInventorySystem
         {
             try
             {
-                return JsonConvert.DeserializeObject<List<stockRequestItem>>(File.ReadAllText(fileName))
+                return JsonConvert.DeserializeObject<List<stockRequestItem>>(File.ReadAllText("JSONFiles/" + fileName))
                 ?? new List<stockRequestItem>();
             }
             catch (FileNotFoundException)
@@ -45,7 +45,7 @@ namespace MagicInventorySystem
         {
             try
             {
-                return JsonConvert.DeserializeObject<List<Workshops>>(File.ReadAllText(fileName))
+                return JsonConvert.DeserializeObject<List<Workshops>>(File.ReadAllText("JSONFiles/" + fileName))
                 ?? new List<Workshops>();
             }
             catch (FileNotFoundException)
@@ -53,6 +53,21 @@ namespace MagicInventorySystem
                 Console.WriteLine("File does not exist.");
                 return null;
             }
+        }
+
+        public void writeToProductsFile(string fileName, List<Products> list)
+        {
+            File.WriteAllText("JSONFiles/" + fileName, JsonConvert.SerializeObject(list, Formatting.Indented));
+        }
+
+        public void writeToStockFile(string fileName, List<stockRequestItem> list)
+        {
+            File.WriteAllText("JSONFiles/"+fileName, JsonConvert.SerializeObject(list, Formatting.Indented));
+        }
+
+        public void writeToWorkshopFIle(string fileName, List<Workshops> list)
+        {
+            File.WriteAllText("JSONFiles/" + fileName, JsonConvert.SerializeObject(list, Formatting.Indented));
         }
     }
 }

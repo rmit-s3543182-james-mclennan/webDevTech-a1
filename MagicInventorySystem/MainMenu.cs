@@ -21,27 +21,28 @@ namespace MagicInventorySystem
                     MenuId = 1,
                     MenuItems =
                     {
+                        //Owner Menu
                         new MagicMenuItem()
                         {
                             Option = "Owner",
                             CannotExecute = true,
                             SubMenuId = 2
                         },
-
+                        //Franchise Owner Menu
                         new MagicMenuItem()
                         {
                             Option = "Franchise Owner",
                             CannotExecute = true,
                             SubMenuId = 5
                         },
-
+                        //Customer Menu
                         new MagicMenuItem()
                         {
                             Option = "Customer",
                             CannotExecute = true,
                             SubMenuId = 6
                         },
-
+                        //Exit option.
                         new MagicMenuItem()
                         {
                             Option = "Exit",
@@ -60,18 +61,18 @@ namespace MagicInventorySystem
             collection.ShowMenu(1);
             Console.ReadLine();
         }
-        
+        //loadAllLists loads all menus into the collection.
         private MagicMenuCollection loadAllLists(MagicMenuCollection collection)
         {
             OwnerMenu ownerMenu = new OwnerMenu();
             FranchiseOwnerMenu franOwnerMenu = new FranchiseOwnerMenu();
-            Customer franCustomerMenu = new Customer();
+            CustomerMenu CustomerMenu = new CustomerMenu();
 
             collection = ownerMenu.loadOwnerMenu(collection);
             collection = franOwnerMenu.loadFranchiseOwnerMenu(collection);
             collection = franOwnerMenu.validateFranchiseStore(collection);
-            collection = franCustomerMenu.loadCustomerMenu(collection);
-            collection = franCustomerMenu.loadCustomerPurchaseMenu(collection);
+            collection = CustomerMenu.loadCustomerMenu(collection);
+            collection = CustomerMenu.loadCustomerPurchaseMenu(collection);
 
             return collection;
         }

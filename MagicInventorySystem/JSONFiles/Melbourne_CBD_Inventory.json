@@ -2,7 +2,7 @@
   {
     "ID": 1,
     "name": "Deck of Cards",
-    "stockLevel": 0,
+	"stockLevel": 25,
     "price": 10.0
   },
   {
@@ -14,7 +14,7 @@
   {
     "ID": 3,
     "name": "Magic Hat",
-    "stockLevel": 30,
+	"stockLevel": 42,
     "price": 30.0
   },
   {

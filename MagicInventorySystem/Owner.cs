@@ -48,8 +48,8 @@ namespace MagicInventorySystem
                     item.stockLevel = item.stockLevel - amountSentToStore;
                 }
             }
-            
-            File.WriteAllText("owners_inventory.json", JsonConvert.SerializeObject(allStock, Formatting.Indented));
+
+            reader.writeToProductsFile("owners_inventory.json", allStock);
         }
 
         private void sendStockFromWarehouse(stockRequestItem requestedItem, int amountSentToStore)
@@ -75,8 +75,7 @@ namespace MagicInventorySystem
                 storeInventory.Add(newItem);
             }
 
-            File.WriteAllText("Melbourne_" + requestedItem.store + "_Inventory.json", 
-                JsonConvert.SerializeObject(storeInventory, Formatting.Indented));
+            reader.writeToProductsFile("Melbourne_" + requestedItem.store + "_Inventory.json", storeInventory);
         }
 
         private void updateStockRequests(stockRequestItem fullfilledItem)
@@ -101,7 +100,7 @@ namespace MagicInventorySystem
                     }
                 }
             }
-            File.WriteAllText("stockrequests.json", JsonConvert.SerializeObject(stockRequests, Formatting.Indented));
+            reader.writeToStockFile("stockrequests.json", stockRequests);
 
         }
 
@@ -221,7 +220,7 @@ namespace MagicInventorySystem
                     {
                         requestedItem = item;
                         stockRequests.Remove(item);
-                        File.WriteAllText("stockrequests.json", JsonConvert.SerializeObject(stockRequests, Formatting.Indented));
+                        reader.writeToStockFile("stockrequests.json", stockRequests);
                         return requestedItem;
                     }
                 }
