@@ -27,7 +27,7 @@ namespace MagicInventorySystem
 
         // Initialize variables in constructor
         public LoadWorkshop()
-        {  
+        {
             workshopCourse = new string[]
                             {"ITM_", "AMT_", "HCM_", "HA_", "ITA_"};
             bookingCompleted = 0;
@@ -40,12 +40,12 @@ namespace MagicInventorySystem
             int choiceIndex;
             Console.WriteLine("Workshop Status at " + workshopBranch);
             displayWorkshopTitle();
-            
+
             // Display all workshops in a store
             foreach (Workshops workshop in allWorkshop)
             {
                 String workshopLine = String.Format("{0, -5} | {1, -25} | {2,  -30} | {3,  -20}"
-                                                , workshop.ID, workshop.Name, workshop.Date, 
+                                                , workshop.ID, workshop.Name, workshop.Date,
                                                 workshop.availableSeat + " / " + workshop.maxSeat);
                 Console.WriteLine(workshopLine);
             }
@@ -122,7 +122,7 @@ namespace MagicInventorySystem
 
         // Check whether the chosen workshop has available seat
         public int workshopAvailability(int index)
-        { 
+        {
             if (allWorkshop[index].availableSeat >= 1)
             {
                 bookingCompleted = workshopBookingSummary(index);
@@ -152,13 +152,13 @@ namespace MagicInventorySystem
                 bookedSeat = 1;
                 deductAvailableSeat(index);
             }
-            else if(allWorkshop[index].availableSeat < allWorkshop[index].maxSeat
+            else if (allWorkshop[index].availableSeat < allWorkshop[index].maxSeat
             && allWorkshop[index].availableSeat > 0)
             {
                 bookedSeat = allWorkshop[index].maxSeat - allWorkshop[index].availableSeat + 1;
                 deductAvailableSeat(index);
             }
-            Console.Clear();            
+            Console.Clear();
             Console.WriteLine("\n=============== Workshop Booking Summary ===============\n");
             Console.WriteLine(customerName + "'s booking summary is : \n");
             Console.WriteLine("Name : " + customerName);

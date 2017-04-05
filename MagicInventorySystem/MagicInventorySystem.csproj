@@ -55,6 +55,7 @@
     <Compile Include="FranchiseOwnerMenu.cs" />
     <Compile Include="IPageLoad.cs" />
     <Compile Include="JsonProcessor.cs" />
+    <Compile Include="LoadWorkshop.cs" />
     <Compile Include="MagicMenuSystem.cs" />
     <Compile Include="Driver.cs" />
     <Compile Include="MainMenu.cs" />
