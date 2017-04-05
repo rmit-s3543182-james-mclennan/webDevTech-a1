@@ -9,6 +9,7 @@ namespace MagicInventorySystem
     class FranchiseOwnerMenu
     {
         FranchiseOwner access = new FranchiseOwner();
+        Owner wareHouse = new Owner();
 
         private string storeID;
         //Franchise Owner Menu
@@ -38,9 +39,7 @@ namespace MagicInventorySystem
                                         //Display inventory with restock dependant on threshold
                                         Console.WriteLine("Inventory of " + storeID);
                                         access.displayInventory(threshold, false);
-                                        Console.WriteLine("Press any key to continue...");
-                                        Console.ReadKey();
-                                        Console.Clear();
+                                        access.addNewItem(storeID, true, threshold);
                                         //Direct to menu 3.
                                         collection.ShowMenu(3);
                                     }
@@ -78,9 +77,7 @@ namespace MagicInventorySystem
                                         //stock than the user's input.
                                         Console.WriteLine("Inventory of " + storeID);
                                         access.displayInventory(threshold, true);
-                                        Console.WriteLine("Press any key to continue...");
-                                        Console.ReadKey();
-                                        Console.Clear();
+                                        access.addNewItem(storeID, false, threshold);
                                         //Direct to menu 3.
                                         collection.ShowMenu(3);
                                     }
@@ -109,8 +106,10 @@ namespace MagicInventorySystem
                                 {
                                     Console.Clear();
                                     Console.WriteLine("Add New Inventory Item: ");
+                                    //Display the owner's stock.
+                                    wareHouse.displayAllStock();
                                     //Call add item.
-                                    access.addNewItem(storeID);
+                                    access.addNewItem(storeID, false, 0);
                                     Console.Clear();
                                     collection.ShowMenu(3);
                                 }

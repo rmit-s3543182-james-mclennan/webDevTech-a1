@@ -11,10 +11,9 @@ namespace MagicInventorySystem
     class FranchiseOwner
     {
         JsonProcessor reader = new JsonProcessor();
-        private Owner wareHouse = new Owner();
         public string storeFileName { get; set; }
         
-        //Assign storeFileName the store name that the user selects.(JM)
+        //Assign storeFileName the store name that the user selects.
         public void identifyStore(String storeName)
         {
             storeFileName = "Melbourne_"+storeName + "_Inventory.json";
@@ -22,15 +21,13 @@ namespace MagicInventorySystem
 
         //addNewItem will enable a franchise owner to request stock
         //from the owners inventory. 
-        public void addNewItem(string storeID)
+        public void addNewItem(string storeID, Boolean checkIfUnderThreshold, int threshold)
         {
             int selectedItem = 0;
+            string continueOrExit;
             //Load current items in store
             List<Products> storeInventory = reader.readProductsFile(storeFileName);
             Products requestedItem;
-            
-            //Display the owner's stock.
-            wareHouse.displayAllStock();
 
             Console.WriteLine("Enter item ID to stock in store: ");
             String input = Console.ReadLine();
@@ -43,10 +40,61 @@ namespace MagicInventorySystem
                     if(item.ID == selectedItem)
                     {
                         requestedItem = item;
-                        Console.WriteLine(item.stockLevel);
-                        sendStockRequest(requestedItem, item.stockLevel, storeID);
+                        //Check if a threshold applies.
+                        if (checkIfUnderThreshold)
+                        {
+                            //If it does, scan current store inventory.
+                            foreach (Products shelfItem in storeInventory)
+                            {
+                                if(shelfItem.ID == requestedItem.ID)
+                                {
+                                    //Check if the item requested, that is currently in stock,
+                                    //has a stockLevel less than the threshold.
+                                    if (shelfItem.stockLevel <= threshold)
+                                    {
+                                        sendStockRequest(requestedItem, item.stockLevel, storeID);
+                                    }
+                                    //If threshold is greater than stockLevel (and thus, not required to restock)
+                                    else
+                                    {
+                                        Console.WriteLine("The item you have requested is above the threshold. Do you wish to continue? (Y/N)");
+                                        continueOrExit = Console.ReadLine();
+                                        //Prompt user if they wish to continue.
+                                        if (continueOrExit.ToLower().Equals("y") || continueOrExit.ToLower().Equals("yes"))
+                                        {
+                                            sendStockRequest(requestedItem, item.stockLevel, storeID);
+                                            Console.Clear();
+                                            Console.WriteLine("Processed Request. Please wait for the Owner to respond\n");
+                                        }
+                                        else if (continueOrExit.ToLower().Equals("n") || continueOrExit.ToLower().Equals("no"))
+                                        {
+                                            Console.Clear();
+                                            Console.WriteLine("Request aborted.\n");
+                                        }
+                                        else
+                                        {
+                                            Console.Clear();
+                                            Console.WriteLine("Invalid input. Please try again.");
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        //Threshold does not apply, process request regardless.
+                        else
+                        {
+                            sendStockRequest(requestedItem, item.stockLevel, storeID);
+                            Console.Clear();
+                            Console.WriteLine("Processed Request. Please wait for the Owner to respond\n");
+                        }
+                        
                     }
                 }
+            }
+            else
+            {
+                Console.Clear();
+                Console.WriteLine("Invalid input. Please try again.\n");
             }
 
         }
@@ -117,10 +165,7 @@ namespace MagicInventorySystem
                 {
                     return threshold;
                 }
-            } catch (Exception)
-            {
-                
-            }
+            } catch (Exception) { }
             return threshold;
         }
 

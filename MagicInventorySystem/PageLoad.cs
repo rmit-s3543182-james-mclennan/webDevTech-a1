@@ -327,7 +327,7 @@ namespace MagicInventorySystem
         // Called when products purchases are done
         public int transactionComplete()
         {
-            Console.WriteLine("Transaction Done!");
+            Console.WriteLine("Transaction Completed. Press any key to continue...");
             firstItem = 0;
             itemIndex = firstItem;
             lastItem = firstItem + 5;

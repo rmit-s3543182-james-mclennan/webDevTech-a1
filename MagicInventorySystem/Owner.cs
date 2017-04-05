@@ -41,28 +41,38 @@ namespace MagicInventorySystem
             Console.WriteLine();
         }
 
+        //updateStockFromWarehouse will remove quantity of items
+        //from the owners inventory.
         private void updateStockFromWarehouse(string name, int amountSentToStore)
         {
             List<Products> allStock = reader.readProductsFile("owners_inventory.json");
 
+            //Search list of items in stock.
             foreach(Products item in allStock)
             {
                 if(item.name == name)
                 {
+                    //Remove "amountSentToStore" from the stock level.
                     item.stockLevel = item.stockLevel - amountSentToStore;
                 }
             }
 
+            //Save file.
             reader.writeToProductsFile("owners_inventory.json", allStock);
         }
 
-        private void sendStockFromWarehouse(stockRequestItem requestedItem, int amountSentToStore)
+        //updateStoreInventory will update a specific store's items 
+        private void updateStoreInventory(stockRequestItem requestedItem, int amountSentToStore)
         {
+            //Read store inventory that was selected by user.
             List<Products> storeInventory = reader.readProductsFile("Melbourne_"+requestedItem.store+"_Inventory.json");
             Products newItem = new Products();
             Boolean inStore = false;
+
+            //Search for item in the stores inventory.
             foreach (Products item in storeInventory)
             {
+                //If the item is found, update the stockLevel
                 if (item.name == requestedItem.itemName)
                 {
                     inStore = true;
@@ -70,6 +80,8 @@ namespace MagicInventorySystem
                 }
             }
 
+            //If the item is never found, then it is a new item.
+            //Add the item into the store.
             if(!inStore)
             {
                 newItem.name = requestedItem.itemName;
@@ -79,21 +91,29 @@ namespace MagicInventorySystem
                 storeInventory.Add(newItem);
             }
 
+            //Save file.
             reader.writeToProductsFile("Melbourne_" + requestedItem.store + "_Inventory.json", storeInventory);
         }
 
+        //updateStockRequests will update items in stock request file
+        //when the owner "approves" a stock request.
+        //If multiple stores request stock, it will update on each approval.
         private void updateStockRequests(stockRequestItem fullfilledItem)
         {
             List<stockRequestItem> stockRequests = reader.readRequestFile("stockrequests.json");
+            //Find item in stockRequests.
             foreach (stockRequestItem item in stockRequests)
             {
+                //Decrease the ID in the list.
                 if(item.listID > fullfilledItem.listID)
                 {
                     item.listID = item.listID - 1;
                 }
                 if (item.itemName == fullfilledItem.itemName)
                 {
+                    //Update stock level
                     item.currentStock = item.currentStock - 5;
+                    //Check if stock is still available and update.
                     if(item.currentStock >= item.quantity)
                     {
                         item.availableStock = true;
@@ -104,10 +124,14 @@ namespace MagicInventorySystem
                     }
                 }
             }
+            //Save file.
             reader.writeToStockFile("stockrequests.json", stockRequests);
 
         }
 
+        //displayStockRequests will show all stock requests.
+        //If isAllStock, then show everything.
+        //If StockToShow is true, only show true stock and vise versa.
         public int displayStockRequests(Boolean isAllStock, Boolean StockToShow)
         {
             List<stockRequestItem> stockRequests = reader.readRequestFile("stockrequests.json");
@@ -158,50 +182,66 @@ namespace MagicInventorySystem
 
         }
 
+        //ProcessStockRequest will take input for user.
         private int processStockRequest(List<stockRequestItem> stockRequests)
         {
             Console.WriteLine("Enter 'No' to return to Owner Menu.\n");
             Console.WriteLine("Enter Request to Process: ");
             string stringID = Console.ReadLine();
             int id = 0;
+            //Check if stringID is not 'No'
             if (!stringID.ToUpper().Equals("NO"))
             {
                 if (int.TryParse(stringID, out id))
                 {
+                    //check if the ID exists and remove from stock requests.
                     stockRequestItem itemRequested = checkIDAndRemove(stockRequests, id);
                     if (itemRequested != null)
                     {
+                        //If the item exists, update throughout all files.
+                        //(storeInventory, ownerInventory and stock requests).
                         updateStockFromWarehouse(itemRequested.itemName, itemRequested.quantity);
-                        sendStockFromWarehouse(itemRequested, itemRequested.quantity);
+                        updateStoreInventory(itemRequested, itemRequested.quantity);
                         updateStockRequests(itemRequested);
                         return 1;
                     }
                     else
                     {
+                        //Item does not exist or not enough stock.
                         return 2;
                     }
                 }
                 else
                 {
+                    //Item does not exist or not enough stock.
                     return 2;
                 }
             }
             else
             {
+                //Invalid input.
                 return 0;
             }
         }
+
+        //PromptTrueorFalse will ask the user for input
+        //When Owner wishes to display inventory requests
+        //by True or False.
         public int promptTrueorFalse()
         {
             Console.WriteLine("Please enter the stock requests you wish to view (True/False):");
             int type = 0;
 
+            //Convert input to lower case
             string input = Console.ReadLine().ToLower();
 
+            //Check if input is true, or t
             if (input.Equals("t") || input.Equals("true"))
             {
                 type = 1;
             }
+            
+            //Check if input is false, or f
             else if(input.Equals("f") || input.Equals("false"))
             {
                 type = 2;
@@ -213,14 +253,18 @@ namespace MagicInventorySystem
             return type;
         }
 
+        //checkIDAndRemove will remove items from stock request
+        //when approved by owner.
         private stockRequestItem checkIDAndRemove(List<stockRequestItem> stockRequests, int stringid)
         {
             stockRequestItem requestedItem = null;
 
             foreach (stockRequestItem item in stockRequests)
             {
+                //Check if stock is available
                 if (item.availableStock)
                 {
+                    //If stock, remove item and begin updating data.
                     if (stringid == item.listID)
                     {
                         requestedItem = item;
@@ -233,6 +277,8 @@ namespace MagicInventorySystem
             return requestedItem;
         }
 
+        //Formatting function to change size of format
+        //depending on the product name's length.
         private int getLengthOfProduct(List<stockRequestItem> stockRequests)
         {
             int largest = 0;
