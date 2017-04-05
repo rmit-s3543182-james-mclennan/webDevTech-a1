@@ -1,23 +1,23 @@
-﻿[
+[
   {
     "ID": 1,
     "Name": "Introduction to Magic",
     "Date": "Monday 12:30 am to 2:30 pm",
-    "availableSeat": 25,
-    "maxSeat" :  25
+    "availableSeat": 22,
+    "maxSeat": 25
   },
   {
     "ID": 2,
     "Name": "Advanced Magic Technique",
     "Date": "Wednesday 1:30 pm to 3:30 pm",
     "availableSeat": 25,
-    "maxSeat" :  25
+    "maxSeat": 25
   },
   {
     "ID": 3,
     "Name": "Handling Card Magic",
     "Date": "Thursday 4:30 pm to 6:30 pm",
     "availableSeat": 25,
-    "maxSeat" :  25
-   },
- ]
+    "maxSeat": 25
+  }
+]
