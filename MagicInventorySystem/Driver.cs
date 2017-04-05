@@ -10,7 +10,7 @@ namespace MagicInventorySystem
 {
     //Designed and coded by
     //James McLennan - s3543182
-    //Allen Cho - s<number>
+    //Minyoung(Allen) Cho - s3558745
     //Our implementation of the Magic Inventory System.
     class Driver
     {
