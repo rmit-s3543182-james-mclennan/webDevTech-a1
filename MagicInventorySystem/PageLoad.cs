@@ -72,8 +72,10 @@ namespace MagicInventorySystem
             lastItem = 5;
             totalPrice = 0;
 
+            // read json files and assign into lists
             allStock = reader.readProductsFile(storeFileName);
             soldItems = reader.readProductsFile(storeFileName);
+
             totalPage = allStock.Count / 5;
 
             /* Creates product pages
@@ -92,6 +94,7 @@ namespace MagicInventorySystem
             displayTitle();
             try
             {
+                // Display the first page's products
                 for (itemIndex = firstItem; itemIndex < lastItem; itemIndex++)
                 {
                     if (allStock[itemIndex].ID >= firstItem
@@ -127,6 +130,7 @@ namespace MagicInventorySystem
         // Moves to previous page
         public int previousPage()
         {
+            // when "b" pressed, page number is changed
             if (pageIndex <= totalPage && pageIndex > 1)
             {
                 pageIndex--;
@@ -139,7 +143,7 @@ namespace MagicInventorySystem
             displayTitle();
             displayProducts();
 
-            // itemIndex gets the first index
+            // itemIndex gets the first index to display next 5 products
             if (itemIndex < 0)
             {
                 firstItem = 0;
@@ -173,6 +177,7 @@ namespace MagicInventorySystem
             }
             try
             {
+                // Display 5 products with appropriate index
                 for (itemIndex = firstItem; itemIndex < lastItem; itemIndex++)
                 {
                     if (allStock[itemIndex].ID >= firstItem
@@ -214,10 +219,15 @@ namespace MagicInventorySystem
                 pageIndex++;
             }
             Console.Clear();
+
+            // Get new values to display next 5 products
             firstItem = lastItem;     
             lastItem = firstItem + 5;
             displayTitle();
             displayProducts();
+
+            // If lastItem's value is greater than allStock.Count
+            // it gets the last index of allCount
             if (lastItem > allStock.Count)
             {
                 lastItem = allStock.Count;
@@ -237,6 +247,9 @@ namespace MagicInventorySystem
                         itemIndex = firstItem;
                     }
                 }
+
+                // If there are more than 5 items in a json file
+                // itemIndex gets the usual(increased) value
                 else if((firstItem % 5) == 0 && firstItem > 5)
                 {
                     itemIndex = firstItem;
@@ -256,6 +269,7 @@ namespace MagicInventorySystem
         {
             try
             {
+                // Display current page's items
                 for (itemIndex = firstItem; itemIndex < lastItem; itemIndex++)
                 {
                     if (allStock[itemIndex].ID >= firstItem
@@ -284,6 +298,7 @@ namespace MagicInventorySystem
             {
                 lastItem = allStock.Count;
             }
+
             displayTitle();
             displayProducts();
             displayBottomLine();
@@ -308,6 +323,7 @@ namespace MagicInventorySystem
             Console.Clear();
             Console.WriteLine("Invalid input. Try again.\n");
 
+            
             if (firstItem < 1)
             {
                 firstPage();
@@ -327,7 +343,8 @@ namespace MagicInventorySystem
         // Called when products purchases are done
         public int transactionComplete()
         {
-            Console.WriteLine("Transaction Completed. Press any key to continue...");
+            Console.WriteLine("Transaction Done!");
+            // Reset all variables for new purchase
             firstItem = 0;
             itemIndex = firstItem;
             lastItem = firstItem + 5;
@@ -354,7 +371,8 @@ namespace MagicInventorySystem
 
         // Products purchases progress 
         public int purchaseItems(int choiceIndex)
-        {    
+        {   
+            // Get current choiceIndex value
             currentItemIndex = choiceIndex;
             Console.WriteLine("\nYou have chosen " + allStock[currentItemIndex].name + ".\n");
             Console.Write("Enter the amount of the product : ");
@@ -378,6 +396,7 @@ namespace MagicInventorySystem
                 Console.WriteLine("The price of purchases is " + soldItems[purchaseItemIndex].price);
                 try
                 {
+                    // Assign current choiceIndex's stockLevel to keep tracing the records of purchases
                     soldItems[purchaseItemIndex].stockLevel = choiceIndex;
                     purchaseItemIndex++;
                     multiplePurchases = 0;
@@ -394,22 +413,27 @@ namespace MagicInventorySystem
                 {
                     Console.Write("\nDo you want to buy more products?(Y / N) : ");
                     choice = Console.ReadLine();
+                    
+                    // If yes, call current page for new purchase
                     if (choice == "Y" || choice == "y")
                     {
                         Console.Clear();
                         multiplePurchases = 1;
                         currentPage();
                     }
+
+                    // If no, ask payment method
                     else if (choice == "N" || choice == "n")
                     {
                         while (paymentMethod == 0)
                         {
                             Console.Write("\nDo you want to pay for credit card?(Y / N) : ");
                             choice = Console.ReadLine();
+
+                            // Ask the customer if s/he wants to book into a workshop
                             if (choice == "Y" || choice == "y")
                             {
                                 Console.WriteLine("\nCredit card payment is being processed!\n");
-                                // call workshop
                                 displayWorkshopConfirmation();
 
                                 paymentMethod = 1;
@@ -442,10 +466,14 @@ namespace MagicInventorySystem
                 }
 
             }
+
+            // When the item has no stock
             else if (allStock[currentItemIndex].stockLevel <= 0)
             {
                 outOfStock();
             }
+
+            // Transaction complete
             else if (choice == "C" || choice == "c")
             {
                 isCompleted = transactionComplete();
@@ -473,11 +501,17 @@ namespace MagicInventorySystem
         public int displaySummary(int index)
         {
             int bookedSeat = 0;
+
+            // Check whether the chosen workshop has available seat
+            // If available seat is the same as maxSeat, bookedSeat is 1
             if (allWorkshop[index].availableSeat == allWorkshop[index].maxSeat)
             {
                 bookedSeat = 1;
                 deductAvailableSeat(index);
             }
+
+            // If available seat is less than maxSeat and greater than 0,
+            // assign proper value to make a specific reference number
             else if (allWorkshop[index].availableSeat < allWorkshop[index].maxSeat
             && allWorkshop[index].availableSeat > 0)
             {
@@ -486,20 +520,14 @@ namespace MagicInventorySystem
             }
 
             bookingCompleted = 1;
-
-
-            // Display purchases summary
             Console.Clear();
 
             try
             {
-
-
                 // If the customer booked into a workshop, 10% discount applied
                 // purchase items and book into a workshop 
                 if (workshopBookingCheck == true && purchaseCount > 0)
                 {
-                    totalPrice -= (totalPrice * 0.1);
                     Console.WriteLine("\n=============== Purchase Summary ===============\n");
                     Console.WriteLine("You have purchased : \n");
                     for (int i = 0; i < purchaseItemIndex; i++)
@@ -509,7 +537,7 @@ namespace MagicInventorySystem
                         // compute each item's original price only
                         totalPrice += soldItems[i].price;
                     }
-
+                    totalPrice -= (totalPrice * 0.1);
                     Console.WriteLine("Workshop booked, 10% discount of total price.\n");
                     Console.WriteLine("The total price of purchased items is : " + totalPrice + "\n");
                     Console.WriteLine(customerName + "'s booking summary is : \n");
@@ -518,17 +546,18 @@ namespace MagicInventorySystem
                     Console.WriteLine("Date : " + allWorkshop[index].Date);
                     Console.WriteLine("Reference Number : " + workshopCourse[index] + workshopBranch + "_" + bookedSeat);
                 }
+
                 // only book into a workshop
                 else if(purchaseCount <= 0 && workshopBookingCheck == true)
                 {
                     Console.WriteLine("\n=============== Workshop Summary ===============\n");
-                    Console.WriteLine("You have purchased : \n");
                     Console.WriteLine(customerName + "'s booking summary is : \n");
                     Console.WriteLine("Name : " + customerName);
                     Console.WriteLine("Course Name : " + allWorkshop[index].Name);
                     Console.WriteLine("Date : " + allWorkshop[index].Date);
                     Console.WriteLine("Reference Number : " + workshopCourse[index] + workshopBranch + "_" + bookedSeat);
                 }
+
                 // no booking workshop and purchase items
                 else if (workshopBookingCheck == false && purchaseCount >0)
                 {
@@ -549,6 +578,13 @@ namespace MagicInventorySystem
             {
                 Console.WriteLine("Array index out of range");
             }
+
+            // Reset variables for next purchases
+            purchaseItemIndex = 0;
+            purchaseCount = 0;
+            firstItem = 0;
+            lastItem = 5;
+            totalPrice = 0;
             transactionComplete();
             return isCompleted;
         }
@@ -569,83 +605,88 @@ namespace MagicInventorySystem
         // Workshop progresses begin
         public void displayWorkshopConfirmation()
         {
-            allWorkshop = reader.readWorkshopFile(workshopBranch + "_Workshop.json");
-            int choiceIndex;
-            Console.WriteLine("Workshop Status at " + workshopBranch);
-            displayWorkshopTitle();
+            while(bookingCompleted == 0)
+            {
+                // Read workshop json file
+                allWorkshop = reader.readWorkshopFile(workshopBranch + "_Workshop.json");
+                int choiceIndex;
+                Console.WriteLine("Workshop Status at " + workshopBranch);
+                displayWorkshopTitle();
 
-            // Display all workshops in a store
-            foreach (Workshops workshop in allWorkshop)
-            {
-                String workshopLine = String.Format("{0, -5} | {1, -25} | {2,  -30} | {3,  -20}"
-                                                , workshop.ID, workshop.Name, workshop.Date,
-                                                workshop.availableSeat + " / " + workshop.maxSeat);
-                Console.WriteLine(workshopLine);
-            }
-            Console.WriteLine("");
-            Console.Write("Would you like to book into a workshop?( Y / N) ");
-            choice = Console.ReadLine();
-            if (choice == "Y" || choice == "y")
-            {
-                Console.WriteLine();
-                Console.Write("Enter your name : ");
-                customerName = Console.ReadLine();
-                Console.Write("\nChoose the workshop that you'd like to book : ");
+                // Display all workshops in a store
+                foreach (Workshops workshop in allWorkshop)
+                {
+                    String workshopLine = String.Format("{0, -5} | {1, -25} | {2,  -30} | {3,  -20}"
+                                                    , workshop.ID, workshop.Name, workshop.Date,
+                                                    workshop.availableSeat + " / " + workshop.maxSeat);
+                    Console.WriteLine(workshopLine);
+                }
+                Console.WriteLine("");
+                Console.Write("Would you like to book into a workshop?( Y / N) ");
                 choice = Console.ReadLine();
 
-                /* If the customer wants to book into a workshop
-                 * it checks the availability of the workshop
-                 */
-                if (int.TryParse(choice, out choiceIndex)
-                && choiceIndex > 0
-                && choiceIndex <= allWorkshop.Count)
+                // If yes, ask name and choose the workshop they want to book
+                if (choice == "Y" || choice == "y")
                 {
-                    workshopAvailability(choiceIndex - 1);
+                    Console.WriteLine();
+                    Console.Write("Enter your name : ");
+                    customerName = Console.ReadLine();
+                    Console.Write("\nChoose the workshop that you'd like to book : ");
+                    choice = Console.ReadLine();
+
+                    /* If the customer wants to book into a workshop
+                     * it checks the availability of the workshop
+                     */
+                    if (int.TryParse(choice, out choiceIndex)
+                    && choiceIndex > 0
+                    && choiceIndex <= allWorkshop.Count)
+                    {
+                        workshopAvailability(choiceIndex - 1);
+                    }
+                    else
+                    {
+                        wrongInput();
+                    }
+
+                }
+                // If no, return to the menu
+                else if (choice == "N" || choice == "n")
+                {
+                    // Purchase Items without booking into a workshop
+                    if (purchaseCount > 0 && workshopBookingCheck ==false)
+                    {
+                        Console.WriteLine("\n=============== Purchase Summary ===============\n");
+                        Console.WriteLine("You have purchased : \n");
+                        for (int i = 0; i < purchaseItemIndex; i++)
+                        {
+                            Console.WriteLine(soldItems[i].name + " " + soldItems[i].stockLevel + "ea, price : " + soldItems[i].price);
+
+                            // compute each item's original price only
+                            totalPrice += soldItems[i].price;
+                        }
+                        Console.WriteLine("The total price of purchased items is : " + totalPrice);
+                        Console.WriteLine("\n================================================\n");
+                        purchaseItemIndex = 0;
+                        purchaseCount = 0;
+                        firstItem = 0;
+                        lastItem = 5;
+                        totalPrice = 0;
+                        transactionComplete();
+                    }
+
+                    else
+                    {
+                        Console.WriteLine("Press any key to return to the menu.");
+                        bookingCompleted = 1;
+                        isCompleted = 1;
+                    }
+
                 }
                 else
                 {
                     wrongInput();
                 }
-
             }
-            else if (choice == "N" || choice == "n")
-            {
-                if(purchaseCount >0)
-                {
-                    Console.WriteLine("\n=============== Purchase Summary ===============\n");
-                    Console.WriteLine("You have purchased : \n");
-                    for (int i = 0; i < purchaseItemIndex; i++)
-                    {
-                        Console.WriteLine(soldItems[i].name + " " + soldItems[i].stockLevel + "ea, price : " + soldItems[i].price);
-
-                        // compute each item's original price only
-                        totalPrice += soldItems[i].price;
-                    }
-                    Console.WriteLine("The total price of purchased items is : " + totalPrice);
-                    Console.WriteLine("\n================================================\n");
-                    purchaseItemIndex = 0;
-                    purchaseCount = 0;
-                    firstItem = 0;
-                    lastItem = 5;
-                    totalPrice = 0;
-                    transactionComplete();
-                }
-                else
-                {
-                    Console.WriteLine("Press any key to return to the menu.");
-                    bookingCompleted = 1;
-                    isCompleted = 1;
-                }
-
-            }
-
-
-            
-            else
-            {
-                wrongInput();
-            }
-            //return bookingCompleted;
         }
 
         /* Once a workshop booking is completed
