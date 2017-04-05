@@ -32,6 +32,7 @@ namespace MagicInventorySystem
 
         public List<Products> allStock { get; set; }
         public List<Products> soldItems { get; set; }
+
         JsonProcessor reader = new JsonProcessor();
 
         // Initialize variables in constructor
@@ -342,15 +343,20 @@ namespace MagicInventorySystem
             Console.Write("Enter the amount of the product : ");
             choice = Console.ReadLine();
 
-            // Check 
+            // Check if the chosen product's stock is available now
             if (int.TryParse(choice, out choiceIndex)
             && choiceIndex > 0
             && choiceIndex <= allStock[currentItemIndex].stockLevel)
             {
+                // If so, deduct product's amount from the appropriate json file
                 purchaseProgress(choiceIndex, currentItemIndex);
                 Console.WriteLine("\nYou have purchased " + choiceIndex + "ea of " + allStock[currentItemIndex].name + "\n");
+
+                // Assign current index's name and price into another list for multiple purchases
                 soldItems[purchaseItemIndex].name = allStock[currentItemIndex].name;
                 soldItems[purchaseItemIndex].price = allStock[currentItemIndex].price;
+                
+                // Assign the price to calculate total price
                 soldItems[purchaseItemIndex].price *= choiceIndex;
                 Console.WriteLine("The price of purchases is " + soldItems[purchaseItemIndex].price);
                 try
@@ -365,6 +371,8 @@ namespace MagicInventorySystem
                 {
                     Console.WriteLine("Choose the item from the list.");
                 }
+
+                // Ask the customer whether s/he wants to buy more items
                 while (multiplePurchases == 0)
                 {
                     Console.Write("\nDo you want to buy more products?(Y / N) : ");
@@ -445,11 +453,11 @@ namespace MagicInventorySystem
         {
             while(workshopConfirmation == 0)
             {
-                Console.Write("Would you like to book a workshop?(Y / N) : ");
+                Console.Write("Would you like to book into a workshop?(Y / N) : ");
                 choice = Console.ReadLine();
                 if ((choice == "Y" || choice == "y") && purchaseItemIndex > 0)
                 {
-                    Console.WriteLine("The total price of your purchase has got 10% discount!\n");
+                    Console.WriteLine("The total price of your purchases have got 10% discount!\n");
                     workshopBookingCheck = true;
                     workshopConfirmation = 1;
                 }
@@ -464,6 +472,8 @@ namespace MagicInventorySystem
                     workshopConfirmation = 0;
                 }
             }
+            
+            // Display purchases summary
             Console.Clear();
             Console.WriteLine("\n=============== Purchase Summary ===============\n");
             Console.WriteLine("You have purchased : \n");
@@ -477,6 +487,7 @@ namespace MagicInventorySystem
                     totalPrice += soldItems[i].price;
                 }
                 
+                // If the customer booked into a workshop, 10% discount applied
                 if(workshopBookingCheck == true)
                 {
                     totalPrice -= (totalPrice * 0.1);

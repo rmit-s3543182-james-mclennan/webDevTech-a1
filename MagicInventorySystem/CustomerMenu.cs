@@ -208,7 +208,8 @@ namespace MagicInventorySystem
         {
             while (loadWorkshop.bookingCompleted == 0)
             {
-                loadWorkshop.bookingCompleted = loadWorkshop.displayWorkshopConfirmation();
+                loadWorkshop.bookingCompleted = 
+                            loadWorkshop.displayWorkshopConfirmation();
             }
             loadWorkshop.bookingCompleted = 0;
         }

@@ -12,25 +12,22 @@ namespace MagicInventorySystem
     class LoadWorkshop : PageLoad
     {
         JsonProcessor reader = new JsonProcessor();
+
         public List<Workshops> allWorkshop { get; set; }
+
         public int bookingCompleted { get; set; }
         public int maxSeat { get; set; }
+        public int currentIndex { get; set; }
 
         public string workshopRef { get; set; }
-        public string[] workshopCourse { get; set; }
-
         public string workshopDate { get; set; }
         public string workshopBranch { get; set; }
         public string customerName { get; set; }
-        //public string pattern { get; set; }
-        //Regex regexCheck { get; set; }
-        public int currentIndex { get; set; }
+        public string[] workshopCourse { get; set; }
 
         // Initialize variables in constructor
         public LoadWorkshop()
         {  
-            //pattern = @"(\w+)\s+(\w+)";
-            //regexCheck = new Regex(pattern, RegexOptions.IgnoreCase);
             workshopCourse = new string[]
                             {"ITM_", "AMT_", "HCM_"};
             bookingCompleted = 0;
@@ -47,8 +44,9 @@ namespace MagicInventorySystem
             // Display all workshops in a store
             foreach (Workshops workshop in allWorkshop)
             {
-                String workshopLine = String.Format("{0, -5} | {1, -25} | {2,  -30} | {3,  -20}", workshop.ID, workshop.Name, workshop.Date, 
-                    workshop.availableSeat + " / " + workshop.maxSeat);
+                String workshopLine = String.Format("{0, -5} | {1, -25} | {2,  -30} | {3,  -20}"
+                                                , workshop.ID, workshop.Name, workshop.Date, 
+                                                workshop.availableSeat + " / " + workshop.maxSeat);
                 Console.WriteLine(workshopLine);
             }
             Console.WriteLine("");
@@ -58,11 +56,13 @@ namespace MagicInventorySystem
             {
                 Console.WriteLine();
                 Console.Write("Enter your name : ");
-                // Try to add regex for valid name later if i have time to work on it
                 customerName = Console.ReadLine();
                 Console.Write("\nChoose the workshop that you'd like to book : ");
                 choice = Console.ReadLine();
 
+                /* If the customer wants to book into a workshop
+                 * it checks the availability of the workshop
+                 */
                 if (int.TryParse(choice, out choiceIndex)
                 && choiceIndex > 0
                 && choiceIndex <= allWorkshop.Count)
@@ -99,10 +99,9 @@ namespace MagicInventorySystem
         // Display workshop title line
         public void displayWorkshopTitle()
         {
-            String titleLine = String.Format("\n{0, -5} | {1, -25} | {2, -30} | {3, -10}", "ID", "Name", "Date", "Available Seat");
-
+            String titleLine = String.Format("\n{0, -5} | {1, -25} | {2, -30} | {3, -10}"
+                                            , "ID", "Name", "Date", "Available Seat");
             Console.WriteLine(titleLine);
-
             for (int i = 0; i < titleLine.Length; i++)
             {
                 Console.Write("=");
@@ -123,8 +122,7 @@ namespace MagicInventorySystem
 
         // Check whether the chosen workshop has available seat
         public int workshopAvailability(int index)
-        {
-            
+        { 
             if (allWorkshop[index].availableSeat >= 1)
             {
                 Console.WriteLine("You have successfully booked into the " + allWorkshop[index].Name + " workshop!");                
@@ -146,16 +144,16 @@ namespace MagicInventorySystem
             return bookingCompleted;
         }
 
-        // Display workshop summary
+        // Display workshop summary with specific reference
         public int workshopBookingSummary(int index)
         {
             int bookedSeat = 0;
-            if (allWorkshop[index].availableSeat == allWorkshop[index].maxSeat)      // 10 == 10
+            if (allWorkshop[index].availableSeat == allWorkshop[index].maxSeat)
             {
                 bookedSeat = 1;
                 deductAvailableSeat(index);
             }
-            else if(allWorkshop[index].availableSeat < allWorkshop[index].maxSeat  // 0 < availableSeat(1 ~ 9) < 10
+            else if(allWorkshop[index].availableSeat < allWorkshop[index].maxSeat
             && allWorkshop[index].availableSeat > 0)
             {
                 bookedSeat = allWorkshop[index].maxSeat - allWorkshop[index].availableSeat + 1;

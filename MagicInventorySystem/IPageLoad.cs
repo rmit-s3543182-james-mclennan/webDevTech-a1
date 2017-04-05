@@ -13,13 +13,14 @@ namespace MagicInventorySystem
         int lastPage();
         int nextPage();
         int currentPage();
-        void displayProducts();
+        int displayPurchaseSummary();
         int outOfStock();
         int invalidInput();
         int transactionComplete();
-        void displayTitle();
         int purchaseItems(int choiceIndex);
+
+        void displayTitle();
+        void displayProducts();
         void purchaseProgress(int amount, int currentItemIndex);
-        int displayPurchaseSummary();
     }
 }
