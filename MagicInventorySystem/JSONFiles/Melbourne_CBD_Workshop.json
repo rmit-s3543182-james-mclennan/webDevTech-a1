@@ -10,14 +10,28 @@
     "ID": 2,
     "Name": "Advanced Magic Technique",
     "Date": "Wednesday 1:30 pm to 3:30 pm",
-    "availableSeat": 25,
+    "availableSeat": 18,
     "maxSeat" :  25
   },
   {
     "ID": 3,
     "Name": "Handling Card Magic",
     "Date": "Thursday 4:30 pm to 6:30 pm",
-    "availableSeat": 25,
+    "availableSeat": 5,
     "maxSeat" :  25
    },
+  {
+    "ID": 4,
+    "Name": "Handling Animals",
+    "Date": "Friday 7:30 pm to 9:30 pm",
+    "availableSeat": 9,
+    "maxSeat" :  25
+  },
+  {
+    "ID": 5,
+    "Name": "Introduction to Acting",
+    "Date": "Wednesday 5:30 pm to 7:30 pm",
+    "availableSeat": 2,
+    "maxSeat" :  25
+  }
  ]

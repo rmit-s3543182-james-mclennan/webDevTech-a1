@@ -29,7 +29,7 @@ namespace MagicInventorySystem
         public LoadWorkshop()
         {  
             workshopCourse = new string[]
-                            {"ITM_", "AMT_", "HCM_"};
+                            {"ITM_", "AMT_", "HCM_", "HA_", "ITA_"};
             bookingCompleted = 0;
         }
 
@@ -125,7 +125,6 @@ namespace MagicInventorySystem
         { 
             if (allWorkshop[index].availableSeat >= 1)
             {
-                Console.WriteLine("You have successfully booked into the " + allWorkshop[index].Name + " workshop!");                
                 bookingCompleted = workshopBookingSummary(index);
             }
             else if (allWorkshop[index].availableSeat < 1)

@@ -3,14 +3,28 @@
     "ID": 1,
     "Name": "Introduction to Magic",
     "Date": "Monday 11:30 am to 1:30 pm",
-    "availableSeat": 25,
-    "maxSeat" :  25
+    "availableSeat": 8,
+    "maxSeat" :  10
   },
   {
     "ID": 2,
     "Name": "Advanced Magic Technique",
     "Date": "Thursday 2:30 pm to 4:30 pm",
-    "availableSeat": 25,
-    "maxSeat" :  25
+    "availableSeat": 10,
+    "maxSeat" :  13
+  },
+  {
+    "ID": 3,
+    "Name": "Handling Animals",
+    "Date": "Friday 7:30 pm to 9:30 pm",
+    "availableSeat": 5,
+    "maxSeat" :  8
+  },
+  {
+    "ID": 4,
+    "Name": "Introduction to Acting",
+    "Date": "Wednesday 5:30 pm to 7:30 pm",
+    "availableSeat": 3,
+    "maxSeat" :  7
   }
 ]
