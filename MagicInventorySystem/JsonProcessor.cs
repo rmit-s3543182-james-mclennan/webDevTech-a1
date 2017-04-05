@@ -55,16 +55,19 @@ namespace MagicInventorySystem
             }
         }
 
+        //Write to products file.
         public void writeToProductsFile(string fileName, List<Products> list)
         {
             File.WriteAllText("JSONFiles/" + fileName, JsonConvert.SerializeObject(list, Formatting.Indented));
         }
 
+        //Write to stock file.
         public void writeToStockFile(string fileName, List<stockRequestItem> list)
         {
             File.WriteAllText("JSONFiles/"+fileName, JsonConvert.SerializeObject(list, Formatting.Indented));
         }
 
+        //Write to workshop file.
         public void writeToWorkshopFIle(string fileName, List<Workshops> list)
         {
             File.WriteAllText("JSONFiles/" + fileName, JsonConvert.SerializeObject(list, Formatting.Indented));

@@ -11,14 +11,17 @@ namespace MagicInventorySystem
     class Owner
     {
         JsonProcessor reader = new JsonProcessor();
+
+        //Display all stock - Prints all lines of inventory items.
         public void displayAllStock()
         {
             List<Products> allStock = reader.readProductsFile("owners_inventory.json");
 
+            //Formating title.
             String titleLine = String.Format("\n{0, -5} | {1, -15} | {2, -10}", "ID", "Name", "Stock Level");
 
             Console.WriteLine(titleLine);
-
+            
             for (int i = 0; i < titleLine.Length; i++)
             {
                 Console.Write("=");
@@ -28,6 +31,7 @@ namespace MagicInventorySystem
                 }
             }
 
+            //For each product, print the line.
             foreach (Products stockItem in allStock)
             {
                 String productLine = String.Format("{0, -5} | {1,  -15} | {2,  -10}", stockItem.ID, stockItem.name, stockItem.stockLevel);
