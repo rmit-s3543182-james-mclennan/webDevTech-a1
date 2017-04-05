@@ -1,0 +1,52 @@
+﻿Merge remote-tracking branch 'origin/WDT-working' into WDT-working
+
+# Conflicts:
+#	MagicInventorySystem/JSONFiles/Melbourne_CBD_Workshop.json
+#
+# It looks like you may be committing a merge.
+# If this is not correct, please remove the file
+#	.git/MERGE_HEAD
+# and try again.
+
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch WDT-working
+# Your branch and 'origin/WDT-working' have diverged,
+# and have 2 and 1 different commits each, respectively.
+#   (use "git pull" to merge the remote branch into yours)
+#
+# All conflicts fixed but you are still merging.
+#
+# Changes to be committed:
+#	modified:   MagicInventorySystem/JSONFiles/Melbourne_CBD_Inventory.json
+#	modified:   MagicInventorySystem/JSONFiles/Melbourne_East_Inventory.json
+#	modified:   MagicInventorySystem/JSONFiles/Melbourne_North_Inventory.json
+#	modified:   MagicInventorySystem/JSONFiles/Melbourne_South_Inventory.json
+#	modified:   MagicInventorySystem/JSONFiles/Melbourne_West_Inventory.json
+#	modified:   MagicInventorySystem/JSONFiles/owners_inventory.json
+#	modified:   MagicInventorySystem/MagicInventorySystem.csproj
+#	modified:   MagicInventorySystem/Owner.cs
+#	modified:   MagicInventorySystem/Workshops.cs
+#	modified:   MagicInventorySystem/bin/Debug/Newtonsoft.Json.dll
+#	modified:   MagicInventorySystem/bin/Debug/Newtonsoft.Json.xml
+#	modified:   MagicInventorySystem/obj/Debug/MagicInventorySystem.csproj.FileListAbsolute.txt
+#	modified:   MagicInventorySystem/packages.config
+#	deleted:    packages/Newtonsoft.Json.10.0.1/Newtonsoft.Json.10.0.1.nupkg
+#	deleted:    packages/Newtonsoft.Json.10.0.1/lib/net20/Newtonsoft.Json.dll
+#	deleted:    packages/Newtonsoft.Json.10.0.1/lib/net20/Newtonsoft.Json.xml
+#	deleted:    packages/Newtonsoft.Json.10.0.1/lib/net35/Newtonsoft.Json.dll
+#	deleted:    packages/Newtonsoft.Json.10.0.1/lib/net35/Newtonsoft.Json.xml
+#	deleted:    packages/Newtonsoft.Json.10.0.1/lib/net40/Newtonsoft.Json.dll
+#	deleted:    packages/Newtonsoft.Json.10.0.1/lib/net40/Newtonsoft.Json.xml
+#	deleted:    packages/Newtonsoft.Json.10.0.1/lib/net45/Newtonsoft.Json.dll
+#	deleted:    packages/Newtonsoft.Json.10.0.1/lib/net45/Newtonsoft.Json.xml
+#	deleted:    packages/Newtonsoft.Json.10.0.1/lib/netstandard1.0/Newtonsoft.Json.dll
+#	deleted:    packages/Newtonsoft.Json.10.0.1/lib/netstandard1.0/Newtonsoft.Json.xml
+#	deleted:    packages/Newtonsoft.Json.10.0.1/lib/netstandard1.3/Newtonsoft.Json.dll
+#	deleted:    packages/Newtonsoft.Json.10.0.1/lib/netstandard1.3/Newtonsoft.Json.xml
+#	deleted:    packages/Newtonsoft.Json.10.0.1/lib/portable-net45+win8+wpa81+wp8/Newtonsoft.Json.dll
+#	deleted:    packages/Newtonsoft.Json.10.0.1/lib/portable-net45+win8+wpa81+wp8/Newtonsoft.Json.xml
+#	deleted:    packages/Newtonsoft.Json.10.0.1/tools/install.ps1
+#
+

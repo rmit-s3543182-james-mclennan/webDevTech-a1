@@ -154,8 +154,9 @@ namespace MagicInventorySystem
 
         }
 
-        public int processStockRequest(List<stockRequestItem> stockRequests)
+        private int processStockRequest(List<stockRequestItem> stockRequests)
         {
+            Console.WriteLine("Enter 'No' to return to Owner Menu.\n");
             Console.WriteLine("Enter Request to Process: ");
             string stringID = Console.ReadLine();
             int id = 0;

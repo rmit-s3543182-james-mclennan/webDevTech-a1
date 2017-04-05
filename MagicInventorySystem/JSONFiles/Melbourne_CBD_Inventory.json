@@ -1,50 +1,92 @@
 [
   {
     "ID": 1,
-    "name": "Deck of Cards",
-	"stockLevel": 25,
+    "name": "Rabbit",
+    "stockLevel": 25,
     "price": 10.0
   },
   {
     "ID": 2,
     "name": "Wand",
-    "stockLevel": 20,
-    "price": 30.0
+    "stockLevel": 25,
+    "price": 10.0
   },
   {
     "ID": 3,
     "name": "Magic Hat",
-	"stockLevel": 42,
-    "price": 30.0
+    "stockLevel": 25,
+    "price": 10.0
   },
   {
     "ID": 4,
-    "name": "Moustache",
-    "stockLevel": 11,
-    "price": 5.5
+    "name": "Deck of Cards",
+    "stockLevel": 25,
+    "price": 10.0
   },
   {
     "ID": 5,
     "name": "Cape",
-    "stockLevel": 19,
-    "price": 15.0
+    "stockLevel": 25,
+    "price": 10.0
   },
   {
     "ID": 6,
-    "name": "Rabbit",
-    "stockLevel": 50,
-    "price": 50.0
+    "name": "Moustache",
+    "stockLevel": 25,
+    "price": 10.0
   },
   {
     "ID": 7,
-    "name": "Hoops",
-    "stockLevel": 50,
-    "price": 8.0
+    "name": "Fake blood",
+    "stockLevel": 25,
+    "price": 10.0
   },
   {
     "ID": 8,
+    "name": "Rope",
+    "stockLevel": 25,
+    "price": 10.0
+  },
+  {
+    "ID": 9,
+    "name": "Hoops",
+    "stockLevel": 25,
+    "price": 10.0
+  },
+  {
+    "ID": 10,
+    "name": "Hand cuffs",
+    "stockLevel": 25,
+    "price": 10.0
+  },
+  {
+    "ID": 11,
+    "name": "Bottle of air",
+    "stockLevel": 25,
+    "price": 10.0
+  },
+  {
+    "ID": 12,
+    "name": "Flying carpet",
+    "stockLevel": 25,
+    "price": 10.0
+  },
+  {
+    "ID": 13,
+    "name": "Wizard Hat",
+    "stockLevel": 25,
+    "price": 10.0
+  },
+  {
+    "ID": 14,
+    "name": "Fairy Dust",
+    "stockLevel": 25,
+    "price": 10.0
+  },
+  {
+    "ID": 15,
     "name": "Flying Powder",
-    "stockLevel": 149,
-    "price": 3.0
+    "stockLevel": 25,
+    "price": 10.0
   }
 ]

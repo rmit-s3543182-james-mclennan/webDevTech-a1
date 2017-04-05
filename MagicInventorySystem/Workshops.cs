@@ -12,7 +12,6 @@ namespace MagicInventorySystem
         public string Name { get; set; }
         public string Date { get; set; }
         public int availableSeat { get; set; }
-        public int bookedSeat { get; set; }
         public int maxSeat { get; set; }
     }
 }
