@@ -148,6 +148,7 @@ namespace MagicInventorySystem
             {
                 firstItem = 0;
             }
+
             try
             {
                 for (itemIndex = firstItem; itemIndex < lastItem; itemIndex++)
@@ -195,17 +196,31 @@ namespace MagicInventorySystem
             }
             Console.Clear();
             firstItem = lastItem;
+            
             lastItem = firstItem + 5;
             displayTitle();
             displayProducts();
             if (lastItem > allStock.Count)
             {
                 lastItem = allStock.Count;
-                firstItem = lastItem - 5;
-                itemIndex = firstItem;
-
+                //itemIndex = firstItem;
+                if(firstItem >= lastItem)
+                {
+                    firstItem = lastItem - (lastItem % 5);     // 8 - (3
+                    itemIndex = firstItem;
+                }
+                else if((firstItem % 5) == 0)
+                {
+                    itemIndex = firstItem;
+                }
+                else if(firstItem <= 5)
+                {
+                    firstItem = 0;
+                }
                 lastPage();
             }
+
+
             else
             {
                 Console.WriteLine("Page " + pageIndex + "/" + totalPage);

@@ -8,25 +8,25 @@
   {
     "ID": 2,
     "name": "Wand",
-    "stockLevel": 17,
+    "stockLevel": 15,
     "price": 30.0
   },
   {
     "ID": 3,
     "name": "Magic Hat",
-    "stockLevel": 32,
+    "stockLevel": 30,
     "price": 30.0
   },
   {
     "ID": 4,
     "name": "Moustache",
-    "stockLevel": 12,
+    "stockLevel": 11,
     "price": 5.5
   },
   {
     "ID": 5,
     "name": "Cape",
-    "stockLevel": 21,
+    "stockLevel": 19,
     "price": 15.0
   },
   {
@@ -44,7 +44,7 @@
   {
     "ID": 8,
     "name": "Flying Powder",
-    "stockLevel": 150,
+    "stockLevel": 149,
     "price": 3.0
   }
 ]
