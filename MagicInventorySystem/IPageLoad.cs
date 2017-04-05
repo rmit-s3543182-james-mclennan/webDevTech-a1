@@ -14,7 +14,7 @@ namespace MagicInventorySystem
         int lastPage();
         int nextPage();
         int currentPage();
-        //int displayPurchaseSummary();
+        int displayPurchaseSummary();
         int outOfStock();
         int invalidInput();
         int transactionComplete();

@@ -9,6 +9,7 @@ namespace MagicInventorySystem
     // Sub(Derived)class of PageLoad
     class CustomerMenu : PageLoad
     {
+        LoadWorkshop loadWorkshop = new LoadWorkshop();
 
         public MagicMenuCollection loadCustomerPurchaseMenu(MagicMenuCollection collection)
         {
@@ -25,7 +26,7 @@ namespace MagicInventorySystem
                         {
                             Console.Clear();
                             storeFileName = "Melbourne_CBD_Inventory.json";
-                            workshopBranch = "Melbourne_CBD";
+                            loadWorkshop.workshopBranch = "Melbourne_CBD";
                             collection.ShowMenu(4);
                         }
                     },
@@ -37,7 +38,7 @@ namespace MagicInventorySystem
                         {
                             Console.Clear();
                             storeFileName = "Melbourne_North_Inventory.json";
-                            workshopBranch = "Melbourne_North";
+                            loadWorkshop.workshopBranch = "Melbourne_North";
                             collection.ShowMenu(4);
                         }
                     },
@@ -49,7 +50,7 @@ namespace MagicInventorySystem
                         {
                             Console.Clear();
                             storeFileName = "Melbourne_South_Inventory.json";
-                            workshopBranch = "Melbourne_South";
+                            loadWorkshop.workshopBranch = "Melbourne_South";
                             collection.ShowMenu(4);
                         }
                     },
@@ -61,7 +62,7 @@ namespace MagicInventorySystem
                         {
                             Console.Clear();
                             storeFileName = "Melbourne_East_Inventory.json";
-                            workshopBranch = "Melbourne_East";
+                            loadWorkshop.workshopBranch = "Melbourne_East";
                             collection.ShowMenu(4);
                         }
                     },
@@ -73,7 +74,7 @@ namespace MagicInventorySystem
                         {
                             Console.Clear();
                             storeFileName = "Melbourne_West_Inventory.json";
-                            workshopBranch = "Melbourne_West";
+                            loadWorkshop.workshopBranch = "Melbourne_West";
                             collection.ShowMenu(4);
                         }
                     },
@@ -127,7 +128,7 @@ namespace MagicInventorySystem
                             Execute = () =>
                             {
                                 Console.Clear();
-                                displayWorkshopConfirmation();
+                                bookingWorkshop();
                                 Console.ReadKey();
                                 Console.Clear();
                                 collection.ShowMenu(4);
@@ -158,7 +159,7 @@ namespace MagicInventorySystem
         {
             int choiceIndex;
             Console.Clear();
-            Console.WriteLine("Products at " + workshopBranch + " store");
+            Console.WriteLine("Products at " + loadWorkshop.workshopBranch + " store");
             firstPage();
             /* The while loop works until the user presses "c"
              * or finishes products purchases
@@ -204,15 +205,15 @@ namespace MagicInventorySystem
             }
         }
 
-        //public void bookingWorkshop()
-        //{
-        //    while (bookingCompleted == 0)
-        //    {
-        //        bookingCompleted = 
-        //                    displayWorkshopConfirmation();
-        //    }
-        //    bookingCompleted = 0;
-        //}
+        public void bookingWorkshop()
+        {
+            while (loadWorkshop.bookingCompleted == 0)
+            {
+                loadWorkshop.bookingCompleted = 
+                            loadWorkshop.displayWorkshopConfirmation();
+            }
+            loadWorkshop.bookingCompleted = 0;
+        }
     }
 
 }
