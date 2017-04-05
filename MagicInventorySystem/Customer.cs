@@ -79,7 +79,7 @@ namespace MagicInventorySystem
                     },
                     new MagicMenuItem()
                     {
-                        Option = "Return to Main Menu\n",
+                        Option = "Return to Main Menu",
                         CannotExecute = true,
                         SubMenuId = 1
                     },

@@ -61,7 +61,10 @@ namespace MagicInventorySystem
             {
                 totalPage += 1;
             }
-
+            else
+            {
+                
+            }
             if (allStock.Count < 5)
             {
                 lastItem = allStock.Count;
@@ -206,16 +209,20 @@ namespace MagicInventorySystem
                 //itemIndex = firstItem;
                 if(firstItem >= lastItem)
                 {
-                    firstItem = lastItem - (lastItem % 5);     // 8 - (3
-                    itemIndex = firstItem;
+                    if(lastItem % 5 != 0)
+                    {
+                        firstItem = lastItem - (lastItem % 5);
+                        itemIndex = firstItem;
+                    }
+                    else
+                    {
+                        firstItem = lastItem - 5;
+                        itemIndex = firstItem;
+                    }
                 }
-                else if((firstItem % 5) == 0)
+                else if((firstItem % 5) == 0 && firstItem > 5)
                 {
                     itemIndex = firstItem;
-                }
-                else if(firstItem <= 5)
-                {
-                    firstItem = 0;
                 }
                 lastPage();
             }
@@ -257,7 +264,6 @@ namespace MagicInventorySystem
             catch (ArgumentOutOfRangeException e)
             {
                 Console.Clear();
-                Console.WriteLine("No more pages exist!");
             }
         }
 
