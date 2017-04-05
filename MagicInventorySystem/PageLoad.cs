@@ -22,10 +22,10 @@ namespace MagicInventorySystem
         public int multiplePurchases { get; set; }
         public int paymentMethod { get; set; }
         public int workshopConfirmation { get; set; }
+
         public double totalPrice { get; set; }
 
-        public string storeFileName { get; set; }
-        
+        public string storeFileName { get; set; }   
         public string choice { get; set; }
 
         public bool workshopBookingCheck { get; set; }
@@ -46,7 +46,7 @@ namespace MagicInventorySystem
         public int firstPage()
         {
             /* Initialize variables everytime 
-             * a customer choose display product
+             * a customer chooses display product
              */
             purchaseItemIndex = 0;
             purchaseCount = 0;
@@ -57,6 +57,10 @@ namespace MagicInventorySystem
             allStock = reader.readProductsFile(storeFileName);
             soldItems = reader.readProductsFile(storeFileName);
             totalPage = allStock.Count / 5;
+
+            /* Creates product pages
+             * by comparing with the amount of products
+             */
             if (allStock.Count % 5 != 0)
             {
                 totalPage += 1;
@@ -65,6 +69,8 @@ namespace MagicInventorySystem
             {
                 lastItem = allStock.Count;
             }
+
+            // Display 5 products from the appropriate json file
             displayTitle();
             try
             {
@@ -86,8 +92,8 @@ namespace MagicInventorySystem
             }
             catch (ArgumentOutOfRangeException e)
             {
+                // If index is out of range, variables are reset
                 Console.Clear();
-                Console.WriteLine("This is the first page! firstPage");
                 if (itemIndex < 0)
                 {
                     firstItem = 0;
@@ -96,10 +102,7 @@ namespace MagicInventorySystem
                 }
             }
             isCompleted = 0;
-            Console.WriteLine("Page " + pageIndex + "/" + totalPage);
-            Console.WriteLine("[Legend: 'P' Next Page | 'B' Previous Page | 'R' Return to Menu | 'C' Complete Transaction]");
-            Console.Write("Enter Product ID to purchase : ");
-            choice = Console.ReadLine();
+            displayBottomLine();
             return isCompleted;
         }
 
@@ -111,24 +114,24 @@ namespace MagicInventorySystem
                 pageIndex--;
             }
             Console.Clear();
+            
+            // Variables get next values to display next 5 products
             lastItem = firstItem;
             firstItem = lastItem - 5;
             displayTitle();
             displayProducts();
+
+            // itemIndex gets the first index
             if (itemIndex < 0)
             {
                 firstItem = 0;
                 itemIndex = firstItem;
                 lastItem = firstItem + 5;
-
                 firstPage();
             }
             else
             {
-                Console.WriteLine("Page " + pageIndex + "/" + totalPage);
-                Console.WriteLine("[Legend: 'P' Next Page | 'B' Previous Page | 'R' Return to Menu | 'C' Complete Transaction]");
-                Console.Write("Enter Product ID to purchase : ");
-                choice = Console.ReadLine();
+                displayBottomLine();
             }
             isCompleted = 0;
             return isCompleted;
@@ -142,12 +145,14 @@ namespace MagicInventorySystem
                 pageIndex = totalPage;
             }
             displayTitle();
-
+            
+            /* If a store has less than 5 items
+             * firstItem's index would be 0
+             */
             if (lastItem < 5)
             {
                 firstItem = 0;
             }
-
             try
             {
                 for (itemIndex = firstItem; itemIndex < lastItem; itemIndex++)
@@ -167,22 +172,19 @@ namespace MagicInventorySystem
             }
             catch (ArgumentOutOfRangeException e)
             {
+                /* If lastItem's index is greater than allStock,
+                 * variables are reset with appropriate values
+                 */
                 Console.Clear();
-                Console.WriteLine("This is the last page! lastPage");
                 if (lastItem > allStock.Count)
                 {
                     lastItem = allStock.Count;
                     firstItem = lastItem - 5;
                     itemIndex = firstItem;
                 }
-
             }
             isCompleted = 0;
-            Console.WriteLine("Page " + pageIndex + "/" + totalPage);
-            Console.WriteLine("[Legend: 'P' Next Page | 'B' Previous Page | 'R' Return to Menu | 'C' Complete Transaction]");
-            Console.Write("Enter Product ID to purchase : ");
-
-            choice = Console.ReadLine();
+            displayBottomLine();
             return isCompleted;
         }
 
@@ -194,17 +196,18 @@ namespace MagicInventorySystem
                 pageIndex++;
             }
             Console.Clear();
-            firstItem = lastItem;
-            
+            firstItem = lastItem;     
             lastItem = firstItem + 5;
             displayTitle();
             displayProducts();
             if (lastItem > allStock.Count)
             {
                 lastItem = allStock.Count;
-                //itemIndex = firstItem;
                 if(firstItem >= lastItem)
                 {
+                    /* Compute to display proper item list in a page
+                     * e.g. 8 items -> 5 items in page 1, 3 items in page 2
+                     */
                     if(lastItem % 5 != 0)
                     {
                         firstItem = lastItem - (lastItem % 5);
@@ -222,20 +225,13 @@ namespace MagicInventorySystem
                 }
                 lastPage();
             }
-
-
             else
             {
-                Console.WriteLine("Page " + pageIndex + "/" + totalPage);
-                Console.WriteLine("[Legend: 'P' Next Page | 'B' Previous Page | 'R' Return to Menu | 'C' Complete Transaction]");
-                Console.Write("Enter Product ID to purchase : ");
-                choice = Console.ReadLine();
+                displayBottomLine();
             }
             isCompleted = 0;
             return isCompleted;
         }
-
-
 
         // Display current page's products
         public void displayProducts()
@@ -272,11 +268,7 @@ namespace MagicInventorySystem
             }
             displayTitle();
             displayProducts();
-            Console.WriteLine("Page " + pageIndex + "/" + totalPage);
-            Console.WriteLine("[Legend: 'P' Next Page | 'B' Previous Page | 'R' Return to Menu | 'C' Complete Transaction]");
-            Console.Write("Enter Product ID to purchase : ");
-            choice = Console.ReadLine();
-
+            displayBottomLine();
             isCompleted = 0;
             return isCompleted;
         }
@@ -296,7 +288,7 @@ namespace MagicInventorySystem
         public int invalidInput()
         {
             Console.Clear();
-            Console.WriteLine("Invalid input. Try again.");
+            Console.WriteLine("Invalid input. Try again.\n");
 
             if (firstItem < 1)
             {
@@ -329,10 +321,9 @@ namespace MagicInventorySystem
         // Display title line
         public void displayTitle()
         {
-            String titleLine = String.Format("\n{0, -5} | {1, -15} | {2, -10} | {3,  -10}", "ID", "Name", "Stock Level","Price");
-
+            String titleLine = String.Format("\n{0, -5} | {1, -15} | {2, -10} | {3,  -10}"
+                                            ,"ID", "Name", "Stock Level","Price");
             Console.WriteLine(titleLine);
-
             for (int i = 0; i < titleLine.Length; i++)
             {
                 Console.Write("=");
@@ -347,15 +338,17 @@ namespace MagicInventorySystem
         public int purchaseItems(int choiceIndex)
         {    
             currentItemIndex = choiceIndex;
-            Console.WriteLine("You have chosen " + allStock[currentItemIndex].name + ".");
+            Console.WriteLine("\nYou have chosen " + allStock[currentItemIndex].name + ".\n");
             Console.Write("Enter the amount of the product : ");
             choice = Console.ReadLine();
+
+            // Check 
             if (int.TryParse(choice, out choiceIndex)
             && choiceIndex > 0
             && choiceIndex <= allStock[currentItemIndex].stockLevel)
             {
                 purchaseProgress(choiceIndex, currentItemIndex);
-                Console.WriteLine("You have purchased " + choiceIndex + "ea of " + allStock[currentItemIndex].name);
+                Console.WriteLine("\nYou have purchased " + choiceIndex + "ea of " + allStock[currentItemIndex].name + "\n");
                 soldItems[purchaseItemIndex].name = allStock[currentItemIndex].name;
                 soldItems[purchaseItemIndex].price = allStock[currentItemIndex].price;
                 soldItems[purchaseItemIndex].price *= choiceIndex;
@@ -372,50 +365,48 @@ namespace MagicInventorySystem
                 {
                     Console.WriteLine("Choose the item from the list.");
                 }
-                while(multiplePurchases == 0)
+                while (multiplePurchases == 0)
                 {
-                    Console.Write("Do you want to buy more products?(Y / N) : ");
+                    Console.Write("\nDo you want to buy more products?(Y / N) : ");
                     choice = Console.ReadLine();
                     if (choice == "Y" || choice == "y")
                     {
                         Console.Clear();
                         multiplePurchases = 1;
                         currentPage();
-                        
-
                     }
                     else if (choice == "N" || choice == "n")
                     {
-                        while(paymentMethod == 0)
+                        while (paymentMethod == 0)
                         {
-                            Console.Write("Do you want to pay for credit card?(Y / N) : ");
+                            Console.Write("\nDo you want to pay for credit card?(Y / N) : ");
                             choice = Console.ReadLine();
                             if (choice == "Y" || choice == "y")
                             {
-                                Console.WriteLine("Credit card payment is being processed!");
+                                Console.WriteLine("\nCredit card payment is being processed!\n");
                                 displayPurchaseSummary();
                                 paymentMethod = 1;
                                 multiplePurchases = 1;
                             }
                             else if (choice == "N" || choice == "n")
                             {
-                                Console.WriteLine("Cash payment is being processed!");
+                                Console.WriteLine("\nCash payment is being processed!\n");
                                 displayPurchaseSummary();
                                 paymentMethod = 1;
                                 multiplePurchases = 1;
                             }
                             else
                             {
-                                Console.WriteLine("Invalid input. Try again.");
+                                Console.WriteLine("Invalid input. Try again.\n");
                                 paymentMethod = 0;
-                                multiplePurchases = 0;            
+                                multiplePurchases = 0;
                             }
                         }
 
                     }
                     else
                     {
-                        Console.WriteLine("Invalid input. Try again.");
+                        Console.WriteLine("Invalid input. Try again.\n");
                         multiplePurchases = 0;
                         isCompleted = 0;
                     }
@@ -425,6 +416,10 @@ namespace MagicInventorySystem
             else if (allStock[currentItemIndex].stockLevel <= 0)
             {
                 outOfStock();
+            }
+            else if (choice == "C" || choice == "c")
+            {
+                isCompleted = transactionComplete();
             }
             else
             {
@@ -454,7 +449,7 @@ namespace MagicInventorySystem
                 choice = Console.ReadLine();
                 if ((choice == "Y" || choice == "y") && purchaseItemIndex > 0)
                 {
-                    Console.WriteLine("The total price of your purchase has got 10% discount!");
+                    Console.WriteLine("The total price of your purchase has got 10% discount!\n");
                     workshopBookingCheck = true;
                     workshopConfirmation = 1;
                 }
@@ -465,10 +460,11 @@ namespace MagicInventorySystem
                 }
                 else
                 {
-                    Console.WriteLine("Invalid input. Try again.");
+                    Console.WriteLine("Invalid input. Try again.\n");
                     workshopConfirmation = 0;
                 }
             }
+            Console.Clear();
             Console.WriteLine("\n=============== Purchase Summary ===============\n");
             Console.WriteLine("You have purchased : \n");
             try
@@ -484,7 +480,7 @@ namespace MagicInventorySystem
                 if(workshopBookingCheck == true)
                 {
                     totalPrice -= (totalPrice * 0.1);
-                    Console.WriteLine("Workshop booked, 10% discount of total price.");
+                    Console.WriteLine("Workshop booked, 10% discount of total price.\n");
                     Console.WriteLine("The total price of purchased items is : " + totalPrice);
                 }
                 else if(workshopBookingCheck == false)
@@ -499,6 +495,14 @@ namespace MagicInventorySystem
             }
             transactionComplete();
             return isCompleted;
+        }
+
+        public void displayBottomLine()
+        {
+            Console.WriteLine("Page " + pageIndex + "/" + totalPage);
+            Console.WriteLine("[Legend: 'P' Next Page | 'B' Previous Page | 'R' Return to Menu | 'C' Complete Transaction]");
+            Console.Write("Enter Product ID to purchase : ");
+            choice = Console.ReadLine();
         }
     }
 }

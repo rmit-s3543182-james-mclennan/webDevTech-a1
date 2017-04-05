@@ -77,6 +77,7 @@ namespace MagicInventorySystem
             }
             else if (choice == "N" || choice == "n")
             {
+                Console.WriteLine("Press any key to return to the menu.");
                 bookingCompleted = 1;
             }
             else
@@ -116,7 +117,7 @@ namespace MagicInventorySystem
         public void wrongInput()
         {
             Console.Clear();
-            Console.WriteLine("Invalid input. Try again");
+            Console.WriteLine("Invalid input. Try again\n");
             bookingCompleted = 0;
         }
 
@@ -138,7 +139,7 @@ namespace MagicInventorySystem
             else
             {
                 Console.Clear();
-                Console.WriteLine("Invalid input. Try again");
+                Console.WriteLine("Invalid input. Try again\n");
                 bookingCompleted = 0;
                 choice = Console.ReadLine();
             }
