@@ -9,7 +9,7 @@ namespace MagicInventorySystem
     // Sub(Derived)class of PageLoad
     class CustomerMenu : PageLoad
     {
-
+        LoadWorkshop loadWorkshop = new LoadWorkshop();
         public MagicMenuCollection loadCustomerPurchaseMenu(MagicMenuCollection collection)
         {
             collection.Menus.Add(new MagicMenuList()
